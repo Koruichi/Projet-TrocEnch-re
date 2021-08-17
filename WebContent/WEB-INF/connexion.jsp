@@ -12,21 +12,22 @@
 <body>
 	<div><img alt="" src="">Eni-Enchères</div>
         <div>
-            <form method="get" action=" ">
+            <form method="post" action=" ">
     
-   					 <label for="nomClient">Identifiant: </span></label>
-                    <input type="text" id="pseudo" name="pseudo" value="" size="20" maxlength="20" />
+   					 <label for="identifiant">Identifiant: </span></label>
+                    <input type="text" id="identifiant" name="identifiant" value="" size="20" maxlength="20" />
                     <br />
                     
-                     <label for="rue">Mot de passe: </label>
+                     <label for="mot_de_passe">Mot de passe: </label>
                     <input type="password" id="mdp" name="mdp" value="" size="20" maxlength="20" />
                     <br />
                     <input type="checkbox" name="souvenir" id="souvenir" /> <label for="souvenir">Se couvenir de moi</label><br />
                     <a href="#">Mot de passe oublié</a>
 
-                <input type="submit" value="Connexion"  />
+                <input type="submit" value="Connexion" name= "btnConnexion"  />
                 <input type="submit" value="Créer un compte" /> <br />
             </form>
+            ${message}
         </div>
     </body>
 </html>
