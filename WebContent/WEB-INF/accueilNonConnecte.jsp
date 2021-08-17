@@ -15,13 +15,14 @@
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>
-		<form method="post" action="traitement.php">
-			<label for="article-search">Filtres :</label> <input type="search"
-				id="site-search" name="q" aria-label="Search Article">
+		<form  method="POST">
+			<label for="articleRecherche">Filtres :</label> <input type="search"
+				id="site-search" name="q" aria-label="Recherche Article">
 
 			<p>
 				<label for="categorie">Catégorie : </label><br /> 
 				<select name="categorie" id="categorie">
+					<option value="toutes">Toutes</option>
 					<option value="informatique">Informatique</option>
 					<option value="ameublement">Ameublement</option>
 					<option value="vetement">Vêtement</option>
@@ -33,6 +34,13 @@
 
 		</form>
 
+	<div>
+		<img alt="" src="">
+		<h3>Titre</h3>
+		<p>Prix : </p>
+		<p>Fin de l'enchère : </p>
+		<p>Vendeur : </p>
+	</div>
 
 	</div>
 </body>
