@@ -21,7 +21,7 @@ public class Utilisateur {
 	
 	
 	
-	
+	// Constructeurs
 	
 	public Utilisateur() {
 		super();
@@ -62,6 +62,26 @@ public class Utilisateur {
 		this.lstArticlevendu = lstArticlevendu;
 		this.lstEnchere = lstEnchere;
 	}
+	
+	
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
+		super();
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.mot_de_passe = mot_de_passe;
+		this.credit = credit;
+		this.administrateur = administrateur;
+	}
+	
+	// Get
+	
 	public int getNo_utilisateur() {
 		return no_utilisateur;
 	}
@@ -107,6 +127,9 @@ public class Utilisateur {
 	public List<Enchere> getLstEnchere() {
 		return lstEnchere;
 	}
+	
+	// SET
+	
 	public void setNo_utilisateur(int no_utilisateur) {
 		this.no_utilisateur = no_utilisateur;
 	}
@@ -152,6 +175,9 @@ public class Utilisateur {
 	public void setLstEnchere(List<Enchere> lstEnchere) {
 		this.lstEnchere = lstEnchere;
 	}
+	
+	// TO STring
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
