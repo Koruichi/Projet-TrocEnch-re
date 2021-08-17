@@ -17,48 +17,59 @@ import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
 @WebServlet("/ConnexionServlet")
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UtilisateurManager manager= UtilisateurManagerSingl.getInstance();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ConnexionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextPage ="/WEB-INF/connexion.jsp";
-		UtilisateurModel model = null;
-		if (model==null) {
-		model = new UtilisateurModel(new Utilisateur(),manager.getAllUtilisateur());
-			
-			if(request.getParameter("btnConnexion") != null) {
-				model.getUtilisateur().setEmail(request.getParameter("identifiant"));	
-				model.getUtilisateur().setPseudo(request.getParameter("identifiant"));		
-				model.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
-				
-				if("".equals(request.getParameter("identifiant"))){
-					request.setAttribute("message", "Vous devez entrer un identifiant");
-				}else {
-					request.getSession().setAttribute("identifiant", request.getParameter("identifiant"));
-					nextPage = "/WEB-INF/monProfil.jsp";
-				}
-				
-			}
-		
-		}
-		request.getSession().setAttribute("model", model);
-		request.getRequestDispatcher(nextPage).forward(request, response);		
+	public ConnexionServlet() {
+		super();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String nextPage = "/WEB-INF/connexion.jsp";
+
+		UtilisateurModel model = null;
+		if (model == null) {
+			model = new UtilisateurModel(new Utilisateur(), manager.getAllUtilisateur());
+		}
+		if (request.getParameter("btnConnexion") != null) {
+			model.getUtilisateur().setEmail(request.getParameter("identifiant"));
+			model.getUtilisateur().setPseudo(request.getParameter("identifiant"));
+			model.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
+			System.out.println("je passe dans le if btnconnex");
+
+			if ("".equals(request.getParameter("identifiant"))) {
+				request.setAttribute("message", "Vous devez entrer un identifiant");
+				System.out.println("je passe dans le if identifiant");
+
+			} else {
+				request.getSession().setAttribute("identifiant", request.getParameter("identifiant"));
+				nextPage = "/AccueilServlet";
+				System.out.println("je passe dans le else");
+			}
+
+		}
+
+          if (request.getParameter("btnCreerCompte") != null) {
+			nextPage = "/CreerCompteServlet";
+		}
+		// request.getSession().setAttribute("model", model);
+		request.getRequestDispatcher(nextPage).forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	}
 
 }

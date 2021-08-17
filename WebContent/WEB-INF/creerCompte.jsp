@@ -47,15 +47,15 @@
                     <input type="text" id="ville" name="ville" value="" size="20" maxlength="20" />
                     <br />
                     
-                     <label for="rue">Mot de passe: <span class="requis">*</span></label>
-                    <input type="password" id="mdp" name="mdp" value="" size="20" maxlength="20" />
+                     <label for="mot_de_passe">Mot de passe: <span class="requis">*</span></label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" value="" size="20" maxlength="20" />
                     <br />
                     
-                     <label for="rue">Confirmation: <span class="requis">*</span></label>
-                    <input type="password" id="mdp" name="mdp" value="" size="20" maxlength="20" />
+                     <label for="confirmation">Confirmation: <span class="requis">*</span></label>
+                    <input type="password" id="confirmation" name="confirmation" value="" size="20" maxlength="20" />
                     <br />
 
-                <input type="submit" value="Créer"  />
+                <input type="submit" value="Créer" name="btnCreer" />
                 <input type="reset" value="Annuler" /> <br />
             </form>
         </div>

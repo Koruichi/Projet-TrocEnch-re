@@ -14,18 +14,18 @@
         <div>
             <form method="post" action=" ">
     
-   					 <label for="identifiant">Identifiant: </span></label>
+   					 <label for="identifiant">Identifiant:<span class="requis">*</span></label>
                     <input type="text" id="identifiant" name="identifiant" value="" size="20" maxlength="20" />
                     <br />
                     
-                     <label for="mot_de_passe">Mot de passe: </label>
+                     <label for="mot_de_passe">Mot de passe: <span class="requis">*</span></label>
                     <input type="password" id="mdp" name="mdp" value="" size="20" maxlength="20" />
                     <br />
-                    <input type="checkbox" name="souvenir" id="souvenir" /> <label for="souvenir">Se couvenir de moi</label><br />
+                    <input type="checkbox" name="souvenir" id="souvenir" /> <label for="souvenir">Se souvenir de moi</label><br />
                     <a href="#">Mot de passe oublié</a>
 
                 <input type="submit" value="Connexion" name= "btnConnexion"  />
-                <input type="submit" value="Créer un compte" /> <br />
+                <input type="submit" value="Créer un compte" name="btnCreerCompte"/> <br />
             </form>
             ${message}
         </div>
