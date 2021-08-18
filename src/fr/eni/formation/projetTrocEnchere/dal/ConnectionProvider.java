@@ -9,7 +9,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-abstract class ConnectionProvider {
+public class ConnectionProvider {
 	private static DataSource dataSource;
 	
 	/**

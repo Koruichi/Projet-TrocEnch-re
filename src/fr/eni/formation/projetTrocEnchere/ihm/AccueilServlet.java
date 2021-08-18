@@ -1,11 +1,15 @@
 package fr.eni.formation.projetTrocEnchere.ihm;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.formation.projetTrocEnchere.dal.ConnectionProvider;;
 
 /**
  * Servlet implementation class AccueilServlet
@@ -26,7 +30,12 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+		try {
+			System.out.println(ConnectionProvider.getConnection());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("/WEB-INF/creerCompte.jsp").forward(request, response);
 
 	}
