@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.formation.projetTrocEnchere.bll.BLLException;
 import fr.eni.formation.projetTrocEnchere.bll.UtilisateurManager;
 import fr.eni.formation.projetTrocEnchere.bll.UtilisateurManagerSingl;
 import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
@@ -18,6 +19,7 @@ import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
+	private String nextPage = "/WEB-INF/connexion.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,34 +35,6 @@ public class ConnexionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextPage = "/WEB-INF/connexion.jsp";
-
-		UtilisateurModel model = null;
-		if (model == null) {
-			model = new UtilisateurModel(new Utilisateur(), manager.getAllUtilisateur());
-		}
-		if (request.getParameter("btnConnexion") != null) {
-			model.getUtilisateur().setEmail(request.getParameter("identifiant"));
-			model.getUtilisateur().setPseudo(request.getParameter("identifiant"));
-			model.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
-			System.out.println("je passe dans le if btnconnex");
-
-			if ("".equals(request.getParameter("identifiant"))) {
-				request.setAttribute("message", "Vous devez entrer un identifiant");
-				System.out.println("je passe dans le if identifiant");
-
-			} else {
-				request.getSession().setAttribute("identifiant", request.getParameter("identifiant"));
-				nextPage = "/AccueilServlet";
-				System.out.println("je passe dans le else");
-			}
-
-		}
-
-          if (request.getParameter("btnCreerCompte") != null) {
-			nextPage = "/CreerCompteServlet";
-		}
-		// request.getSession().setAttribute("model", model);
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
@@ -70,6 +44,40 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		boolean isConnecte = false;
+		
+		if (request.getParameter("btnConnexion") != null) {
+			request.setAttribute("identifiant", request.getParameter("identifiant"));
+			request.setAttribute("mot_de_passe", request.getParameter("mot_de_passe"));
+
+			if ("".equals(request.getAttribute("identifiant")) || "".equals(request.getAttribute("mot_de_passe"))) {
+				request.setAttribute("message", "Vous devez entrer un identifiant et un mot de passe");
+			} else {
+				
+				try {
+					for (Utilisateur u : manager.getAllUtilisateur()) {
+						if (u.getEmail().equals(request.getAttribute("identifiant"))
+						 || u.getPseudo().equals(request.getAttribute("identifiant"))
+						 && u.getMot_de_passe().equals(request.getAttribute("mot_de_passe"))) {
+							nextPage = "/AccueilConnecteServlet";
+							isConnecte = true;
+						}
+					}
+					if (!isConnecte) {
+						request.setAttribute("message", "L'identifiant et le mot de passe sont invalides !");
+					}
+					
+				} catch (BLLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		if (request.getParameter("btnCreerCompte") != null) {
+			nextPage = "/CreerCompteServlet";
+		}
+
+		doGet(request, response);
 	}
 
 }
