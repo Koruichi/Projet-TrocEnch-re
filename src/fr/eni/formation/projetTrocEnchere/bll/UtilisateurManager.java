@@ -15,4 +15,10 @@ public interface UtilisateurManager {
 	public List<Utilisateur> getAllUtilisateur()throws BLLException;
 	
 	public Utilisateur getUtilisateurById(int id)throws BLLException;
+	
+	public boolean confirmMDP(String mdp1, String mdp2) throws BLLException;
+	
+	public boolean isAlphaNum (String pseudo) throws BLLException;
+	
+	public boolean isUnique (String identifiant) throws BLLException;
 }

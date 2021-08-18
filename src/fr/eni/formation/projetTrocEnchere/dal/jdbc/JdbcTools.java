@@ -1,4 +1,4 @@
-package fr.eni.formation.projetTrocEnchere.dal;
+package fr.eni.formation.projetTrocEnchere.dal.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

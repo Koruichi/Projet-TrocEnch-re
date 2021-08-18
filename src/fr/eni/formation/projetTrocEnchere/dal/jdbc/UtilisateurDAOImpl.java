@@ -1,4 +1,4 @@
-package fr.eni.formation.projetTrocEnchere.dal;
+package fr.eni.formation.projetTrocEnchere.dal.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
+import fr.eni.formation.projetTrocEnchere.dal.DALException;
+import fr.eni.formation.projetTrocEnchere.dal.UtilisateurDAO;
 
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {

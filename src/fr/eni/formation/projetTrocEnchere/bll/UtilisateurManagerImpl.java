@@ -10,7 +10,7 @@ import fr.eni.formation.projetTrocEnchere.dal.UtilisateurDAO;
 public class UtilisateurManagerImpl implements UtilisateurManager {
 
 	UtilisateurDAO dao = DAOFact.getUtilisateurDAO();
-	
+
 	@Override
 	public void addUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
@@ -22,7 +22,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 
 	@Override
-	public void deleteUtilisateur(Utilisateur utilisateur) throws BLLException{
+	public void deleteUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
 			dao.delete(utilisateur);
 		} catch (DALException e) {
@@ -32,7 +32,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 
 	@Override
-	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException{
+	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
 			dao.update(utilisateur);
 		} catch (DALException e) {
@@ -42,7 +42,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 
 	@Override
-	public List<Utilisateur> getAllUtilisateur() throws BLLException{
+	public List<Utilisateur> getAllUtilisateur() throws BLLException {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
@@ -53,7 +53,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 
 	@Override
-	public Utilisateur getUtilisateurById(int id) throws BLLException{
+	public Utilisateur getUtilisateurById(int id) throws BLLException {
 		try {
 			return dao.getById(id);
 		} catch (DALException e) {
@@ -63,4 +63,31 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		return null;
 	}
 
+	public boolean confirmMDP(String mdp1, String mdp2) throws BLLException {
+		if (mdp1.equals(mdp2)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isAlphaNum(String pseudo) throws BLLException {
+		if (pseudo.matches("[a-zA-Z0-9]*")) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public boolean isUnique(String identifiant) throws BLLException {
+		for (Utilisateur u : getAllUtilisateur()) {
+			if(identifiant.equals(u.getPseudo())|| identifiant.equals(u.getEmail())) {
+				return false;	
+			}
+		}
+		return true;
+	}
 }

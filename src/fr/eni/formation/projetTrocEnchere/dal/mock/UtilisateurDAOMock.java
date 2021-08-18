@@ -1,9 +1,10 @@
-package fr.eni.formation.projetTrocEnchere.dal;
+package fr.eni.formation.projetTrocEnchere.dal.mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
+import fr.eni.formation.projetTrocEnchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOMock implements UtilisateurDAO{
 

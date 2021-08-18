@@ -12,7 +12,7 @@
 <body>
 <div><img alt="" src="">Eni-Enchères</div>
         <div>
-            <form method="get" action=" ">
+            <form method="post" action="CreerCompteServlet">
                     <h1>Mon profil</h1>
     
    					 <label for="nomClient">Pseudo: <span class="requis">*</span></label>
@@ -32,7 +32,7 @@
                     <br />
                    
                     <label for="codePostale">Code postal: <span class="requis">*</span></label>
-                    <input type="text" id="telephoneClient" name="telephoneClient" value="" size="20" maxlength="20" />
+                    <input type="text" id="code_postal" name="code_postal" value="" size="20" maxlength="20" />
                     <br />
     
                     <label for="rue">Rue: <span class="requis">*</span></label>
@@ -58,6 +58,7 @@
                 <input type="submit" value="Créer" name="btnCreer" />
                 <input type="reset" value="Annuler" /> <br />
             </form>
+            ${message}
         </div>
 </body>
 </html>

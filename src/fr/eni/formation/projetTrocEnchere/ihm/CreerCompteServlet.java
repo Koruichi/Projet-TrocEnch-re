@@ -18,6 +18,7 @@ import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
 @WebServlet("/CreerCompteServlet")
 public class CreerCompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	String nextPage = "/WEB-INF/creerCompte.jsp";
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
@@ -33,9 +34,21 @@ public class CreerCompteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nextPage = "/WEB-INF/creerCompte.jsp";
 
+		request.getRequestDispatcher(nextPage).forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		boolean isCree = false;
 		UtilisateurModel model = null;
+		
 		if (model == null) {
 			try {
 				model = new UtilisateurModel(new Utilisateur(), manager.getAllUtilisateur());
@@ -56,8 +69,8 @@ public class CreerCompteServlet extends HttpServlet {
 			model.getUtilisateur().setVille(request.getParameter("ville"));
 			model.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
 			request.setAttribute("confirmation", request.getParameter("confirmation"));
+			model.getUtilisateur().setCredit(100);
 			try {
-				manager.addUtilisateur(model.getUtilisateur());
 				model.setLstUtilisateur(manager.getAllUtilisateur());
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
@@ -67,11 +80,46 @@ public class CreerCompteServlet extends HttpServlet {
 
 			System.out.println(model.getUtilisateur().getMot_de_passe());
 			System.out.println(request.getAttribute("confirmation"));
-			if (model.getUtilisateur().getMot_de_passe().equals(request.getAttribute("confirmation"))) {
+			
+			try {
+				
+				if (manager.confirmMDP(model.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"))) {
+					
+					if (manager.isAlphaNum(model.getUtilisateur().getPseudo())){
+						if (manager.isUnique(model.getUtilisateur().getPseudo()) && manager.isUnique(model.getUtilisateur().getEmail())) {
+							manager.addUtilisateur(model.getUtilisateur());
+						} else {
+							request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
+						}
 
-				System.out.println("le mdp est bon");
-			} else {
-				System.out.println("le mdp est pourri!");
+					} else {
+						request.setAttribute("message", "Votre pseudo contient des caractères spéciaux interdits");
+					}
+					
+				} else {
+					request.setAttribute("message", "Mot de passe et confirmation non conforme");
+				}
+				
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			
+//			if (model.getUtilisateur().getMot_de_passe().equals(request.getAttribute("confirmation"))) {
+//			
+//				if(model.getUtilisateur().getPseudo().matches("[a-zA-Z0-9]*")) {
+//					System.out.println("Votre pseudo est validé");
+//				} else {
+//					System.out.println("Le pseudo n'accepte que des caractères alphanumériques");
+//				}
+//				try {
+//					manager.addUtilisateur(model.getUtilisateur());
+//				} catch (BLLException e) {
+//					e.printStackTrace();
+//				}
+
+				System.out.println("seksay mdp babay");
+			} else  {
+				throw new ServletException("mot de passe et confirmation non conforme");
 			}
 
 //			for (Utilisateur u : manager.getAllUtilisateur()) {
@@ -84,19 +132,10 @@ public class CreerCompteServlet extends HttpServlet {
 //
 //			}
 
-		}
+		//}
 		request.getSession().setAttribute("model", model);
-		request.getRequestDispatcher(nextPage).forward(request, response);
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		doGet(request, response);
-	}
+	
+}
 
 }

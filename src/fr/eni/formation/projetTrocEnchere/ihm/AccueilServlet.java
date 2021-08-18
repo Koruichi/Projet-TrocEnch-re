@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.formation.projetTrocEnchere.dal.ConnectionProvider;;
+import fr.eni.formation.projetTrocEnchere.dal.jdbc.ConnectionProvider;;
 
 /**
  * Servlet implementation class AccueilServlet
