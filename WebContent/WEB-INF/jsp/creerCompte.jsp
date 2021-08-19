@@ -19,36 +19,59 @@
 		<form method="post" action="CreerCompteServlet">
 			<h1>Mon profil</h1>
 
-			<label for="nomClient">Pseudo: <span class="requis">*</span></label>
-			<input type="text" id="pseudo" name="pseudo"
-				placeholder="Ex : Jojo44" value="" size="20" maxlength="20" /> <br />
+			<label >Pseudo: </label>
+			<input type="text" name="pseudo" placeholder="Ex : Jojo44" value="" size="20" maxlength="20" /> 
+				
+			<br>
 
-			<label for="prenom">Prénom: <span class="requis">*</span></label> <input
-				type="text" id="prenom" name="prenom" value="" size="20"
-				maxlength="20" /> <br /> <label for="nom">Nom: <span
-				class="requis">*</span></label> <input type="text" id="nom" name="nom"
-				value="" size="20" maxlength="20" /> <br /> <label for="telephone">Téléphone:
-				<span class="requis">*</span>
-			</label> <input type="tel" id="telephone" name="telephone" value="" size="20"
-				maxlength="20" /> <br /> <label for="codePostale">Code
-				postal: <span class="requis">*</span>
-			</label> <input type="text" id="code_postal" name="code_postal" value=""
-				size="20" maxlength="20" /> <br /> <label for="rue">Rue: <span
-				class="requis">*</span></label> <input type="text" id="rue" name="rue"
-				value="" size="20" maxlength="20" /> <br /> <label for="email">Email:
-				<span class="requis">*</span>
-			</label> <input type="email" id="email" name="email" value="" size="20"
-				maxlength="60" /> <br /> <label for="ville">Ville: <span
-				class="requis">*</span></label> <input type="text" id="ville" name="ville"
-				value="" size="20" maxlength="20" /> <br /> <label
-				for="mot_de_passe">Mot de passe: <span class="requis">*</span></label>
-			<input type="password" id="mot_de_passe" name="mot_de_passe" value=""
-				size="20" maxlength="20" /> <br /> <label for="confirmation">Confirmation:
-				<span class="requis">*</span>
-			</label> <input type="password" id="confirmation" name="confirmation"
-				value="" size="20" maxlength="20" /> <br /> <input type="submit"
-				value="Créer" name="btnCreer" /> <input type="reset"
-				value="Annuler" /> <br />
+			<label >Prénom:</label> 
+			<input type="text" name="prenom" value="" size="20" maxlength="20" /> 
+			
+			<br /> 
+				
+			<label >Nom:</label> 
+			<input type="text" name="nom" value="" size="20" maxlength="20" /> 
+			
+			<br /> 
+				
+			<label >Téléphone: </label> 
+			<input type="tel" name="telephone" value="" size="20" maxlength="20" /> 
+				
+			<br /> 
+			<label >Code postal: </label> 
+			<input type="text"  name="code_postal" value="" size="20" maxlength="20" />
+				 
+			<br /> 
+			
+			<label>Rue:</label> 
+			<input type="text" name="rue" value="" size="20" maxlength="20" /> 
+			
+			<br /> 
+			
+			<label >Email:</label> 
+			<input type="email" name="email" value="" size="20" maxlength="60" /> 
+			
+			<br /> 
+			
+			<label >Ville: </label>
+			<input type="text" name="ville" value="" size="20" maxlength="20" /> 
+				
+			<br /> 
+			
+			<label >Mot de passe:</label>
+			<input type="password" name="mot_de_passe" value="" size="20" maxlength="20" /> 
+				
+			<br /> 
+				
+			<label >Confirmation: </label> 
+			<input type="password" name="confirmation" value="" size="20" maxlength="20" /> 
+				
+			<br /> 
+				
+			<input type="submit" value="Créer" name="btnCreer" /> 
+			<input type="reset" value="Annuler" /> 
+			
+			<br />
 		</form>
 		${message}
 	</div>

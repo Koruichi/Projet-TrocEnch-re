@@ -5,19 +5,18 @@ public class Retrait {
 	private String rue;
 	private String code_postal;
 	private String ville;
-	private ArticleVendu article;
+	
 	
 
 	public Retrait() {
 		super();
 	}
 
-	public Retrait(String rue, String code_postal, String ville, ArticleVendu article) {
+	public Retrait(String rue, String code_postal, String ville) {
 		super();
 		this.rue = rue;
 		this.code_postal = code_postal;
 		this.ville = ville;
-		this.article = article;
 	}
 	
 
@@ -45,13 +44,6 @@ public class Retrait {
 		this.ville = ville;
 	}
 
-	public ArticleVendu getArticle() {
-		return article;
-	}
-
-	public void setArticle(ArticleVendu article) {
-		this.article = article;
-	}
 
 	@Override
 	public String toString() {
@@ -63,7 +55,6 @@ public class Retrait {
 		builder.append(", ville=");
 		builder.append(ville);
 		builder.append(", article=");
-		builder.append(article);
 		builder.append("]");
 		return builder.toString();
 	}

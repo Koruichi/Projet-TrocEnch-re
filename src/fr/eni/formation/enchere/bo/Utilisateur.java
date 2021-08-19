@@ -17,7 +17,7 @@ public class Utilisateur {
 	private boolean administrateur;
 	private List<ArticleVendu> lstArticleAchete;
 	private List<ArticleVendu> lstArticlevendu;
-	private List<Enchere> lstEnchere;
+	
 	
 	
 	
@@ -44,7 +44,7 @@ public class Utilisateur {
 	}
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur,
-			List<ArticleVendu> lstArticleAchete, List<ArticleVendu> lstArticlevendu, List<Enchere> lstEnchere) {
+			List<ArticleVendu> lstArticleAchete, List<ArticleVendu> lstArticlevendu) {
 		super();
 		this.no_utilisateur = no_utilisateur;
 		this.pseudo = pseudo;
@@ -60,7 +60,6 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 		this.lstArticleAchete = lstArticleAchete;
 		this.lstArticlevendu = lstArticlevendu;
-		this.lstEnchere = lstEnchere;
 	}
 	
 	
@@ -121,12 +120,8 @@ public class Utilisateur {
 	public List<ArticleVendu> getLstArticleAchete() {
 		return lstArticleAchete;
 	}
-	public List<ArticleVendu> getLstArticlevendu() {
-		return lstArticlevendu;
-	}
-	public List<Enchere> getLstEnchere() {
-		return lstEnchere;
-	}
+	
+	
 	
 	// SET
 	
@@ -172,9 +167,7 @@ public class Utilisateur {
 	public void setLstArticlevendu(List<ArticleVendu> lstArticlevendu) {
 		this.lstArticlevendu = lstArticlevendu;
 	}
-	public void setLstEnchere(List<Enchere> lstEnchere) {
-		this.lstEnchere = lstEnchere;
-	}
+	
 	
 	// TO STring
 	
@@ -210,7 +203,6 @@ public class Utilisateur {
 		builder.append(", lstArticlevendu=");
 		builder.append(lstArticlevendu);
 		builder.append(", lstEnchere=");
-		builder.append(lstEnchere);
 		builder.append("]");
 		return builder.toString();
 	}

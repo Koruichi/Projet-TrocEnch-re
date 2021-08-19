@@ -6,18 +6,16 @@ public class Categorie {
 	
 	private int no_categorie;
 	private String libelle;
-	private List<ArticleVendu> lstArticle;
 	
 	
 	public Categorie() {
 		super();
 	}
 	
-	public Categorie(int no_categorie, String libelle, List<ArticleVendu> lstArticle) {
+	public Categorie(int no_categorie, String libelle) {
 		super();
 		this.no_categorie = no_categorie;
 		this.libelle = libelle;
-		this.lstArticle = lstArticle;
 	}
 
 	public int getNo_categorie() {
@@ -32,12 +30,7 @@ public class Categorie {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public List<ArticleVendu> getLstArticle() {
-		return lstArticle;
-	}
-	public void setLstArticle(List<ArticleVendu> lstArticle) {
-		this.lstArticle = lstArticle;
-	}
+	
 
 	@Override
 	public String toString() {
@@ -47,7 +40,6 @@ public class Categorie {
 		builder.append(", libelle=");
 		builder.append(libelle);
 		builder.append(", lstArticle=");
-		builder.append(lstArticle);
 		builder.append("]");
 		return builder.toString();
 	}

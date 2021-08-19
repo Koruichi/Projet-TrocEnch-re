@@ -16,11 +16,17 @@ import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO{
-	private final String INSERT = "INSERT INTO articles_vendus (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
+	private final String INSERT = "INSERT INTO articles_vendus (articles_vendus.no_article, articles_vendus.nom_article, articles_Vendus.description, articles_vendus.date_debut_encheres, articles_vendus.date_fin_encheres, articles_vendus.prix_initial, articles_vendus.prix_vente, articles_vendus.no_utilisateur, articles_vendus.no_categorie INNER JOIN utilisateurs ON utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
-	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, WHERE no_article=?";
-	private final String SELECTALL = "SELECT articles_vendus, no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, FROM articles_vendus";
-	private final String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie,  FROM articles_vendus WHERE no_article=?";
+	private final String UPDATE = "UPDATE articles_vendus SET articles_vendus.no_article=?, articles_vendus.nom_article=?, articles_vendus.description=?, articles_vendus.date_debut_encheres=?, articles_vendus.date_fin_encheres=?, articles_vendus.prix_initial=?, articles_vendus.prix_vente=?, articles_vendus.no_utilisateur=?, articles_vendus.no_categorie=?, INNER JOIN utilisateurs on utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie WHERE no_article=?";
+	private final String SELECTALL = "SELECT articles_vendus, articles_vendus.no_article, articles_vendus.nom_article, articles_vendus.description, articles_vendus.date_debut_encheres, articles_vendus.date_fin_encheres, articles_vendus.prix_initial, articles_vendus.prix_vente, articles_vendus.no_utilisateur, articles_vendus.no_categorie, INNER JOIN utilisateurs ON utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie  FROM articles_vendus";
+	private final String SELECTBYID = "SELECT no_article, articles_vendus.nom_article, articles_vendus.description, articles_vendus.date_debut_encheres, articles_vendus.date_fin_encheres, articles_vendus.prix_initial, articles_vendus.prix_vente, articles_vendus.no_utilisateur, articles_vendus.no_categorie, INNER JOIN utilisateurs ON utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie FROM articles_vendus WHERE no_article=?";
+	
+	//private final String INSERT = "INSERT INTO articles_vendus (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
+	//private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
+	//private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, WHERE no_article=?";
+	//private final String SELECTALL = "SELECT articles_vendus, no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, FROM articles_vendus";
+	//private final String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie,  FROM articles_vendus WHERE no_article=?";
 	// private final String SELECTBYUTILISATEUR
 
 	public void insert(ArticleVendu articleVendu) throws DALException {
@@ -33,8 +39,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 			stmt.setTime(5,Time.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
-			stmt.setInt(8, articleVendu.getNo_utilisateur());
-			stmt.setInt(9, articleVendu.getNo_categorie());
+			stmt.setInt(8, articleVendu.getUtilisateur().getNo_utilisateur());
+			stmt.setInt(9, articleVendu.getCategorie().getNo_categorie());
 			int nb = stmt.executeUpdate();
 			if (nb > 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
@@ -70,8 +76,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 			stmt.setTime(5,Time.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
-			stmt.setInt(8, articleVendu.getUtilisateur.getNo_utilisateur());
-			stmt.setInt(9, articleVendu.getNo_categorie());
+			stmt.setInt(8, articleVendu.getUtilisateur().getNo_utilisateur());
+			stmt.setInt(9, articleVendu.getCategorie().getNo_categorie());
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
