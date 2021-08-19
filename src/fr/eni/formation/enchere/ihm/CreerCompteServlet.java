@@ -46,48 +46,43 @@ public class CreerCompteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UtilisateurModel model = null;
+		UtilisateurModel user = (UtilisateurModel) request.getSession().getAttribute("user");
 
-		if (model == null) {
-			try {
-				model = new UtilisateurModel(new Utilisateur(), manager.getAllUtilisateur());
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
+		if (user == null) {
+			user = new UtilisateurModel();
 		}
 
 		if (request.getParameter("btnCreer") != null) {
-			
-			model.setUtilisateur(new Utilisateur());
-			model.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-			model.getUtilisateur().setNom(request.getParameter("nom"));
-			model.getUtilisateur().setPrenom(request.getParameter("prenom"));
-			model.getUtilisateur().setEmail(request.getParameter("email"));
-			model.getUtilisateur().setTelephone(request.getParameter("telephone"));
-			model.getUtilisateur().setRue(request.getParameter("rue"));
-			model.getUtilisateur().setCode_postal(request.getParameter("code_postal"));
-			model.getUtilisateur().setVille(request.getParameter("ville"));
-			model.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
-			request.setAttribute("confirmation", request.getParameter("confirmation"));
-			model.getUtilisateur().setCredit(100);
-			
+
+			user.setUtilisateur(new Utilisateur());
+			user.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+			user.getUtilisateur().setNom(request.getParameter("nom"));
+			user.getUtilisateur().setPrenom(request.getParameter("prenom"));
+			user.getUtilisateur().setEmail(request.getParameter("email"));
+			user.getUtilisateur().setTelephone(request.getParameter("telephone"));
+			user.getUtilisateur().setRue(request.getParameter("rue"));
+			user.getUtilisateur().setCode_postal(request.getParameter("code_postal"));
+			user.getUtilisateur().setVille(request.getParameter("ville"));
+			user.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
+			user.getUtilisateur().setCredit(100);
+
 			try {
-				model.setLstUtilisateur(manager.getAllUtilisateur());
+				user.setLstUtilisateur(manager.getAllUtilisateur());
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 
 			try {
 
-				if (manager.confirmMDP(model.getUtilisateur().getMot_de_passe(),
+				if (manager.confirmMDP(user.getUtilisateur().getMot_de_passe(),
 						request.getParameter("confirmation"))) {
 
-					if (manager.isAlphaNum(model.getUtilisateur().getPseudo())) {
+					if (manager.isAlphaNum(user.getUtilisateur().getPseudo())) {
 
-						if (manager.isUnique(model.getUtilisateur().getPseudo())
-								&& manager.isUnique(model.getUtilisateur().getEmail())) {
+						if (manager.isUnique(user.getUtilisateur().getPseudo())
+								&& manager.isUnique(user.getUtilisateur().getEmail())) {
 
-							manager.addUtilisateur(model.getUtilisateur());
+							manager.addUtilisateur(user.getUtilisateur());
 
 						} else {
 							request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
@@ -105,7 +100,7 @@ public class CreerCompteServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			request.getSession().setAttribute("model", model);
+			request.getSession().setAttribute("user", user);
 			doGet(request, response);
 
 		}

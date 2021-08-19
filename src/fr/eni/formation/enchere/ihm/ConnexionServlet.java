@@ -34,12 +34,11 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		if (request.getParameter("btnCreerCompte") != null) {
 			nextPage = "/CreerCompteServlet";
-			System.out.println("Allo?");
 		}
-		
+
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
@@ -49,34 +48,47 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		boolean isConnecte = false;
 		
+		UtilisateurModel user = (UtilisateurModel) request.getSession().getAttribute("user");
+
+		if (user == null) {
+			user = new UtilisateurModel();
+		}
+
+		System.out.println(user);
+
+		boolean isConnecte = false;
+
 		if (request.getParameter("btnConnexion") != null) {
 
 			if ("".equals(request.getParameter("identifiant")) || "".equals(request.getParameter("mot_de_passe"))) {
 				request.setAttribute("message", "Vous devez entrer un identifiant et un mot de passe");
 			} else {
-				
+
 				try {
 					for (Utilisateur u : manager.getAllUtilisateur()) {
-						if (u.getEmail().equals(request.getAttribute("identifiant"))
-						 || u.getPseudo().equals(request.getAttribute("identifiant"))
-						 && u.getMot_de_passe().equals(request.getAttribute("mot_de_passe"))) {
+						if (u.getEmail().equals(request.getParameter("identifiant"))
+								|| u.getPseudo().equals(request.getParameter("identifiant"))
+										&& u.getMot_de_passe().equals(request.getParameter("mot_de_passe"))) {
 							nextPage = "/AccueilConnecteServlet";
 							isConnecte = true;
+
 						}
 					}
 					if (!isConnecte) {
 						request.setAttribute("message", "L'identifiant et le mot de passe sont invalides !");
 					}
-					
+
+					if (isConnecte) {
+						System.out.println(user);
+
+					}
+
 				} catch (BLLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-
-		
 
 		doGet(request, response);
 	}

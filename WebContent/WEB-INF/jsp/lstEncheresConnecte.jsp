@@ -19,7 +19,7 @@
 		<a href="/Projet-TrocEnchere/EnchereNonCommenceeServlet">Enchères</a> 
 		<a href="/Projet-TrocEnchere/VendreUnArticleServlet">Vendre un article</a> 
 		<a href="/Projet-TrocEnchere/MonProfilServlet">Mon profil</a> 
-		<a href="/Projet-TrocEnchere/AccueilServlet">Déconnexion</a>
+		<a name="btnDeco" href="/Projet-TrocEnchere/AccueilServlet">Déconnexion</a>
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>

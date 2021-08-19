@@ -26,6 +26,9 @@ public class AccueilConnecteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if(request.getParameter("btnDeco") != null) {
+			System.out.println("coucou");
+		}
 		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
