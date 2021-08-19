@@ -12,9 +12,10 @@ import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
 import fr.eni.formation.enchere.bo.Utilisateur;
+import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 
-public class ArticleVenduDAOImpl {
+public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 	private final String INSERT = "INSERT INTO articles_vendus (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
 	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, WHERE no_article=?";
