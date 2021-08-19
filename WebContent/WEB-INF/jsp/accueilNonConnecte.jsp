@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +11,20 @@
 </head>
 <body>
 	<div>
-		<img alt="" src=""> <a href="/Projet-TrocEnchere/ConnexionServlet">S'inscrire - Se connecter</a>
+		<img width="100px"
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU">
+		Eni-Enchères
+		<a href="/Projet-TrocEnchere/ConnexionServlet">S'inscrire - Se connecter</a>
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>
-		<form  method="POST">
+		<form method="POST">
 			<label for="articleRecherche">Filtres :</label> <input type="search"
 				id="site-search" name="q" aria-label="Recherche Article">
 
 			<p>
-				<label for="categorie">Catégorie : </label><br /> 
-				<select name="categorie" id="categorie">
+				<label for="categorie">Catégorie : </label><br /> <select
+					name="categorie" id="categorie">
 					<option value="toutes">Toutes</option>
 					<option value="informatique">Informatique</option>
 					<option value="ameublement">Ameublement</option>
@@ -33,15 +36,15 @@
 			<button>Rechercher</button>
 
 		</form>
-<c:forEach items="${model.lstArticles}" var="art">
-	<div>
-		<img alt="" src="">
-		<h3>${art.art.nom_article}</h3>
-		<p>Prix : ${art.prix_vente} </p>
-		<p>Fin de l'enchère :${art.date_fin_enchere} </p>
-		<p>Vendeur : ${art.utilisateur.pseudo}</p>
-	</div>
-	</c:forEach>
+		<c:forEach items="${model.lstArticles}" var="art">
+			<div>
+				<img alt="" src="">
+				<h3>${art.art.nom_article}</h3>
+				<p>Prix : ${art.prix_vente}</p>
+				<p>Fin de l'enchère :${art.date_fin_enchere}</p>
+				<p>Vendeur : ${art.utilisateur.pseudo}</p>
+			</div>
+		</c:forEach>
 	</div>
 
 </body>

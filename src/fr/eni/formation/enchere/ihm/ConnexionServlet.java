@@ -34,7 +34,12 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		if (request.getParameter("btnCreerCompte") != null) {
+			nextPage = "/CreerCompteServlet";
+			System.out.println("Allo?");
+		}
+		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
@@ -71,9 +76,7 @@ public class ConnexionServlet extends HttpServlet {
 			}
 		}
 
-		if (request.getParameter("btnCreerCompte") != null) {
-			nextPage = "/CreerCompteServlet";
-		}
+		
 
 		doGet(request, response);
 	}
