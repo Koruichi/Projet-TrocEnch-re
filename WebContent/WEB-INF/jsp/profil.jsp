@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>	
-	<div><img alt="" src="">Eni-Enchères</div>
+	<div>
+		<img width="100px"
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU">
+		Eni-Enchères
+	</div>
 
 	<div>
 		<ul style ="list-style-type:none">

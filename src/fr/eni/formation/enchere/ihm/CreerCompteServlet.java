@@ -46,9 +46,8 @@ public class CreerCompteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		boolean isCree = false;
 		UtilisateurModel model = null;
-		
+
 		if (model == null) {
 			try {
 				model = new UtilisateurModel(new Utilisateur(), manager.getAllUtilisateur());
@@ -58,6 +57,7 @@ public class CreerCompteServlet extends HttpServlet {
 		}
 
 		if (request.getParameter("btnCreer") != null) {
+			
 			model.setUtilisateur(new Utilisateur());
 			model.getUtilisateur().setPseudo(request.getParameter("pseudo"));
 			model.getUtilisateur().setNom(request.getParameter("nom"));
@@ -70,24 +70,25 @@ public class CreerCompteServlet extends HttpServlet {
 			model.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
 			request.setAttribute("confirmation", request.getParameter("confirmation"));
 			model.getUtilisateur().setCredit(100);
+			
 			try {
 				model.setLstUtilisateur(manager.getAllUtilisateur());
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(model);
 
-			System.out.println(model.getUtilisateur().getMot_de_passe());
-			System.out.println(request.getAttribute("confirmation"));
-			
 			try {
-				
-				if (manager.confirmMDP(model.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"))) {
-					
-					if (manager.isAlphaNum(model.getUtilisateur().getPseudo())){
-						if (manager.isUnique(model.getUtilisateur().getPseudo()) && manager.isUnique(model.getUtilisateur().getEmail())) {
+
+				if (manager.confirmMDP(model.getUtilisateur().getMot_de_passe(),
+						request.getParameter("confirmation"))) {
+
+					if (manager.isAlphaNum(model.getUtilisateur().getPseudo())) {
+
+						if (manager.isUnique(model.getUtilisateur().getPseudo())
+								&& manager.isUnique(model.getUtilisateur().getEmail())) {
+
 							manager.addUtilisateur(model.getUtilisateur());
+
 						} else {
 							request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
 						}
@@ -95,47 +96,18 @@ public class CreerCompteServlet extends HttpServlet {
 					} else {
 						request.setAttribute("message", "Votre pseudo contient des caractères spéciaux interdits");
 					}
-					
+
 				} else {
 					request.setAttribute("message", "Mot de passe et confirmation non conforme");
 				}
-				
+
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			
-//			if (model.getUtilisateur().getMot_de_passe().equals(request.getAttribute("confirmation"))) {
-//			
-//				if(model.getUtilisateur().getPseudo().matches("[a-zA-Z0-9]*")) {
-//					System.out.println("Votre pseudo est validé");
-//				} else {
-//					System.out.println("Le pseudo n'accepte que des caractères alphanumériques");
-//				}
-//				try {
-//					manager.addUtilisateur(model.getUtilisateur());
-//				} catch (BLLException e) {
-//					e.printStackTrace();
-//				}
 
-				System.out.println("seksay mdp babay");
-			} else  {
-				throw new ServletException("mot de passe et confirmation non conforme");
-			}
+			request.getSession().setAttribute("model", model);
+			doGet(request, response);
 
-//			for (Utilisateur u : manager.getAllUtilisateur()) {
-//				if (u.getPseudo().equals(model.getUtilisateur().getPseudo())) {
-//					System.out.println("le pseudo est déjà pris");
-//				}
-//				if (u.getEmail().equals(model.getUtilisateur().getEmail())) {
-//					System.out.println("l'email est déjà pris");
-//				}
-//
-//			}
-
-		//}
-		request.getSession().setAttribute("model", model);
-		doGet(request, response);
-	
-}
-
+		}
+	}
 }
