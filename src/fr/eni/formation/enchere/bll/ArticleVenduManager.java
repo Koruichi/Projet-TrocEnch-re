@@ -1,5 +1,7 @@
 package fr.eni.formation.enchere.bll;
 
+import java.util.List;
+
 import fr.eni.formation.enchere.bo.ArticleVendu;
 
 public interface ArticleVenduManager {
@@ -10,6 +12,8 @@ public interface ArticleVenduManager {
 	
 	public void updateArticle (ArticleVendu articleVendu) throws BLLException;
 	
+	public List<ArticleVendu> getAllArticle()throws BLLException;
 	
+
 	
 }
