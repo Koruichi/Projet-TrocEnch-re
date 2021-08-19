@@ -47,10 +47,8 @@ public class ConnexionServlet extends HttpServlet {
 		boolean isConnecte = false;
 		
 		if (request.getParameter("btnConnexion") != null) {
-			request.setAttribute("identifiant", request.getParameter("identifiant"));
-			request.setAttribute("mot_de_passe", request.getParameter("mot_de_passe"));
 
-			if ("".equals(request.getAttribute("identifiant")) || "".equals(request.getAttribute("mot_de_passe"))) {
+			if ("".equals(request.getParameter("identifiant")) || "".equals(request.getParameter("mot_de_passe"))) {
 				request.setAttribute("message", "Vous devez entrer un identifiant et un mot de passe");
 			} else {
 				
