@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div>
-		<img alt="" src=""> <a href="#">S'inscrire - Se connecter</a>
+		<img alt="" src=""> <a href="/CreerCompteServlet">S'inscrire - Se connecter</a>
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>
@@ -39,7 +39,7 @@
 		<h3>${art.art.nom_article}</h3>
 		<p>Prix : ${art.prix_vente} </p>
 		<p>Fin de l'enchère :${art.date_fin_enchere} </p>
-		<p>Vendeur : ${art.utilisateur}</p>
+		<p>Vendeur : ${art.utilisateur.pseudo}</p>
 	</div>
 	</c:forEach>
 	</div>

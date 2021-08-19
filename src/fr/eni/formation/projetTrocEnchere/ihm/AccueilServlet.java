@@ -17,6 +17,7 @@ import fr.eni.formation.projetTrocEnchere.dal.jdbc.ConnectionProvider;;
 @WebServlet("/AccueilServlet")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String nextPage = "/WEB-INF/jsp/accueilNonConnecte.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,13 +31,8 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			System.out.println(ConnectionProvider.getConnection());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("/WEB-INF/jsp/creerCompte.jsp").forward(request, response);
+		
+		request.getRequestDispatcher(nextPage).forward(request, response);
 
 	}
 
