@@ -18,7 +18,7 @@ import fr.eni.formation.projetTrocEnchere.bo.Utilisateur;
 @WebServlet("/CreerCompteServlet")
 public class CreerCompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String nextPage = "/WEB-INF/creerCompte.jsp";
+	String nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
