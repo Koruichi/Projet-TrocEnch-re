@@ -14,7 +14,7 @@ import fr.eni.formation.enchere.dal.jdbc.ConnectionProvider;;
 /**
  * Servlet implementation class AccueilServlet
  */
-@WebServlet("/AccueilServlet")
+@WebServlet("/")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String nextPage = "/WEB-INF/jsp/accueilNonConnecte.jsp";
