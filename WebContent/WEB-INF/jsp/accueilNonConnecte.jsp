@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div>
-		<img alt="" src=""> <a href="/CreerCompteServlet">S'inscrire - Se connecter</a>
+		<img alt="" src=""> <a href="/Projet-TrocEnchere/ConnexionServlet">S'inscrire - Se connecter</a>
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>
