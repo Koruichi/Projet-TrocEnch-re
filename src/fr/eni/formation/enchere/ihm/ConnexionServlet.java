@@ -19,7 +19,7 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
-	private String nextPage = "/WEB-INF/connexion.jsp";
+	private String nextPage = "/WEB-INF/jsp/connexion.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()

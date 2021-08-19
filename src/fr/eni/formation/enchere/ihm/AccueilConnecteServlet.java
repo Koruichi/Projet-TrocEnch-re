@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AccueilConnecteServlet")
 public class AccueilConnecteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private String nextPage = "/WEB-INF/lstEncheresConnecte.jsp";
+    private String nextPage = "/WEB-INF/jsp/lstEncheresConnecte.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */

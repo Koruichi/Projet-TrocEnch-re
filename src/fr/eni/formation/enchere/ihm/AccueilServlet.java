@@ -36,7 +36,7 @@ public class AccueilServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/WEB-INF/creerCompte.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/creerCompte.jsp").forward(request, response);
 
 	}
 
