@@ -26,22 +26,23 @@
 					<option value="informatique">Informatique</option>
 					<option value="ameublement">Ameublement</option>
 					<option value="vetement">Vêtement</option>
-					<option value="sportLoisirs">Sport&Loisirs</option>
+					<option value="sportLoisirs">Sport & Loisirs</option>
 				</select>
 			</p>
 
 			<button>Rechercher</button>
 
 		</form>
-
+<c:forEach items="${model.lstArticles}" var="art">
 	<div>
 		<img alt="" src="">
-		<h3>Titre</h3>
-		<p>Prix : </p>
-		<p>Fin de l'enchère : </p>
-		<p>Vendeur : </p>
+		<h3>${art.art.nom_article}</h3>
+		<p>Prix : ${art.prix_vente} </p>
+		<p>Fin de l'enchère :${art.date_fin_enchere} </p>
+		<p>Vendeur : ${art.utilisateur}</p>
+	</div>
+	</c:forEach>
 	</div>
 
-	</div>
 </body>
 </html>
