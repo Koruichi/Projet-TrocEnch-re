@@ -3,6 +3,7 @@ package fr.eni.formation.enchere.bll;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
+import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.DAOFact;
@@ -11,9 +12,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	ArticleVenduDAO dao = DAOFact.getArticleVenduDAO();
 	
 	@Override
-	public void addArticle(ArticleVendu articleVendu) throws BLLException {
+	public void addArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException {
 		try {
-			dao.insert(articleVendu);
+			dao.insert(articleVendu, u);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -21,9 +22,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	}
 
 	@Override
-	public void deleteArticle(ArticleVendu articleVendu) throws BLLException {
+	public void deleteArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException {
 		try {
-			dao.delete(articleVendu);
+			dao.delete(articleVendu, u);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,9 +32,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	}
 
 	@Override
-	public void updateArticle(ArticleVendu articleVendu) throws BLLException {
+	public void updateArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException {
 		try {
-			dao.update(articleVendu);
+			dao.update(articleVendu, u);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,15 +42,17 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	}
 
 	@Override
-	public List<ArticleVendu> getAllArticle() throws BLLException {
+	public List<ArticleVendu> getAllArticle(Utilisateur u) throws BLLException {
 		try {
-			return dao.getAll();
+			return dao.getAll(u);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
+
+	
 
 	
 	

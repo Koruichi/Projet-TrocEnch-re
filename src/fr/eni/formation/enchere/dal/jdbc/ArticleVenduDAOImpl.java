@@ -148,26 +148,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 
 	@Override
-	public void insert(ArticleVendu articleVendu) throws DALException {
+	public void delete(ArticleVendu articleVendu, Utilisateur u) throws DALException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
-	@Override
-	public void update(ArticleVendu articleVendu) throws DALException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public ArticleVendu getById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ArticleVendu> getAll() throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

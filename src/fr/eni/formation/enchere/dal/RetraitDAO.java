@@ -13,7 +13,7 @@ public interface RetraitDAO {
 	
 	public void update (Retrait retrait, ArticleVendu articleVendu) throws DALException;
 	
-	public List<Retrait> getall() throws DALException;
+	public List<Retrait> getAll(ArticleVendu articleVendu) throws DALException;
 	
 	
 }
