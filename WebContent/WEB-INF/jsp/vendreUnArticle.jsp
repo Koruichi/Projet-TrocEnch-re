@@ -65,6 +65,11 @@
 		
 		<label for="ville">Ville : </label> <input type="text"
 			id="ville" name="ville" value="" size="20" maxlength="100" />
+		
+		<br>
+		
+		<input type="submit" value="Enregistrer" name="btnRec" /> 
+		<input type="reset" value="Annuler" /> 
 	
 	</form>
 </div>

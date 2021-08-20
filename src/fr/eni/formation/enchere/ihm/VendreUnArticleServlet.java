@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.formation.enchere.bll.ArticleVenduManager;
+import fr.eni.formation.enchere.bll.ArticleVenduManagerSingl;
+import fr.eni.formation.enchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class VendreUnArticleServlet
  */
@@ -14,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 public class VendreUnArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String nextPage = "/WEB-INF/jsp/vendreUnArticle.jsp";   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private ArticleVenduManager manager = ArticleVenduManagerSingl.getInstance();
+    
+	
     public VendreUnArticleServlet() {
         super();
     }
@@ -32,6 +36,21 @@ public class VendreUnArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if (manager == null) {
+			manager = new ArticleVenduManager();
+		}
+		
+		if(request.getParameter("btnRec") != null) {
+			
+			manager.
+			
+		}
+		
+		
+		
+		
+		
 		doGet(request, response);
 	}
 

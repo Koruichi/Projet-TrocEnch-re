@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,22 +17,27 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 
-public class ArticleVenduDAOImpl implements ArticleVenduDAO{
-	
-	private final String INSERT = "INSERT INTO articles_vendus (articles_vendus.no_article, articles_vendus.nom_article, articles_Vendus.description, articles_vendus.date_debut_encheres, articles_vendus.date_fin_encheres, articles_vendus.prix_initial, articles_vendus.prix_vente, articles_vendus.no_utilisateur, articles_vendus.no_categorie INNER JOIN utilisateurs ON utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
+public class ArticleVenduDAOImpl implements ArticleVenduDAO {
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	LocalDate ld = LocalDate.parse("28/05/1973", formatter);
+
+	private final String INSERT = "INSERT INTO articles_vendus (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
+	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, WHERE no_article=?";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
-	private final String UPDATE = "UPDATE articles_vendus SET articles_vendus.no_article=?, articles_vendus.nom_article=?, articles_vendus.description=?, articles_vendus.date_debut_encheres=?, articles_vendus.date_fin_encheres=?, articles_vendus.prix_initial=?, articles_vendus.prix_vente=?, articles_vendus.no_utilisateur=?, articles_vendus.no_categorie=?, INNER JOIN utilisateurs on utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie WHERE no_article=?";
-	private final String SELECTALL = "SELECT articles_vendus, articles_vendus.no_article, articles_vendus.nom_article, articles_vendus.description, articles_vendus.date_debut_encheres, articles_vendus.date_fin_encheres, articles_vendus.prix_initial, articles_vendus.prix_vente, articles_vendus.no_utilisateur, articles_vendus.no_categorie, INNER JOIN utilisateurs ON utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie  FROM articles_vendus";
-	private final String SELECTBYID = "SELECT no_article, articles_vendus.nom_article, articles_vendus.description, articles_vendus.date_debut_encheres, articles_vendus.date_fin_encheres, articles_vendus.prix_initial, articles_vendus.prix_vente, articles_vendus.no_utilisateur, articles_vendus.no_categorie, INNER JOIN utilisateurs ON utilisateurs.no_utilisateur = articles_vendus.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie FROM articles_vendus WHERE no_article=?";
-	
-	//private final String INSERT = "INSERT INTO articles_vendus (no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?,?)";
-	//private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
-	//private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, WHERE no_article=?";
-	//private final String SELECTALL = "SELECT articles_vendus, no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, FROM articles_vendus";
-	//private final String SELECTBYID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie,  FROM articles_vendus WHERE no_article=?";
+	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories ON categories.no_categorie = articles_vendus.no_categorie  FROM articles_vendus";
+	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email, From articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie FROM articles_vendus WHERE no_article=?";
+
+	// private final String SELECTALL = "SELECT articles_vendus, no_article,
+	// nom_article, description, date_debut_encheres, date_fin_encheres,
+	// prix_initial, prix_vente, no_utilisateur, no_categorie, FROM
+	// articles_vendus";
+	// private final String SELECTBYID = "SELECT no_article, nom_article,
+	// description, date_debut_encheres, date_fin_encheres, prix_initial,
+	// prix_vente, no_utilisateur, no_categorie, FROM articles_vendus WHERE
+	// no_article=?";
 	// private final String SELECTBYUTILISATEUR
 
-	public void insert(ArticleVendu articleVendu) throws DALException {
+	public void insert(ArticleVendu articleVendu, Utilisateur u) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, articleVendu.getNo_article());
@@ -40,7 +47,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 			stmt.setTime(5,Time.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
-			stmt.setInt(8, articleVendu.getUtilisateur().getNo_utilisateur());
+			stmt.setInt(8, u.getNo_utilisateur());
 			stmt.setInt(9, articleVendu.getCategorie().getNo_categorie());
 			int nb = stmt.executeUpdate();
 			if (nb > 0) {
@@ -67,17 +74,17 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 		}
 	}
 
-	public void update(ArticleVendu articleVendu) throws DALException {
+	public void update(ArticleVendu articleVendu, Utilisateur u) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, articleVendu.getNo_article());
 			stmt.setString(2, articleVendu.getNom_article());
 			stmt.setString(3, articleVendu.getDescription());
 			stmt.setTime(4, Time.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setTime(5,Time.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setTime(5, Time.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
-			stmt.setInt(8, articleVendu.getUtilisateur().getNo_utilisateur());
+			stmt.setInt(8, u.getNo_utilisateur());
 			stmt.setInt(9, articleVendu.getCategorie().getNo_categorie());
 
 			stmt.executeUpdate();
@@ -87,7 +94,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 		}
 	}
 
-	public List<ArticleVendu> getAll() throws DALException {
+	public List<ArticleVendu> getAll(Utilisateur u) throws DALException {
 		List<ArticleVendu> result = new ArrayList<ArticleVendu>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALL);
@@ -97,12 +104,14 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 				articleVendu.setNo_article(rs.getInt("no_article"));
 				articleVendu.setNom_article(rs.getString("nom_article"));
 				articleVendu.setDescription(rs.getString("description"));
-				articleVendu.setTime(rs.getTime(articleVendu.getDate_debut_enchere()));
-				articleVendu.setTime(rs.getTime(articleVendu.getDate_fin_enchere()));
+				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_debut_enchere"));
+				LocalDate ld = jsd.toLocalDate();
+				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_enchere"));
+				LocalDate ld2 = jsd.toLocalDate();
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
-				articleVendu.setNo_utilisateur(rs.getString("no_utilisateur"));
-				articleVendu.setNo_categorie(rs.getString("no_categorie"));
+				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				articleVendu.setCategorie(rs.getInt("no_categorie"));
 				result.add(articleVendu);
 			}
 		} catch (SQLException e) {
@@ -112,7 +121,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 		return result;
 	}
 
-	public ArticleVendu getById(int id) throws DALException {
+	public ArticleVendu getById(int id, Utilisateur u) throws DALException {
 		ArticleVendu articleVendu = new ArticleVendu();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
@@ -122,17 +131,43 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO{
 				articleVendu.setNo_article(rs.getInt("no_article"));
 				articleVendu.setNom_article(rs.getString("nom_article"));
 				articleVendu.setDescription(rs.getString("description"));
-				articleVendu.setTime(rs.getTime(articleVendu.getDate_debut_enchere()));
-				articleVendu.setTime(rs.getTime(articleVendu.getDate_fin_enchere()));
+				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_debut_enchere"));
+				LocalDate ld = jsd.toLocalDate();
+				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_enchere"));
+				LocalDate ld2 = jsd.toLocalDate();
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
-				articleVendu.setNo_utilisateur(rs.getInt("no_utilisateur"));
-				articleVendu.setNo_categorie(rs.getInt("no_categorie"));
+				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				articleVendu.getCategorie.setNo_categorie(rs.getInt("categorie"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("Problème SQL");
 		}
 		return articleVendu;
+	}
+
+	@Override
+	public void insert(ArticleVendu articleVendu) throws DALException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(ArticleVendu articleVendu) throws DALException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public ArticleVendu getById(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ArticleVendu> getAll() throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
