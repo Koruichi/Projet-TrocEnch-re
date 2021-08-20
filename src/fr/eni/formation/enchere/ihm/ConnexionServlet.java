@@ -19,7 +19,7 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
-	private String nextPage = "/WEB-INF/jsp/connexion.jsp";
+	private String nextPage = "";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,10 +34,11 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		if (request.getParameter("btnCreerCompte") != null) {
-			nextPage = "/CreerCompteServlet";
+		if (request.getSession().getAttribute("user") == null) {
+			nextPage = "/WEB-INF/jsp/connexion.jsp";
 		}
+		
+		System.out.println(nextPage);
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -48,15 +49,7 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		UtilisateurModel user = (UtilisateurModel) request.getSession().getAttribute("user");
-
-		if (user == null) {
-			user = new UtilisateurModel();
-		}
-
-		System.out.println(user);
-
+	
 		boolean isConnecte = false;
 
 		if (request.getParameter("btnConnexion") != null) {
@@ -70,26 +63,25 @@ public class ConnexionServlet extends HttpServlet {
 						if (u.getEmail().equals(request.getParameter("identifiant"))
 								|| u.getPseudo().equals(request.getParameter("identifiant"))
 										&& u.getMot_de_passe().equals(request.getParameter("mot_de_passe"))) {
-							nextPage = "/AccueilConnecteServlet";
+							nextPage = "/WEB-INF/jsp/accueil.jsp";
 							isConnecte = true;
-
+							request.getSession().setAttribute("user", u);
+							System.out.println(u);
 						}
 					}
 					if (!isConnecte) {
 						request.setAttribute("message", "L'identifiant et le mot de passe sont invalides !");
 					}
-
-					if (isConnecte) {
-						System.out.println(user);
-
-					}
-
 				} catch (BLLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 
+		if (request.getParameter("btnCreerCompte") != null) {
+			nextPage = "/WEB-INF/jsp/creerCompte.jsp";
+		}
+		
 		doGet(request, response);
 	}
 

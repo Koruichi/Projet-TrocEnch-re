@@ -19,7 +19,12 @@
 		<a href="/Projet-TrocEnchere/EnchereNonCommenceeServlet">Enchères</a> 
 		<a href="/Projet-TrocEnchere/VendreUnArticleServlet">Vendre un article</a> 
 		<a href="/Projet-TrocEnchere/MonProfilServlet">Mon profil</a> 
-		<a name="btnDeco" href="/Projet-TrocEnchere/AccueilServlet">Déconnexion</a>
+		<a name="btnDeco" href="/DeconnexionServlet">Déconnexion</a>
+		
+		<c:if test="${user != null}">
+		Bienvenue ${user.nom} ${user.prenom}
+		</c:if>
+		
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>
@@ -41,7 +46,7 @@
 			<button>Rechercher</button>
 
 		</form>
-		<c:forEach items="${model.lstArticles}" var="art">
+		<c:forEach items="${modelA.lstArticles}" var="art">
 			<div>
 				<img alt="" src="">
 				<h3>${art.art.nom_article}</h3>

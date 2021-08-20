@@ -38,7 +38,7 @@
 
 
 		</form>
-		<form method="get" action="/Projet-TrocEnchere/CreerCompteServlet">
+		<form method="post" action="ConnexionServlet">
 			<input type="submit" value="Créer un compte" name="btnCreerCompte" />
 		</form>
 		<br> ${message}

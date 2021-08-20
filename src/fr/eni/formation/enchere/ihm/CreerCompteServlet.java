@@ -18,7 +18,6 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 @WebServlet("/CreerCompteServlet")
 public class CreerCompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
@@ -34,7 +33,7 @@ public class CreerCompteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 		request.getRequestDispatcher(nextPage).forward(request, response);
 
 	}
@@ -46,63 +45,62 @@ public class CreerCompteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UtilisateurModel user = (UtilisateurModel) request.getSession().getAttribute("user");
+		if (request.getSession().getAttribute("user") == null) {
 
-		if (user == null) {
-			user = new UtilisateurModel();
-		}
+			UtilisateurModel modelU = new UtilisateurModel();
 
-		if (request.getParameter("btnCreer") != null) {
+			if (request.getParameter("btnCreer") != null) {
 
-			user.setUtilisateur(new Utilisateur());
-			user.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-			user.getUtilisateur().setNom(request.getParameter("nom"));
-			user.getUtilisateur().setPrenom(request.getParameter("prenom"));
-			user.getUtilisateur().setEmail(request.getParameter("email"));
-			user.getUtilisateur().setTelephone(request.getParameter("telephone"));
-			user.getUtilisateur().setRue(request.getParameter("rue"));
-			user.getUtilisateur().setCode_postal(request.getParameter("code_postal"));
-			user.getUtilisateur().setVille(request.getParameter("ville"));
-			user.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
-			user.getUtilisateur().setCredit(100);
+				modelU.setUtilisateur(new Utilisateur());
+				modelU.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+				modelU.getUtilisateur().setNom(request.getParameter("nom"));
+				modelU.getUtilisateur().setPrenom(request.getParameter("prenom"));
+				modelU.getUtilisateur().setEmail(request.getParameter("email"));
+				modelU.getUtilisateur().setTelephone(request.getParameter("telephone"));
+				modelU.getUtilisateur().setRue(request.getParameter("rue"));
+				modelU.getUtilisateur().setCode_postal(request.getParameter("code_postal"));
+				modelU.getUtilisateur().setVille(request.getParameter("ville"));
+				modelU.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
+				modelU.getUtilisateur().setCredit(100);
 
-			try {
-				user.setLstUtilisateur(manager.getAllUtilisateur());
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
+				try {
+					modelU.setLstUtilisateur(manager.getAllUtilisateur());
+				} catch (BLLException e) {
+					e.printStackTrace();
+				}
 
-			try {
+				try {
 
-				if (manager.confirmMDP(user.getUtilisateur().getMot_de_passe(),
-						request.getParameter("confirmation"))) {
+					if (manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(),
+							request.getParameter("confirmation"))) {
 
-					if (manager.isAlphaNum(user.getUtilisateur().getPseudo())) {
+						if (manager.isAlphaNum(modelU.getUtilisateur().getPseudo())) {
 
-						if (manager.isUnique(user.getUtilisateur().getPseudo())
-								&& manager.isUnique(user.getUtilisateur().getEmail())) {
+							if (manager.isUnique(modelU.getUtilisateur().getPseudo())
+									&& manager.isUnique(modelU.getUtilisateur().getEmail())) {
 
-							manager.addUtilisateur(user.getUtilisateur());
+								manager.addUtilisateur(modelU.getUtilisateur());
+
+							} else {
+								request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
+							}
 
 						} else {
-							request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
+							request.setAttribute("message", "Votre pseudo contient des caractères spéciaux interdits");
 						}
 
 					} else {
-						request.setAttribute("message", "Votre pseudo contient des caractères spéciaux interdits");
+						request.setAttribute("message", "Mot de passe et confirmation non conforme");
 					}
 
-				} else {
-					request.setAttribute("message", "Mot de passe et confirmation non conforme");
+				} catch (BLLException e) {
+					e.printStackTrace();
 				}
 
-			} catch (BLLException e) {
-				e.printStackTrace();
+				request.setAttribute("modelU", modelU);
+				doGet(request, response);
+
 			}
-
-			request.getSession().setAttribute("user", user);
-			doGet(request, response);
-
 		}
 	}
 }
