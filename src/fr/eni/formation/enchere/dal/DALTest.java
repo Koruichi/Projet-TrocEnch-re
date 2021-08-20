@@ -37,9 +37,9 @@ public class DALTest {
 		Utilisateur u3 = new Utilisateur("Batman", "Wayne", "Bruce", "toto195@gmail", "06789447", "8 allée Lilas",
 				"44000", "Nantes", "apache345", 250, false);
 		
-		ArticleVendu art1 = new ArticleVendu( "cape", "ma cape de cérémonie", LocalTime.now(), LocalTime.now(), 800, null, "vente en cours", u3);
+		//ArticleVendu art1 = new ArticleVendu( "cape", "ma cape de cérémonie", LocalTime.now(), LocalTime.now(), 800, null, "vente en cours", u3);
 				
-		dao.insert(art1);
+		//dao.insert(art1);
 	}
 
 }

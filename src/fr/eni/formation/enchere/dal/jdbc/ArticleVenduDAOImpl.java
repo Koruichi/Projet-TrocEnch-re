@@ -111,7 +111,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
 				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
-				articleVendu.setCategorie(rs.getInt("no_categorie"));
+				articleVendu.getCategorie().setNo_categorie(rs.getInt("no_categorie"));
 				result.add(articleVendu);
 			}
 		} catch (SQLException e) {
@@ -138,7 +138,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
 				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
-				articleVendu.getCategorie.setNo_categorie(rs.getInt("categorie"));
+				articleVendu.getCategorie().setNo_categorie(rs.getInt("categorie"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
