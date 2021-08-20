@@ -3,6 +3,7 @@ package fr.eni.formation.enchere.bll;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
+import fr.eni.formation.enchere.bo.Retrait;
 import fr.eni.formation.enchere.bo.Utilisateur;
 
 public interface ArticleVenduManager {
@@ -14,6 +15,8 @@ public interface ArticleVenduManager {
 	public void updateArticle (ArticleVendu articleVendu, Utilisateur u) throws BLLException;
 	
 	public List<ArticleVendu> getAllArticle(Utilisateur u)throws BLLException;
+
+
 	
 
 	

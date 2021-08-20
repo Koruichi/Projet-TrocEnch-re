@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.formation.enchere.bll.ArticleVenduManager;
 import fr.eni.formation.enchere.bll.ArticleVenduManagerSingl;
 import fr.eni.formation.enchere.bll.BLLException;
+import fr.eni.formation.enchere.bll.RetraitManager;
+import fr.eni.formation.enchere.bll.RetraitManagerSingl;
 import fr.eni.formation.enchere.bo.ArticleVendu;
 import fr.eni.formation.enchere.bo.Utilisateur;
 
@@ -23,59 +25,66 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 @WebServlet("/VendreUnArticleServlet")
 public class VendreUnArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String nextPage = "/WEB-INF/jsp/vendreUnArticle.jsp";   
+	private String nextPage = "/WEB-INF/jsp/vendreUnArticle.jsp";
 	private ArticleVenduManager manager = ArticleVenduManagerSingl.getInstance();
-	   
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String today = "22/01/2014";
-    LocalDate ld = LocalDate.parse(today, dtf);
-  
-    
-	
-    public VendreUnArticleServlet() {
-        super();
-    }
+	private RetraitManager manager2 = RetraitManagerSingl.getInstance();
+
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	String today = "22/01/2014";
+	LocalDate ld = LocalDate.parse(today, dtf);
+
+	public VendreUnArticleServlet() {
+		super();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		ArticleVenduModel modelAV = new ArticleVenduModel();
 		RetraitModel modelR = new RetraitModel();
-		
-		if(request.getParameter("btnRec") != null) {
-			
-		modelAV.setArticleVendu(new ArticleVendu());
-		modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
-		modelAV.getArticleVendu().setDescription(request.getParameter("description"));
-		modelAV.getArticleVendu().setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_enchere")));
-		modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_enchere")));
-		modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
-		modelAV.getArticleVendu().setPrix_vente(Integer.parseInt(request.getParameter("prix_vente")));
-		modelAV.getArticleVendu().setEtat_vente(request.getParameter("etat_vente"));
-		modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
-		modelR.getRetrait().setRue(request.getParameter("rue"));
-		modelR.getRetrait().setCode_postal(request.getParameter("code_postal"));
-		modelR.getRetrait().setVille(request.getParameter("ville"));
-		manager.addArticle(modelAV.getArticleVendu());
-		//manager.add
-		modelAV.setLstArticleVendu(manager.getAllArticle());
-		
-		
+		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
+
+		if (request.getParameter("btnRec") != null) {
+
+			modelAV.setArticleVendu(new ArticleVendu());
+			modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
+			modelAV.getArticleVendu().setDescription(request.getParameter("description"));
+			modelAV.getArticleVendu()
+					.setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_enchere")));
+			modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_enchere")));
+			modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
+			modelAV.getArticleVendu().setPrix_vente(Integer.parseInt(request.getParameter("prix_vente")));
+			modelAV.getArticleVendu().setEtat_vente(request.getParameter("etat_vente"));
+			modelAV.getArticleVendu().getCategorie()
+					.setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
+			modelR.getRetrait().setRue(request.getParameter("rue"));
+			modelR.getRetrait().setCode_postal(request.getParameter("code_postal"));
+			modelR.getRetrait().setVille(request.getParameter("ville"));
+			try {
+				manager.addArticle(modelAV.getArticleVendu(), u);
+				manager2.addRetrait(modelR.getRetrait(), modelAV.getArticleVendu());
+
+				modelAV.setLstArticleVendu(manager.getAllArticle(u));
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
-		
-		
-		
-		
-		
+
 		doGet(request, response);
 	}
 
