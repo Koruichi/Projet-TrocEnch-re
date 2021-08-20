@@ -45,8 +45,6 @@ public class CreerCompteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getSession().getAttribute("user") == null) {
-
 			UtilisateurModel modelU = new UtilisateurModel();
 
 			if (request.getParameter("btnCreer") != null) {
@@ -101,6 +99,5 @@ public class CreerCompteServlet extends HttpServlet {
 				doGet(request, response);
 
 			}
-		}
 	}
 }

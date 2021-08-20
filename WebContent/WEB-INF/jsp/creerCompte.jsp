@@ -11,9 +11,8 @@
 
 <body>
 	<div>
-		<img width="100px"
-			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU">
-		Eni-Enchères
+		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
 	</div>
 	<div>
 		<form method="post" action="CreerCompteServlet">
