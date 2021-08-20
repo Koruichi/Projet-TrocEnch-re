@@ -1,5 +1,6 @@
 package fr.eni.formation.enchere.bo;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -8,8 +9,8 @@ public class ArticleVendu {
 	private int no_article;
 	private String nom_article;
 	private String description;
-	private LocalTime date_debut_enchere;
-	private LocalTime date_fin_enchere;
+	private LocalDate date_debut_enchere;
+	private LocalDate date_fin_enchere;
 	private int prix_initial;
 	private int prix_vente;
 	private String etat_vente;
@@ -22,8 +23,8 @@ public class ArticleVendu {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ArticleVendu(int no_article, String nom_article, String description, LocalTime date_debut_enchere,
-			LocalTime date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,
+	public ArticleVendu(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
+			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,
 			Retrait retrait) {
 		super();
 		this.no_article = no_article;
@@ -37,8 +38,8 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.retrait = retrait;
 	}
-	public ArticleVendu(String nom_article, String description, LocalTime date_debut_enchere,
-			LocalTime date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,
+	public ArticleVendu(String nom_article, String description, LocalDate date_debut_enchere,
+			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,
 			Retrait retrait) {
 		super();
 		this.nom_article = nom_article;
@@ -51,8 +52,8 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.retrait = retrait;
 	}
-	public ArticleVendu(String nom_article, String description, LocalTime date_debut_enchere,
-			LocalTime date_fin_enchere, int prix_initial, int prix_vente, String etat_vente) {
+	public ArticleVendu(String nom_article, String description, LocalDate date_debut_enchere,
+			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente) {
 		super();
 		this.nom_article = nom_article;
 		this.description = description;
@@ -83,16 +84,16 @@ public class ArticleVendu {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public LocalTime getDate_debut_enchere() {
+	public LocalDate getDate_debut_enchere() {
 		return date_debut_enchere;
 	}
-	public void setDate_debut_enchere(LocalTime date_debut_enchere) {
+	public void setDate_debut_enchere(LocalDate date_debut_enchere) {
 		this.date_debut_enchere = date_debut_enchere;
 	}
-	public LocalTime getDate_fin_enchere() {
+	public LocalDate getDate_fin_enchere() {
 		return date_fin_enchere;
 	}
-	public void setDate_fin_enchere(LocalTime date_fin_enchere) {
+	public void setDate_fin_enchere(LocalDate date_fin_enchere) {
 		this.date_fin_enchere = date_fin_enchere;
 	}
 	public int getPrix_initial() {

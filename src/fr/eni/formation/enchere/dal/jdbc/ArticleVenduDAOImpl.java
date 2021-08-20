@@ -43,8 +43,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setInt(1, articleVendu.getNo_article());
 			stmt.setString(2, articleVendu.getNom_article());
 			stmt.setString(3, articleVendu.getDescription());
-			stmt.setTime(4, Time.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setTime(5,Time.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
+			stmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
 			stmt.setInt(8, u.getNo_utilisateur());
@@ -80,8 +80,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setInt(1, articleVendu.getNo_article());
 			stmt.setString(2, articleVendu.getNom_article());
 			stmt.setString(3, articleVendu.getDescription());
-			stmt.setTime(4, Time.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setTime(5, Time.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
+			stmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
 			stmt.setInt(8, u.getNo_utilisateur());
