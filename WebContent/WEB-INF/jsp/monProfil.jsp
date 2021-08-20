@@ -23,7 +23,9 @@
 			<li>Code Postal: ${user.code_postal}</li>
 			<li>Ville: ${user.ville}</li>
 		</ul>
-		<input type="submit" value="Modifier" name="btnModifier" />
+		<form action="MonProfilServlet" method="POST">
+			<input type="submit" value="Modifier" name="btnModifier"/>
+		</form>
 	</div>
 </body>
 </html>
