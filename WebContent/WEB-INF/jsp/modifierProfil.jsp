@@ -15,7 +15,7 @@
 	</div>
 	
 	<div>
-		<form method="POST" action="/ModifierProfilServlet">
+		<form method="POST" action="ModifierProfilServlet">
 			<h1>Mon profil</h1>
 
 			<label >Pseudo: </label>
@@ -63,7 +63,7 @@
 		
 			<br>
 
-			<label>Crédit: </label> <p>${user.credit}</p>
+			<p>Crédit: ${user.credit}</p>
 			
 			<br>
 				
