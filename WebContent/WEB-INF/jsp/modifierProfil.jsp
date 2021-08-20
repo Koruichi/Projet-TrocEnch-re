@@ -64,7 +64,7 @@
 				
 			<br />
 
-			<label >Crédit: </label> <p>${}</p>
+			<label >Crédit: </label> <p></p>
 			
 			<br>
 				
