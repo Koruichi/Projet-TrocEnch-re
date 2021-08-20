@@ -8,10 +8,12 @@
 <title>Accueil - ENI Enchère</title>
 </head>
 <body>
+<%-- <c:set var="context" value="${pageContext.request.contextPath}/Images/logo-encheres.jpg"/>
+	<img src="${context}" border="0"/>
+	<img src="<%=request.getContextPath()%>/Images/logo-encheres.jpg">  --%>
 	<div>
 		<img width="100px"
 			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU">
-		Eni-Enchères
 		
 		<c:if test="${user == null}">
 		<a href="/Projet-TrocEnchere/ConnexionServlet">S'inscrire - Se connecter</a>
