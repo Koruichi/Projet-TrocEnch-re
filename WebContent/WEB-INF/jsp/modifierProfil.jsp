@@ -13,57 +13,57 @@
 		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
 			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
 	</div>
-
+	
 	<div>
-		<form method="get" action=" ">
+		<form method="POST" action="/ModifierProfilServlet">
 			<h1>Mon profil</h1>
 
 			<label >Pseudo: </label>
-			<input type="text" name="pseudo" placeholder="Ex : Jojo44" value="" size="20" maxlength="20" /> 
+			<input type="text" name="pseudo" value="${user.pseudo}" size="20" maxlength="20" /> 
 				
 			<label >Nom:</label> 
-			<input type="text" name="nom" value="" size="20" maxlength="20" /> 
+			<input type="text" name="nom" value="${user.nom}" size="20" maxlength="20" /> 
 			
-			<br /> 
+			<br> 
 				
 			<label >Prénom:</label> 
-			<input type="text" name="prenom" value="" size="20" maxlength="20" /> 
+			<input type="text" name="prenom" value="${user.prenom}" size="20" maxlength="20" /> 
 			
 			<label >Email:</label> 
-			<input type="email" name="email" value="" size="20" maxlength="60" /> 
+			<input type="email" name="email" value="${user.email}" size="20" maxlength="60" /> 
 			
-			<br /> 
+			<br> 
 				
 			<label >Téléphone: </label> 
-			<input type="tel" name="telephone" value="" size="20" maxlength="20" /> 
+			<input type="tel" name="telephone" value="${user.telephone}" size="20" maxlength="20" /> 
 				
 			<label>Rue:</label> 
-			<input type="text" name="rue" value="" size="20" maxlength="20" /> 
+			<input type="text" name="rue" value="${user.rue}" size="20" maxlength="20" /> 
 			
-			<br /> 
+			<br> 
 			
 			<label >Code postal: </label> 
-			<input type="text"  name="code_postal" value="" size="20" maxlength="20" />
+			<input type="text"  name="code_postal" value="${user.code_postal}" size="20" maxlength="20" />
 			
 			<label >Ville: </label>
-			<input type="text" name="ville" value="" size="20" maxlength="20" /> 
+			<input type="text" name="ville" value="${user.ville}" size="20" maxlength="20" /> 
 				
-			<br /> 
+			<br> 
 			
 			<label >Mot de passe actuel:</label>
-			<input type="password" name="mot_de_passe_actu" value="" size="20" maxlength="20" />
+			<input type="password" name="mot_de_passe_actu" size="20" maxlength="20" />
 			
 			<br>
 			
 			<label >Nouveau mot de passe:</label>
-			<input type="password" name="new_mot_de_passe" value="" size="20" maxlength="20" />  
+			<input type="password" name="new_mot_de_passe" size="20" maxlength="20" />  
 				
 			<label >Confirmation: </label> 
-			<input type="password" name="confirmation" value="" size="20" maxlength="20" /> 
-				
-			<br />
+			<input type="password" name="confirmation" size="20" maxlength="20" /> 
+		
+			<br>
 
-			<label >Crédit: </label> <p></p>
+			<label>Crédit: </label> <p>${user.credit}</p>
 			
 			<br>
 				
