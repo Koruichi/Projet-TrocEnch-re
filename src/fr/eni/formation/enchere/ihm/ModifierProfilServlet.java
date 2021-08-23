@@ -1,6 +1,8 @@
 package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +20,6 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 @WebServlet("/ModifierProfilServlet")
 public class ModifierProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String nextPage = "";
 	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
@@ -34,7 +35,7 @@ public class ModifierProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
+		String nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -45,6 +46,8 @@ public class ModifierProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
 
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		if (request.getParameter("btnEnregistrer") != null) {
@@ -92,17 +95,16 @@ public class ModifierProfilServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		if (request.getParameter("btnSupprim") != null) {
 			try {
 				manager.deleteUtilisateur(u);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("/DeconnexionServlet").forward(request, response);
+			nextPage = "/DeconnexionServlet";
 		}
 
-		doGet(request, response);
+		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
-
 }
