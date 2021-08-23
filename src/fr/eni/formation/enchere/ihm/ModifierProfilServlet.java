@@ -52,13 +52,17 @@ public class ModifierProfilServlet extends HttpServlet {
 			u.setRue(request.getParameter("rue"));
 			u.setCode_postal(request.getParameter("code_postal"));
 			u.setVille(request.getParameter("ville"));
-			System.out.println(u);
 			
-			try {
-				manager.updateUtilisateur(u);
-			} catch (BLLException e) {
-				e.printStackTrace();
+			if (!"".equals(request.getParameter("telephone"))) {
+				System.out.println("Oui");
+			} else {
+				System.out.println("Non");
 			}
+//			try {
+//				manager.updateUtilisateur(u);
+//			} catch (BLLException e) {
+//				e.printStackTrace();
+//			}
 		}
 		
 		doGet(request, response);
