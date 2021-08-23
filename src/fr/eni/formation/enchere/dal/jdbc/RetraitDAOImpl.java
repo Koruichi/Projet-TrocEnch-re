@@ -23,11 +23,10 @@ public class RetraitDAOImpl implements RetraitDAO {
 	@Override
 	public void insert(Retrait retrait, ArticleVendu articleVendu) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(INSERT);
-			stmt.setInt(1, articleVendu.getNo_article());
-			stmt.setString(2, retrait.getRue());
-			stmt.setString(3, retrait.getCode_postal());
-			stmt.setString(4, retrait.getVille());
+			PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, retrait.getRue());
+			stmt.setString(2, retrait.getCode_postal());
+			stmt.setString(3, retrait.getVille());
 
 		} catch (SQLException e) {
 			e.printStackTrace();

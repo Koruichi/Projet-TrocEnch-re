@@ -1,5 +1,6 @@
 package fr.eni.formation.enchere.ihm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
@@ -10,7 +11,8 @@ public class ArticleVenduModel {
 	private List<ArticleVendu> lstArticleVendu;
 	public ArticleVenduModel() {
 		super();
-		// TODO Auto-generated constructor stub
+		articleVendu = new ArticleVendu();
+		lstArticleVendu= new ArrayList<ArticleVendu>();
 	}
 	public ArticleVenduModel(ArticleVendu articleVendu, List<ArticleVendu> lstArticleVendu) {
 		super();
