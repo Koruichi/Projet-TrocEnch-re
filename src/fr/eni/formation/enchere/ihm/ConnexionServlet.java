@@ -67,7 +67,6 @@ public class ConnexionServlet extends HttpServlet {
 							nextPage = "/WEB-INF/jsp/accueil.jsp";
 							isConnecte = true;
 							request.getSession().setAttribute("user", u);
-							System.out.println(u);
 						}
 					}
 					if (!isConnecte) {

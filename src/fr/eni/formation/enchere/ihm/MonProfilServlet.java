@@ -42,7 +42,7 @@ public class MonProfilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		if (request.getParameter("btnModifier") != null) {
-			request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp").forward(request, response);
+			request.getRequestDispatcher("/ModifierProfil.jsp").forward(request, response);
 		}
 		doGet(request, response);
 	}

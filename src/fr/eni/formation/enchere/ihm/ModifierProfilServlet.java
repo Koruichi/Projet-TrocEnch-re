@@ -18,32 +18,37 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 @WebServlet("/ModifierProfilServlet")
 public class ModifierProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private String nextPage = "";
-    private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ModifierProfilServlet() {
-        super();
-    }
+	private String nextPage = "";
+	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModifierProfilServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
-		
+
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		if (request.getParameter("btnEnregistrer") != null) {
-			
+
 			u.setPseudo(request.getParameter("pseudo"));
 			u.setNom(request.getParameter("nom"));
 			u.setPrenom(request.getParameter("prenom"));
@@ -52,15 +57,51 @@ public class ModifierProfilServlet extends HttpServlet {
 			u.setRue(request.getParameter("rue"));
 			u.setCode_postal(request.getParameter("code_postal"));
 			u.setVille(request.getParameter("ville"));
-			System.out.println(u);
-			
+
 			try {
-				manager.updateUtilisateur(u);
+				if (!"".equals(request.getParameter("mot_de_passe_actu"))) {
+
+					if (manager.confirmMDP(request.getParameter("mot_de_passe_actu"), u.getMot_de_passe())) {
+
+						if (!"".equals(request.getParameter("new_mot_de_passe"))
+								&& !"".equals(request.getParameter("confirmation"))) {
+
+							if (manager.confirmMDP(request.getParameter("new_mot_de_passe"),
+									request.getParameter("confirmation"))) {
+
+								request.setAttribute("message", "Le mot de passe à bien été modifié.");
+								u.setMot_de_passe(request.getParameter("new_mot_de_passe"));
+								manager.updateUtilisateur(u);
+
+							} else {
+								request.setAttribute("message", "Nouveau mot de passe et confirmation non conforme.");
+							}
+						} else {
+							request.setAttribute("message",
+									"Veuillez entrer le nouveau mot de passe et la confirmation..");
+						}
+					} else {
+						request.setAttribute("message", "Votre mot de passe actuel n'est pas bon !");
+					}
+
+				} else {
+					manager.updateUtilisateur(u);
+				}
+
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 		}
 		
+		if (request.getParameter("btnSupprim") != null) {
+			try {
+				manager.deleteUtilisateur(u);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("/DeconnexionServlet").forward(request, response);
+		}
+
 		doGet(request, response);
 	}
 

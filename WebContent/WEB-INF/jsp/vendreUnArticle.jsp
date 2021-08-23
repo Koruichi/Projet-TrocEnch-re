@@ -36,12 +36,13 @@
 					<option value="4">Sport & Loisirs</option>
 				</select>
 				<br/>
-		
-		<!-- <form action="/action_page.php">
+	
+
+<!-- 		<form action="/action_page.php">
  			 <label for="img">Photo de l'article:</label>
   			<input type="file" id="img" name="img" accept="image/*">
   			<input type="submit">
-		</form>		
+		</form>	 -->	
 		<br>
 		 -->
 		<label for="prix">Mise à prix:</label>
