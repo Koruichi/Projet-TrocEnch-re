@@ -2,6 +2,7 @@ package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
@@ -59,15 +60,13 @@ public class VendreUnArticleServlet extends HttpServlet {
 		
 		
 		if (request.getParameter("btnRec") != null) {
-			System.out.println("je rentre dans mon if");
+			
 			modelAV.setArticleVendu(new ArticleVendu());
 			modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
 			modelAV.getArticleVendu().setDescription(request.getParameter("description"));
-			System.out.println(LocalDate.parse(request.getParameter("date_debut_enchere")));
 			modelAV.getArticleVendu().setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_enchere")));
 			modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_enchere")));
 			modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
-			System.out.println(Integer.parseInt(request.getParameter("no_categorie")));
 			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
 			modelR.getRetrait().setRue(request.getParameter("rue"));
 			modelR.getRetrait().setCode_postal(request.getParameter("code_postal"));
@@ -80,7 +79,6 @@ public class VendreUnArticleServlet extends HttpServlet {
 				manager2.addRetrait(modelR.getRetrait(), modelAV.getArticleVendu());
 				nextPage = "/WEB-INF/jsp/enchereNonCommencee.jsp";
 				modelAV.setLstArticleVendu(manager.getAllArticle(u));
-				System.out.println("je suis dans mon try");
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
