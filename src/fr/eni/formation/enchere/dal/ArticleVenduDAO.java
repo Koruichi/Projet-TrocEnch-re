@@ -7,7 +7,7 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 
 public interface ArticleVenduDAO {
 
-public void insert (ArticleVendu articleVendu, Utilisateur u) throws DALException;
+	public void insert (ArticleVendu articleVendu, Utilisateur u) throws DALException;
 	
 	public void delete (ArticleVendu articleVendu, Utilisateur u)throws DALException;
 	

@@ -7,7 +7,6 @@ import fr.eni.formation.enchere.bo.Retrait;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.DAOFact;
 import fr.eni.formation.enchere.dal.RetraitDAO;
-import fr.eni.formation.enchere.dal.UtilisateurDAO;
 
 public class RetraitManagerImpl implements RetraitManager {
 	
