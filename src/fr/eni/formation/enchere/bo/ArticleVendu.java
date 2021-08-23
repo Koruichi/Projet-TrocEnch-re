@@ -21,7 +21,8 @@ public class ArticleVendu {
 	
 	public ArticleVendu() {
 		super();
-		// TODO Auto-generated constructor stub
+		categorie = new Categorie();
+		retrait = new Retrait();
 	}
 	public ArticleVendu(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
 			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,

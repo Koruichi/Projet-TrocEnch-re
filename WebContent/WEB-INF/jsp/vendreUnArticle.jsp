@@ -28,32 +28,33 @@
 		<br>
 		
 		<label for="categorie">Catégorie : </label><br /> 
-				<select name="categorie" id="categorie">
-					<option value="toutes">Toutes</option>
-					<option value="informatique">Informatique</option>
-					<option value="ameublement">Ameublement</option>
-					<option value="vetement">Vêtement</option>
-					<option value="sportLoisirs">Sport & Loisirs</option>
+				<select name="no_categorie" id="categorie">
+					<option>Toutes</option>
+					<option value="1">Informatique</option>
+					<option value="2">Ameublement</option>
+					<option value="3">Vêtement</option>
+					<option value="4">Sport & Loisirs</option>
 				</select>
 				<br/>
-		
+	
+
 <!-- 		<form action="/action_page.php">
  			 <label for="img">Photo de l'article:</label>
   			<input type="file" id="img" name="img" accept="image/*">
   			<input type="submit">
 		</form>	 -->	
 		<br>
-		
+		 -->
 		<label for="prix">Mise à prix:</label>
-    		<input type="number" id="credit" name="credit">
+    		<input type="number"  name="prix_initial">
     	<br>
     		
     	<label for="start">Début de l'enchère:</label>
-			<input type="date" id="date_debut_encheres" name="date_debut_encheres">
+			<input type="date"  name="date_debut_enchere">
       	<br>
       			 
       	<label for="start">Fin de l'enchère:</label>
-			<input type="date" id="date_fin_encheres" name="date_fin_encheres">
+			<input type="date" name="date_fin_enchere">
 		<br>
 		
 		<label for="Rue">Rue : </label> <input type="text"

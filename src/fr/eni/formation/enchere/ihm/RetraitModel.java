@@ -1,5 +1,6 @@
 package fr.eni.formation.enchere.ihm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.Categorie;
@@ -13,7 +14,8 @@ public class RetraitModel {
 	
 	public RetraitModel() {
 		super();
-		// TODO Auto-generated constructor stub
+		retrait = new Retrait();
+		lstRetrait = new ArrayList<Retrait>();
 	}
 
 
