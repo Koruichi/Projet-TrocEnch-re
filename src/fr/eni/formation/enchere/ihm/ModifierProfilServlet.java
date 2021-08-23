@@ -53,10 +53,8 @@ public class ModifierProfilServlet extends HttpServlet {
 			u.setCode_postal(request.getParameter("code_postal"));
 			u.setVille(request.getParameter("ville"));
 			
-			if (!"".equals(request.getParameter("telephone"))) {
-				System.out.println("Oui");
-			} else {
-				System.out.println("Non");
+			if (!"".equals(request.getParameter("mot_de_passe_actu"))) {
+				
 			}
 //			try {
 //				manager.updateUtilisateur(u);
