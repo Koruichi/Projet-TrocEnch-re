@@ -44,7 +44,7 @@
   			<input type="submit">
 		</form>	 -->	
 		<br>
-		 -->
+		
 		<label for="prix">Mise à prix:</label>
     		<input type="number"  name="prix_initial">
     	<br>

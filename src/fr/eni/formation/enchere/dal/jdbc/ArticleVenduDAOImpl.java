@@ -22,7 +22,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	LocalDate ld = LocalDate.parse("28/05/1973", formatter);
 
 	private final String INSERT = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
-	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_utilisateur=?, no_categorie=?, WHERE no_article=?";
+	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=?, WHERE no_article=?";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
 	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email, From articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie FROM articles_vendus WHERE no_article=?";
@@ -84,8 +84,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
-			stmt.setInt(8, u.getNo_utilisateur());
-			stmt.setInt(9, articleVendu.getCategorie().getNo_categorie());
+			stmt.setInt(8, articleVendu.getCategorie().getNo_categorie());
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {

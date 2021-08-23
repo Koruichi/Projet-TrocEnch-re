@@ -7,12 +7,27 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.DAOFact;
+import fr.formation.bll.BllException;
 
 public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	ArticleVenduDAO dao = DAOFact.getArticleVenduDAO();
 	
 	@Override
 	public void addArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException {
+		BLLException exception = new BLLException();
+		
+		if (articleVendu.getNom_article() == null || articleVendu.getNom_article().trim().isEmpty()) {
+			exception.ajoutMessage("Le nom de l'article est obligatoire");
+		}
+		if (articleVendu.getDescription() == null || articleVendu.getDescription().trim().isEmpty()) {
+			exception.ajoutMessage("Une description de l'article est obligatoire");
+		}
+		if (articleVendu.getCategorie().getNo_categorie() == null || articleVendu.getCategorie().getNo_categorie().isEmpty()) {
+			exception.ajoutMessage("Vous devez sélectionner une catégorie");
+		}
+		if (articleVendu.getPrix_initial() == null || articleVendu.getDescription().trim().isEmpty()) {
+			exception.ajoutMessage("Une description de l'article est obligatoire");
+		}
 		try {
 			dao.insert(articleVendu, u);
 		} catch (DALException e) {
