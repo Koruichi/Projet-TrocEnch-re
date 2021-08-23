@@ -1,7 +1,6 @@
 package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
