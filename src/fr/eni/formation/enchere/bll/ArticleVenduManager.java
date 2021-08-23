@@ -3,7 +3,6 @@ package fr.eni.formation.enchere.bll;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
-import fr.eni.formation.enchere.bo.Retrait;
 import fr.eni.formation.enchere.bo.Utilisateur;
 
 public interface ArticleVenduManager {
