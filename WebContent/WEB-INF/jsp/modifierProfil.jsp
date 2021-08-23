@@ -68,9 +68,10 @@
 			<br>
 				
 			<input type="submit" value="Enregistrer" name="btnEnregistrer" /> 
-			<input type="button" value="Supprimer mon compte" name="btnSupprim"/> 
+			<input type="submit" value="Supprimer mon compte" name="btnSupprim"/> 
 			
 		</form>
+		${message}
 	</div>
 </body>
 </html>
