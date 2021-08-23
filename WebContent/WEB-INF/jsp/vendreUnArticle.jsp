@@ -10,13 +10,15 @@
 
 <body>
 	<div>
-		<img alt="" src="">Eni-Enchères
+		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
+		
 		<h1>Nouvelle vente</h1>
 	</div>
 
 	<div>
 	
-	 <form method="post" action="VendreUnArticleServlet">
+	 <form method="POST" action="VendreUnArticleServlet">
 		<label for="nom_article">Article : </label> <input type="text"
 			id="nom_article" name="nom_article" value="" size="20" maxlength="100" />
 		<br>
