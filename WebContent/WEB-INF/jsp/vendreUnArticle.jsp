@@ -38,11 +38,11 @@
 		
 		<label for="categorie">Catégorie : </label><br /> 
 				<select name="no_categorie" id="categorie">
-					<option>Toutes</option>
-					<option value="1">Informatique</option>
-					<option value="2">Ameublement</option>
-					<option value="3">Vêtement</option>
-					<option value="4">Sport & Loisirs</option>
+					<option value=0>Choisissez une categorie</option>
+					<option value=1>Informatique</option>
+					<option value=2>Ameublement</option>
+					<option value=3>Vêtement</option>
+					<option value=4>Sport & Loisirs</option>
 				</select>
 				<br/>
 	
@@ -67,16 +67,16 @@
 		<br>
 		
 		<label for="Rue">Rue : </label> <input type="text"
-			id="rue" name="rue" value="" size="20" maxlength="100" />
+			id="rue" name="rue" value="${user.rue}" size="20" maxlength="100" />
 			
 		<br>
 		
 		<label for="code_postal">Code postal : </label> <input type="text"
-			id="code_postal" name="code_postal" value="" size="20" maxlength="100" />
+			id="code_postal" name="code_postal" value="${user.code_postal}" size="20" maxlength="100" />
 		<br>
 		
 		<label for="ville">Ville : </label> <input type="text"
-			id="ville" name="ville" value="" size="20" maxlength="100" />
+			id="ville" name="ville" value="${user.ville}" size="20" maxlength="100" />
 		
 		<br>
 		

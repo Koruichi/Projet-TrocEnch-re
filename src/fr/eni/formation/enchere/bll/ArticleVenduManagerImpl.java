@@ -23,9 +23,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 			exception.ajoutMessage("Une description de l'article est obligatoire");
 		}
 		
-		Integer a = null;
+		Integer a = 0;
 			
-		if (a == null ) {
+		if (a == 0 ) {
 			exception.ajoutMessage("Vous devez sélectionner une catégorie");
 		}
 		
