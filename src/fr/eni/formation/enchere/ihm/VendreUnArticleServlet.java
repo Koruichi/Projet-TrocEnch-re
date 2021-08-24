@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.formation.enchere.bll.ArticleVenduManager;
+import fr.eni.formation.enchere.bll.ArticleVenduManagerImpl;
 import fr.eni.formation.enchere.bll.ArticleVenduManagerSingl;
 import fr.eni.formation.enchere.bll.BLLException;
 import fr.eni.formation.enchere.bll.RetraitManager;
@@ -68,11 +69,14 @@ public class VendreUnArticleServlet extends HttpServlet {
 			modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_enchere")));
 			modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
 			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
+
 			modelR.getRetrait().setRue(request.getParameter("rue"));
 			modelR.getRetrait().setCode_postal(request.getParameter("code_postal"));
 			modelR.getRetrait().setVille(request.getParameter("ville"));
 			System.out.println(modelAV.getArticleVendu());
 			System.out.println(modelR.getRetrait());
+			
+		
 			try {
 				manager.addArticle(modelAV.getArticleVendu(), u);
 				
