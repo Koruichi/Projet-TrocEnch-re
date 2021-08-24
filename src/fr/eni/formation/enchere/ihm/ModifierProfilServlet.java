@@ -48,7 +48,7 @@ public class ModifierProfilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
-
+		BLLException ex = new BLLException();
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		if (request.getParameter("btnEnregistrer") != null) {
 
@@ -77,11 +77,11 @@ public class ModifierProfilServlet extends HttpServlet {
 								manager.updateUtilisateur(u);
 
 							} else {
+								
 								request.setAttribute("message", "Nouveau mot de passe et confirmation non conforme.");
 							}
 						} else {
-							request.setAttribute("message",
-									"Veuillez entrer le nouveau mot de passe et la confirmation..");
+							request.setAttribute("message", "Veuillez entrer le nouveau mot de passe et la confirmation.");
 						}
 					} else {
 						request.setAttribute("message", "Votre mot de passe actuel n'est pas bon !");
@@ -92,8 +92,10 @@ public class ModifierProfilServlet extends HttpServlet {
 				}
 
 			} catch (BLLException e) {
-				e.printStackTrace();
+				request.setAttribute("erreurs", e.getMessages());
+				nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
 			}
+
 		}
 
 		if (request.getParameter("btnSupprim") != null) {

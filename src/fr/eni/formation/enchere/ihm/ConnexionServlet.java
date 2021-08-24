@@ -34,12 +34,8 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("user") == null) {
-			nextPage = "/WEB-INF/jsp/connexion.jsp";
-			if (request.getParameter("btnCreerCompte") != null) {
-				nextPage = "/WEB-INF/jsp/creerCompte.jsp";
-			}
-		}
+
+		nextPage = "/WEB-INF/jsp/connexion.jsp";
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -64,7 +60,7 @@ public class ConnexionServlet extends HttpServlet {
 						if (u.getEmail().equals(request.getParameter("identifiant"))
 								|| u.getPseudo().equals(request.getParameter("identifiant"))
 										&& u.getMot_de_passe().equals(request.getParameter("mot_de_passe"))) {
-							nextPage = "/WEB-INF/jsp/accueil.jsp";
+							nextPage = "/AccueilServlet";
 							isConnecte = true;
 							request.getSession().setAttribute("user", u);
 						}
@@ -78,7 +74,10 @@ public class ConnexionServlet extends HttpServlet {
 			}
 		}
 
-		doGet(request, response);
+		if (request.getParameter("btnCreerCompte") != null) {
+			nextPage = "/WEB-INF/jsp/creerCompte.jsp";
+		}
+		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 }

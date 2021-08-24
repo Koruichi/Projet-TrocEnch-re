@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +23,7 @@ display:inline-block;
 width : 70px;
 }
 </style>
+
 
 </head>
 <body>
@@ -112,6 +115,16 @@ width : 70px;
 		</div>
         </div>	
 		</form>
+		<c:if test="${not empty erreurs }">
+		<div class = "error">
+			Il existe des erreurs :
+			<ul>
+				<c:forEach items="${erreurs}" var="e">
+					<li>${e }</li>
+				</c:forEach>
+			</ul>
+		</div>
+		</c:if>
 		${message}
 	</div> 
 </body>

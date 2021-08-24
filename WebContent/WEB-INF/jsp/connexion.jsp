@@ -19,7 +19,7 @@
 		<form action="ConnexionServlet" method="POST">
 
 			<label>Identifiant:</label>
-			<input type="text" name="identifiant" value="" size="20" maxlength="20" /> 
+			<input type="text" name="identifiant" value="${param.identifiant}" size="20" maxlength="20" /> 
 			
 			<br> 
 			

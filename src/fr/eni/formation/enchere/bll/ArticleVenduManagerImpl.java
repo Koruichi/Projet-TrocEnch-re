@@ -3,6 +3,7 @@ package fr.eni.formation.enchere.bll;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
+import fr.eni.formation.enchere.bo.Categorie;
 import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
@@ -93,5 +94,36 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 		return null;
 	}
+
+	@Override
+	public List<AfficheArticle> selectByMotCle(String motCle) throws BLLException {
+		
+		try {
+			return dao.selectByMotCle(motCle);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Categorie> selectByCategorie(Categorie categorie) throws BLLException {
+		
+		try {
+			return dao.selectByCategorie(categorie);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	
+
+	
+
+	
 
 }
