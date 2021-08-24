@@ -78,10 +78,42 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 	@Override
 	public void updateUtilisateur(Utilisateur u) throws BLLException {
-		try {
-			dao.update(u);
-		} catch (DALException e) {
-			e.printStackTrace();
+		BLLException ex = new BLLException();
+		if (u.getPseudo() == null || u.getPseudo().trim().isEmpty()) {
+			ex.ajoutMessage("Le pseudo est obligatoire");
+		}
+		if (u.getNom() == null || u.getNom().trim().isEmpty()) {
+			ex.ajoutMessage("Le nom est obligatoire");
+		}
+		if (u.getPrenom() == null || u.getPrenom().trim().isEmpty()) {
+			ex.ajoutMessage("Le prénom est obligatoire");
+		}
+		if (u.getEmail() == null || u.getEmail().trim().isEmpty()) {
+			ex.ajoutMessage("L'email est obligatoire");
+		}
+		if (u.getTelephone() == null || u.getTelephone().trim().isEmpty()) {
+			ex.ajoutMessage("Le numéro de téléphone est obligatoire");
+		}
+		if (u.getRue() == null || u.getRue().trim().isEmpty()) {
+			ex.ajoutMessage("La rue est obligatoire");
+		}
+		if (u.getCode_postal() == null || u.getCode_postal().trim().isEmpty()) {
+			ex.ajoutMessage("Le code postal est obligatoire");
+		}
+		if (u.getVille() == null || u.getVille().trim().isEmpty()) {
+			ex.ajoutMessage("La ville est obligatoire");
+		}
+		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
+			ex.ajoutMessage("Mot de passe et confirmation doivent être identique");
+		}
+		if (ex.estVide()) {
+			try {
+				dao.update(u);
+			} catch (DALException e) {
+				ex.ajoutMessage("Un problème d'accès à la base de données : " + e.getMessage());
+			}
+		} else {
+			throw ex;
 		}
 	}
 

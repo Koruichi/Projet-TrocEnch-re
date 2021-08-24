@@ -34,12 +34,8 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getSession().getAttribute("user") == null) {
-			nextPage = "/WEB-INF/jsp/connexion.jsp";
-			if (request.getParameter("btnCreerCompte") != null) {
-				nextPage = "/WEB-INF/jsp/creerCompte.jsp";
-			}
-		}
+
+		nextPage = "/WEB-INF/jsp/connexion.jsp";
 
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
@@ -78,7 +74,10 @@ public class ConnexionServlet extends HttpServlet {
 			}
 		}
 
-		doGet(request, response);
+		if (request.getParameter("btnCreerCompte") != null) {
+			nextPage = "/WEB-INF/jsp/creerCompte.jsp";
+		}
+		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 }
