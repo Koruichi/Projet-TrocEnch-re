@@ -61,10 +61,8 @@ public class CreerCompteServlet extends HttpServlet {
 			modelU.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
 			modelU.getUtilisateur().setCredit(100);
 
-			try {
-				manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"));
-
 				try {
+					manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"));
 					modelU.setLstUtilisateur(manager.getAllUtilisateur());
 					manager.addUtilisateur(modelU.getUtilisateur());
 					nextPage = "/AccueilServlet";
@@ -72,11 +70,6 @@ public class CreerCompteServlet extends HttpServlet {
 					request.setAttribute("erreurs", e.getMessages());
 					nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 				}
-
-			} catch (BLLException e) {
-
-				e.ajoutMessage("Mot de passe et confirmation non conforme");
-			}
 
 			request.setAttribute("modelU", modelU);
 

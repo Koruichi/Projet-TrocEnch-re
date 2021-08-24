@@ -105,8 +105,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setDescription(rs.getString("description"));
 				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_debut_encheres"));
 				LocalDate ld = jsd.toLocalDate();
+				articleVendu.setDate_debut_enchere(ld);
 				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-				LocalDate ld2 = jsd.toLocalDate();
+				LocalDate ld2 = jsd2.toLocalDate();
+				articleVendu.setDate_fin_enchere(ld2);
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
 				u.setNo_utilisateur(rs.getInt("no_utilisateur"));

@@ -51,6 +51,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		if (!isUnique(u.getEmail())) {
 			ex.ajoutMessage("L'email existe déjà");
 		}
+		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
+			ex.ajoutMessage("Mot de passe et confirmation doivent être identique");
+		}
 
 		if (ex.estVide()) {
 			try {
