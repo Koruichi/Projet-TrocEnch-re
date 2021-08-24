@@ -44,7 +44,7 @@ public class CreerCompteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+			String nextPage = "";
 			UtilisateurModel modelU = new UtilisateurModel();
 
 			if (request.getParameter("btnCreer") != null) {
@@ -78,6 +78,7 @@ public class CreerCompteServlet extends HttpServlet {
 									&& manager.isUnique(modelU.getUtilisateur().getEmail())) {
 
 								manager.addUtilisateur(modelU.getUtilisateur());
+								nextPage = "/AccueilServlet";
 
 							} else {
 								request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
@@ -92,11 +93,13 @@ public class CreerCompteServlet extends HttpServlet {
 					}
 
 				} catch (BLLException e) {
-					e.printStackTrace();
+					request.setAttribute("erreurs", e.getMessages());
+					nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 				}
 
 				request.setAttribute("modelU", modelU);
-				doGet(request, response);
+				
+				request.getRequestDispatcher(nextPage).forward(request, response);
 
 			}
 	}

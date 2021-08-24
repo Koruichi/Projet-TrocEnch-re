@@ -6,11 +6,11 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 
 public interface UtilisateurManager {
 
-	public void addUtilisateur(Utilisateur utilisateur)throws BLLException;
+	public void addUtilisateur(Utilisateur u)throws BLLException;
 	
-	public void deleteUtilisateur(Utilisateur utilisateur)throws BLLException;
+	public void deleteUtilisateur(Utilisateur u)throws BLLException;
 	
-	public void updateUtilisateur(Utilisateur utilisateur)throws BLLException;
+	public void updateUtilisateur(Utilisateur u)throws BLLException;
 	
 	public List<Utilisateur> getAllUtilisateur()throws BLLException;
 	
