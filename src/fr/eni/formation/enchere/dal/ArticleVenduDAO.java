@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
 import fr.eni.formation.enchere.bo.Utilisateur;
+import fr.eni.formation.enchere.dto.AfficheArticle;
 
 public interface ArticleVenduDAO {
 
@@ -16,4 +17,6 @@ public interface ArticleVenduDAO {
 	public List<ArticleVendu> getAll(Utilisateur u)throws DALException;
 	
 	public ArticleVendu getById (int id, Utilisateur u)throws DALException;
+
+	public List<AfficheArticle> getAll() throws DALException;
 }

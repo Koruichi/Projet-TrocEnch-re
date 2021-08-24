@@ -7,6 +7,7 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.DAOFact;
+import fr.eni.formation.enchere.dto.AfficheArticle;
 //import fr.formation.bll.BllException;
 
 public class ArticleVenduManagerImpl implements ArticleVenduManager {
@@ -23,9 +24,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 			exception.ajoutMessage("Une description de l'article est obligatoire");
 		}
 		
-		Integer a = null;
+		Integer a = 0;
 			
-		if (a == null ) {
+		if (a == 0 ) {
 			exception.ajoutMessage("Vous devez sélectionner une catégorie");
 		}
 		
@@ -74,6 +75,18 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	public List<ArticleVendu> getAllArticle(Utilisateur u) throws BLLException {
 		try {
 			return dao.getAll(u);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<AfficheArticle> getAllArticle() throws BLLException {
+		// TODO Auto-generated method stub
+		try {
+			return dao.getAll();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
