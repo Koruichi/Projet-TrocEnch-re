@@ -64,7 +64,7 @@ public class ConnexionServlet extends HttpServlet {
 						if (u.getEmail().equals(request.getParameter("identifiant"))
 								|| u.getPseudo().equals(request.getParameter("identifiant"))
 										&& u.getMot_de_passe().equals(request.getParameter("mot_de_passe"))) {
-							nextPage = "/WEB-INF/jsp/accueil.jsp";
+							nextPage = "/AccueilServlet";
 							isConnecte = true;
 							request.getSession().setAttribute("user", u);
 						}

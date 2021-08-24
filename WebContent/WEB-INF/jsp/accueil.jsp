@@ -84,7 +84,12 @@
 				<h3><a href = "/Projet-TrocEnchere/EnchereServlet"> ${art.nom_article}</a></h3>
 				<p>Prix : ${art.prix_vente}</p>
 				<p>Fin de l'enchère :${art.date_fin_enchere}</p>
+				<c:if test="${user == null}">
 				<p>Vendeur : ${art.pseudo}</p>
+				</c:if>
+				<c:if test="${user != null}">
+				<p>Vendeur :<a href="/WEB-INF/jsp/profil.jsp"> ${art.pseudo}</a></p>
+				</c:if>
 			</div>
 		</c:forEach>
 	</div>
