@@ -3,7 +3,6 @@ package fr.eni.formation.enchere.ihm;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.formation.enchere.bo.Categorie;
 import fr.eni.formation.enchere.bo.Retrait;
 
 public class RetraitModel {
