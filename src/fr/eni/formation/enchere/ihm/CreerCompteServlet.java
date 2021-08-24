@@ -44,60 +44,37 @@ public class CreerCompteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String nextPage = "";
+		UtilisateurModel modelU = new UtilisateurModel();
 
-			UtilisateurModel modelU = new UtilisateurModel();
+		if (request.getParameter("btnCreer") != null) {
 
-			if (request.getParameter("btnCreer") != null) {
-
-				modelU.setUtilisateur(new Utilisateur());
-				modelU.getUtilisateur().setPseudo(request.getParameter("pseudo"));
-				modelU.getUtilisateur().setNom(request.getParameter("nom"));
-				modelU.getUtilisateur().setPrenom(request.getParameter("prenom"));
-				modelU.getUtilisateur().setEmail(request.getParameter("email"));
-				modelU.getUtilisateur().setTelephone(request.getParameter("telephone"));
-				modelU.getUtilisateur().setRue(request.getParameter("rue"));
-				modelU.getUtilisateur().setCode_postal(request.getParameter("code_postal"));
-				modelU.getUtilisateur().setVille(request.getParameter("ville"));
-				modelU.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
-				modelU.getUtilisateur().setCredit(100);
+			modelU.setUtilisateur(new Utilisateur());
+			modelU.getUtilisateur().setPseudo(request.getParameter("pseudo"));
+			modelU.getUtilisateur().setNom(request.getParameter("nom"));
+			modelU.getUtilisateur().setPrenom(request.getParameter("prenom"));
+			modelU.getUtilisateur().setEmail(request.getParameter("email"));
+			modelU.getUtilisateur().setTelephone(request.getParameter("telephone"));
+			modelU.getUtilisateur().setRue(request.getParameter("rue"));
+			modelU.getUtilisateur().setCode_postal(request.getParameter("code_postal"));
+			modelU.getUtilisateur().setVille(request.getParameter("ville"));
+			modelU.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
+			modelU.getUtilisateur().setCredit(100);
 
 				try {
+					manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"));
 					modelU.setLstUtilisateur(manager.getAllUtilisateur());
+					manager.addUtilisateur(modelU.getUtilisateur());
+					nextPage = "/AccueilServlet";
 				} catch (BLLException e) {
-					e.printStackTrace();
+					request.setAttribute("erreurs", e.getMessages());
+					nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 				}
 
-				try {
+			request.setAttribute("modelU", modelU);
 
-					if (manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(),
-							request.getParameter("confirmation"))) {
+			request.getRequestDispatcher(nextPage).forward(request, response);
 
-						if (manager.isAlphaNum(modelU.getUtilisateur().getPseudo())) {
-
-							if (manager.isUnique(modelU.getUtilisateur().getPseudo())
-									&& manager.isUnique(modelU.getUtilisateur().getEmail())) {
-
-								manager.addUtilisateur(modelU.getUtilisateur());
-
-							} else {
-								request.setAttribute("message", "Ce pseudo ou e-mail existe déjà");
-							}
-
-						} else {
-							request.setAttribute("message", "Votre pseudo contient des caractères spéciaux interdits");
-						}
-
-					} else {
-						request.setAttribute("message", "Mot de passe et confirmation non conforme");
-					}
-
-				} catch (BLLException e) {
-					e.printStackTrace();
-				}
-
-				request.setAttribute("modelU", modelU);
-				doGet(request, response);
-
-			}
+		}
 	}
 }

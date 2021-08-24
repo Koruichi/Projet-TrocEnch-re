@@ -12,31 +12,75 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	UtilisateurDAO dao = DAOFact.getUtilisateurDAO();
 
 	@Override
-	public void addUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public void addUtilisateur(Utilisateur u) throws BLLException {
+		BLLException ex = new BLLException();
+
+		if (u.getPseudo() == null || u.getPseudo().trim().isEmpty()) {
+			ex.ajoutMessage("Le pseudo est obligatoire");
+		}
+		if (u.getNom() == null || u.getNom().trim().isEmpty()) {
+			ex.ajoutMessage("Le nom est obligatoire");
+		}
+		if (u.getPrenom() == null || u.getPrenom().trim().isEmpty()) {
+			ex.ajoutMessage("Le prénom est obligatoire");
+		}
+		if (u.getEmail() == null || u.getEmail().trim().isEmpty()) {
+			ex.ajoutMessage("L'email est obligatoire");
+		}
+		if (u.getTelephone() == null || u.getTelephone().trim().isEmpty()) {
+			ex.ajoutMessage("Le numéro de téléphone est obligatoire");
+		}
+		if (u.getRue() == null || u.getRue().trim().isEmpty()) {
+			ex.ajoutMessage("La rue est obligatoire");
+		}
+		if (u.getCode_postal() == null || u.getCode_postal().trim().isEmpty()) {
+			ex.ajoutMessage("Le code postal est obligatoire");
+		}
+		if (u.getVille() == null || u.getVille().trim().isEmpty()) {
+			ex.ajoutMessage("La ville est obligatoire");
+		}
+		if (u.getMot_de_passe() == null || u.getMot_de_passe().trim().isEmpty()) {
+			ex.ajoutMessage("Le mot de passe est obligatoire");
+		}
+		if (!isAlphaNum(u.getPseudo())) {
+			ex.ajoutMessage("Le pseudo contient des caractères spéciaux interdits");
+		}
+		if (!isUnique(u.getPseudo())) {
+			ex.ajoutMessage("Le pseudo existe déjà");
+		}
+		if (!isUnique(u.getEmail())) {
+			ex.ajoutMessage("L'email existe déjà");
+		}
+		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
+			ex.ajoutMessage("Mot de passe et confirmation doivent être identique");
+		}
+
+		if (ex.estVide()) {
+			try {
+				dao.insert(u);
+			} catch (DALException e) {
+				ex.ajoutMessage("Un problème d'accès à la base de données : " + e.getMessage());
+			}
+		} else {
+			throw ex;
+		}
+
+	}
+
+	@Override
+	public void deleteUtilisateur(Utilisateur u) throws BLLException {
 		try {
-			dao.insert(utilisateur);
+			dao.delete(u);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void deleteUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public void updateUtilisateur(Utilisateur u) throws BLLException {
 		try {
-			dao.delete(utilisateur);
+			dao.update(u);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException {
-		try {
-			dao.update(utilisateur);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -84,8 +128,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	@Override
 	public boolean isUnique(String identifiant) throws BLLException {
 		for (Utilisateur u : getAllUtilisateur()) {
-			if(identifiant.equals(u.getPseudo())|| identifiant.equals(u.getEmail())) {
-				return false;	
+			if (identifiant.equals(u.getPseudo()) || identifiant.equals(u.getEmail())) {
+				return false;
 			}
 		}
 		return true;

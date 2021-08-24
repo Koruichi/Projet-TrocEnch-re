@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
 import fr.eni.formation.enchere.bo.Utilisateur;
-import fr.eni.formation.enchere.dal.ArticleVenduDAO;
+import fr.eni.formation.enchere.dto.AfficheArticle;
 
 public interface ArticleVenduManager {
 	
@@ -15,6 +15,8 @@ public interface ArticleVenduManager {
 	public void updateArticle (ArticleVendu articleVendu, Utilisateur u) throws BLLException;
 	
 	public List<ArticleVendu> getAllArticle(Utilisateur u)throws BLLException;
+	
+	public List<AfficheArticle> getAllArticle() throws BLLException;
 
 
 	

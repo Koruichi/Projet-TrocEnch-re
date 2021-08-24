@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <title>Accueil - ENI Enchère</title>
 </head>
-<body>
+<body >
 <%-- <c:set var="context" value="${pageContext.request.contextPath}/Images/logo-encheres.jpg"/>
 	<img src="${context}" border="0"/>
 	<img src="<%=request.getContextPath()%>/Images/logo-encheres.jpg">  --%>
@@ -74,16 +75,20 @@
 		</div>
 		</c:if>
 
-		</form>
-		<c:forEach items="${model.lstArticles}" var="art">
+	
+		
+		
+		<c:forEach items="${lst}" var="art">
 			<div>
 				<img alt="" src="">
-				<h3>${art.art.nom_article}</h3>
+				<h3><a href = "/Projet-TrocEnchere/EnchereServlet"> ${art.nom_article}</a></h3>
 				<p>Prix : ${art.prix_vente}</p>
 				<p>Fin de l'enchère :${art.date_fin_enchere}</p>
-				<p>Vendeur : ${art.utilisateur.pseudo}</p>
+				<p>Vendeur : ${art.pseudo}</p>
 			</div>
 		</c:forEach>
 	</div>
+	
+	
 </body>
 </html>
