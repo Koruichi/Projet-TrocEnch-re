@@ -16,6 +16,7 @@ import fr.eni.formation.enchere.bo.ArticleVendu;
 import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
+import fr.eni.formation.enchere.dto.AfficheArticle;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -26,7 +27,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
 	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email, From articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie FROM articles_vendus WHERE no_article=?";
+	private final String SELECTALL_NC = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
 
+	
 	// private final String SELECTALL = "SELECT articles_vendus, no_article,
 	// nom_article, description, date_debut_encheres, date_fin_encheres,
 	// prix_initial, prix_vente, no_utilisateur, no_categorie, FROM
@@ -150,6 +153,29 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	public void delete(ArticleVendu articleVendu, Utilisateur u) throws DALException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<AfficheArticle> getAll() throws DALException {
+		List<AfficheArticle> result = new ArrayList<AfficheArticle>();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTALL_NC);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				AfficheArticle article = new AfficheArticle();
+				article.setNom_article(rs.getString("nom_article"));
+				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
+				LocalDate ld =jsd2.toLocalDate();
+				article.setDate_fin_enchere(ld);
+				article.setPrix_vente(rs.getInt("prix_vente"));
+				article.setPseudo(rs.getString("pseudo"));
+				result.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Problème SQL");
+		}
+		return result;
 	}
 
 	

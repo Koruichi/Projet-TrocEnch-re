@@ -1,12 +1,18 @@
 package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.formation.enchere.bll.ArticleVenduManager;
+import fr.eni.formation.enchere.bll.ArticleVenduManagerSingl;
+import fr.eni.formation.enchere.bll.BLLException;
+import fr.eni.formation.enchere.dto.AfficheArticle;
 
 /**
  * Servlet implementation class AccueilServlet
@@ -26,7 +32,14 @@ public class AccueilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		ArticleVenduManager am = ArticleVenduManagerSingl.getInstance();
+		try {
+			List<AfficheArticle> lst = am.getAllArticle();
+			request.setAttribute("lst", lst);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
