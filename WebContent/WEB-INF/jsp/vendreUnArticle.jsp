@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,17 @@
 		
 		<h1>Nouvelle vente</h1>
 	</div>
-
+<c:if test="${not empty erreurs }">
+		<div class = "error">
+			Il existe des erreurs :
+			<ul>
+				<c:forEach items="${erreurs}" var="e">
+					<li>${e }</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 	<div>
-	
 	 <form method="POST" action="VendreUnArticleServlet">
 		<label for="nom_article">Article : </label> <input type="text"
 			id="nom_article" name="nom_article" value="" size="20" maxlength="100" />

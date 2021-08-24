@@ -7,33 +7,47 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.DAOFact;
-import fr.formation.bll.BllException;
+//import fr.formation.bll.BllException;
 
-public class ArticleVenduManagerImpl implements ArticleVenduManager{
+public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	ArticleVenduDAO dao = DAOFact.getArticleVenduDAO();
-	
+
 	@Override
 	public void addArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException {
 		BLLException exception = new BLLException();
-		
+
 		if (articleVendu.getNom_article() == null || articleVendu.getNom_article().trim().isEmpty()) {
 			exception.ajoutMessage("Le nom de l'article est obligatoire");
 		}
 		if (articleVendu.getDescription() == null || articleVendu.getDescription().trim().isEmpty()) {
 			exception.ajoutMessage("Une description de l'article est obligatoire");
 		}
-		if (articleVendu.getCategorie().getNo_categorie() == null || articleVendu.getCategorie().getNo_categorie().isEmpty()) {
+		
+		Integer a = null;
+			
+		if (a == null ) {
 			exception.ajoutMessage("Vous devez sélectionner une catégorie");
 		}
-		if (articleVendu.getPrix_initial() == null || articleVendu.getDescription().trim().isEmpty()) {
-			exception.ajoutMessage("Une description de l'article est obligatoire");
+		
+		if(articleVendu.getDate_debut_enchere() == null) {
+			exception.ajoutMessage("Vous devez sélectionner une date de mise en enchère");
 		}
-		try {
-			dao.insert(articleVendu, u);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		
+		if(articleVendu.getDate_fin_enchere() == null) {
+			exception.ajoutMessage("Vous devez sélectionner une date de fin d'enchère");
+		}
+		
+		
+		if (exception.estVide()) {
+			try {
+				dao.insert(articleVendu, u);
+			} catch (DALException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+			throw exception;
+		}
 	}
 
 	@Override
@@ -43,7 +57,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	@Override
@@ -53,7 +67,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	@Override
@@ -66,10 +80,5 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 		}
 		return null;
 	}
-
-	
-
-	
-	
 
 }

@@ -1,7 +1,6 @@
 package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -81,9 +80,8 @@ public class VendreUnArticleServlet extends HttpServlet {
 				nextPage = "/WEB-INF/jsp/enchereNonCommencee.jsp";
 				modelAV.setLstArticleVendu(manager.getAllArticle(u));
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("je suis dans mon catch");
+				request.setAttribute("erreurs", e.getMessages());
+				nextPage = "/WEB-INF/jsp/vendreUnArticle.jsp";
 			}
 
 		}
