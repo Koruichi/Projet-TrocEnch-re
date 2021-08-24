@@ -28,6 +28,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
 	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email, From articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie FROM articles_vendus WHERE no_article=?";
 	private final String SELECTALL_NC = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
+	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
 
 	
 	// private final String SELECTALL = "SELECT articles_vendus, no_article,
@@ -108,10 +109,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setDescription(rs.getString("description"));
 				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_debut_encheres"));
 				LocalDate ld = jsd.toLocalDate();
-				articleVendu.setDate_debut_enchere(ld);
 				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-				LocalDate ld2 = jsd2.toLocalDate();
-				articleVendu.setDate_fin_enchere(ld2);
+				LocalDate ld2 = jsd.toLocalDate();
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
 				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
@@ -180,5 +179,34 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return result;
 	}
 
+	@Override
+	public List<AfficheArticle> selectByMotCle(String motCle) throws DALException {
+		List<AfficheArticle> result = new ArrayList<AfficheArticle>();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYMOTCLE);
+			stmt.setString(1, "%"+motCle.trim()+"%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				AfficheArticle article = new AfficheArticle();
+				article.setNom_article(rs.getString("nom_article"));
+				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
+				LocalDate ld =jsd2.toLocalDate();
+				article.setDate_fin_enchere(ld);
+				article.setPrix_vente(rs.getInt("prix_vente"));
+				article.setPseudo(rs.getString("pseudo"));
+				result.add(article);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;	
+
+	}
+
 	
+
 }
+	

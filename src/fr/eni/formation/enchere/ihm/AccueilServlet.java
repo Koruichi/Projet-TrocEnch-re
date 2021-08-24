@@ -40,6 +40,18 @@ public class AccueilServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(request.getParameter("btnRecherche") != null) {
+			try {
+				List<AfficheArticle>  lst = am.selectByMotCle(request.getParameter("motRecherche"));
+				request.setAttribute("lst", lst);
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 

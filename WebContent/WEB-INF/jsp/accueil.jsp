@@ -33,8 +33,8 @@
 	<h1>Liste des enchères</h1>
 	<div>
 		<form method="POST">
-			<label for="articleRecherche">Filtres :</label> <input type="search"
-				id="site-search" name="q" aria-label="Recherche Article">
+			<label for="articleRecherche">Filtres :</label> 
+			<input type="search" id="site-search" name="motRecherche" aria-label="Recherche Article">
 
 			<p>
 				<label for="categorie">Catégorie : </label><br /> <select
@@ -47,7 +47,7 @@
 				</select>
 			</p>
 
-			<button>Rechercher</button>
+			<button type="submit" name="btnRecherche">Rechercher</button>
 
 		<c:if test="${user != null}">
 		<div>
@@ -76,9 +76,9 @@
 		</c:if>
 
 	
+		 
 		
-		
-		<c:forEach items="${lst}" var="art">
+		<c:forEach items="${lst}" var="art" begin="1" end="4">
 			<div>
 				<img alt="" src="">
 				<h3><a href = "/Projet-TrocEnchere/EnchereServlet"> ${art.nom_article}</a></h3>

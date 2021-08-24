@@ -18,6 +18,8 @@ public interface ArticleVenduManager {
 	
 	public List<AfficheArticle> getAllArticle() throws BLLException;
 
+	public List<AfficheArticle> selectByMotCle(String motCle)throws BLLException;
+	
 
 	
 
