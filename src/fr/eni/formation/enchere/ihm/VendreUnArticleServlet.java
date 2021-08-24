@@ -81,9 +81,8 @@ public class VendreUnArticleServlet extends HttpServlet {
 				nextPage = "/WEB-INF/jsp/enchereNonCommencee.jsp";
 				modelAV.setLstArticleVendu(manager.getAllArticle(u));
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("je suis dans mon catch");
+				request.setAttribute("erreurs", e.getMessages());
+				nextPage = "/WEB-INF/jsp/vendreUnArticle.jsp";
 			}
 
 		}
