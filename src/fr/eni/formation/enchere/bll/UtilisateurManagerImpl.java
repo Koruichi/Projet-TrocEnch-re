@@ -42,6 +42,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		if (u.getMot_de_passe() == null || u.getMot_de_passe().trim().isEmpty()) {
 			ex.ajoutMessage("Le mot de passe est obligatoire");
 		}
+		if (!isAlphaNum(u.getPseudo())) {
+			ex.ajoutMessage("Le pseudo contient des caractères spéciaux interdits");
+		}
+		if (!isUnique(u.getPseudo())) {
+			ex.ajoutMessage("Le pseudo existe déjà");
+		}
+		if (!isUnique(u.getEmail())) {
+			ex.ajoutMessage("L'email existe déjà");
+		}
+
 		if (ex.estVide()) {
 			try {
 				dao.insert(u);
