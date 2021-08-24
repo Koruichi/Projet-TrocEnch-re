@@ -84,7 +84,7 @@
 				</c:forEach>
 			</ul>
 		</div>
-	</c:if>
+		</c:if>
 		${message}
 	</div>
 </body>
