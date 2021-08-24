@@ -94,4 +94,23 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return null;
 	}
 
+	@Override
+	public List<AfficheArticle> selectByMotCle(String motCle) throws BLLException {
+		
+		try {
+			return dao.selectByMotCle(motCle);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	
+
+	
+
+	
+
 }
