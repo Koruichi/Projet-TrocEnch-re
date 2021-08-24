@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modifier profil</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<link type="text/css" rel="stylesheet" href="style.css" />
+<link type="text/css" rel="stylesheet" href="/style.css" />
 </head>
 <body>
 	<div>
@@ -111,6 +111,16 @@
 		</div>
         </div>	
 		</form>
+		<c:if test="${not empty erreurs }">
+		<div class = "error">
+			Il existe des erreurs :
+			<ul>
+				<c:forEach items="${erreurs}" var="e">
+					<li>${e }</li>
+				</c:forEach>
+			</ul>
+		</div>
+		</c:if>
 		${message}
 	</div> 
 </body>

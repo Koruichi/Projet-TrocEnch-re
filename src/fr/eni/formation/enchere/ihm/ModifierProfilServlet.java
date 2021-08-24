@@ -48,7 +48,7 @@ public class ModifierProfilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
-
+		BLLException ex = new BLLException();
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		if (request.getParameter("btnEnregistrer") != null) {
 
@@ -64,15 +64,27 @@ public class ModifierProfilServlet extends HttpServlet {
 			try {
 				if (!"".equals(request.getParameter("mot_de_passe_actu"))) {
 
-					if (!"".equals(request.getParameter("new_mot_de_passe"))
-							&& !"".equals(request.getParameter("confirmation"))) {
+					if (manager.confirmMDP(request.getParameter("mot_de_passe_actu"), u.getMot_de_passe())) {
 
-						request.setAttribute("message", "Le mot de passe à bien été modifié.");
-						u.setMot_de_passe(request.getParameter("new_mot_de_passe"));
-						manager.updateUtilisateur(u);
+						if (!"".equals(request.getParameter("new_mot_de_passe"))
+								&& !"".equals(request.getParameter("confirmation"))) {
 
+							if (manager.confirmMDP(request.getParameter("new_mot_de_passe"),
+									request.getParameter("confirmation"))) {
+
+								request.setAttribute("message", "Le mot de passe à bien été modifié.");
+								u.setMot_de_passe(request.getParameter("new_mot_de_passe"));
+								manager.updateUtilisateur(u);
+
+							} else {
+								
+								request.setAttribute("message", "Nouveau mot de passe et confirmation non conforme.");
+							}
+						} else {
+							request.setAttribute("message", "Veuillez entrer le nouveau mot de passe et la confirmation.");
+						}
 					} else {
-						request.setAttribute("message", "Veuillez entrer le nouveau mot de passe et la confirmation..");
+						request.setAttribute("message", "Votre mot de passe actuel n'est pas bon !");
 					}
 
 				} else {
@@ -83,42 +95,8 @@ public class ModifierProfilServlet extends HttpServlet {
 				request.setAttribute("erreurs", e.getMessages());
 				nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
 			}
-		}
 
-//			try {
-//				if (!"".equals(request.getParameter("mot_de_passe_actu"))) {
-//
-//					if (manager.confirmMDP(request.getParameter("mot_de_passe_actu"), u.getMot_de_passe())) {
-//
-//						if (!"".equals(request.getParameter("new_mot_de_passe"))
-//								&& !"".equals(request.getParameter("confirmation"))) {
-//
-//							if (manager.confirmMDP(request.getParameter("new_mot_de_passe"),
-//									request.getParameter("confirmation"))) {
-//
-//								request.setAttribute("message", "Le mot de passe à bien été modifié.");
-//								u.setMot_de_passe(request.getParameter("new_mot_de_passe"));
-//								manager.updateUtilisateur(u);
-//
-//							} else {
-//								request.setAttribute("message", "Nouveau mot de passe et confirmation non conforme.");
-//							}
-//						} else {
-//							request.setAttribute("message",
-//									"Veuillez entrer le nouveau mot de passe et la confirmation..");
-//						}
-//					} else {
-//						request.setAttribute("message", "Votre mot de passe actuel n'est pas bon !");
-//					}
-//
-//				} else {
-//					manager.updateUtilisateur(u);
-//				}
-//
-//			} catch (BLLException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		}
 
 		if (request.getParameter("btnSupprim") != null) {
 			try {
