@@ -7,13 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.formation.enchere.bll.BLLException;
+import fr.eni.formation.enchere.bll.UtilisateurManager;
+import fr.eni.formation.enchere.bll.UtilisateurManagerSingl;
+import fr.eni.formation.enchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class ProfilServlet
  */
 @WebServlet("/ProfilServlet")
 public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      private UtilisateurManager manager =UtilisateurManagerSingl.getInstance();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,6 +32,16 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextpage = "/WEB-INF/jsp/profil.jsp";
+		Utilisateur u = new Utilisateur();
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			u = manager.getUtilisateurById(id);
+			request.setAttribute("u", u);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher(nextpage).forward(request, response);
 	}
 

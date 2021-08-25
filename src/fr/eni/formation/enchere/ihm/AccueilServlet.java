@@ -43,7 +43,6 @@ public class AccueilServlet extends HttpServlet {
 		try {
 			List<Categorie> list = cat.getAllCategorie();
 			request.setAttribute("list", list);
-			System.out.println(cat.getAllCategorie());
 		} catch (BLLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

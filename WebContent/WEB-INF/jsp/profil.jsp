@@ -16,14 +16,14 @@
 
 	<div>
 		<ul style ="list-style-type:none">
-			<li>Pseudo: </li>
-			<li>Nom: </li>
-			<li>Prénom: </li>
-			<li>Email: </li>
-			<li>Téléphone: </li>
-			<li>Rue: </li>
-			<li>Code Postal: </li>
-			<li>Ville: </li>
+			<li>Pseudo : ${u.pseudo}</li>
+			<li>Nom : ${u.nom}</li>
+			<li>Prénom : ${u.prenom}</li>
+			<li>Email : ${u.email}</li>
+			<li>Téléphone : ${u.telephone}</li>
+			<li>Rue : ${u.rue}</li>
+			<li>Code Postal : ${u.code_postal}</li>
+			<li>Ville : ${u.ville}</li>
 		</ul>
 		
 	</div>
