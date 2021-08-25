@@ -122,11 +122,7 @@ width : 70px;
 				<p class="form-control">Vendeur : ${art.pseudo}</p>
 				</c:if>
 				<c:if test="${user != null}">
-<<<<<<< HEAD
-				<p>Vendeur :<a href="ProfilServlet?id=${art.no_utilisateur }"> ${art.pseudo}</a></p>
-=======
-				<p class="form-control">Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
->>>>>>> branch 'main' of https://github.com/Koruichi/Projet-TrocEnchere.git
+				<p class="form-control">Vendeur :<a href="ProfilServlet?id=${art.no_utilisateur }"> ${art.pseudo}</a></p>
 				</c:if>
 				</div>
 			</div>
