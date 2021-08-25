@@ -111,26 +111,24 @@ width : 70px;
 		 
 	
 		<div class="row">
-		
-		<div class="card">
 		<c:forEach items="${lst}" var="art" begin="1" end="4">
-			<div class="col-lg-6 offset-1 col-sm-12"> 
+		<div class="card">
+			<div class="col-lg-12 offset-1 col-sm-12"> 
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
 				<h3 class="card-title"><a href = "/Projet-TrocEnchere/EnchereServlet" class="btn btn-primary"> ${art.nom_article}</a></h3>
-				<p>Prix : ${art.prix_vente}</p>
-				<p>Fin de l'enchère :${art.date_fin_enchere}</p>
+				<p class="form-control">Prix : ${art.prix_vente}</p>
+				<p class="form-control">Fin de l'enchère :${art.date_fin_enchere}</p>
 				<c:if test="${user == null}">
-				<p>Vendeur : ${art.pseudo}</p>
+				<p class="form-control">Vendeur : ${art.pseudo}</p>
 				</c:if>
 				<c:if test="${user != null}">
-				<p>Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
+				<p class="form-control">Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
 				</c:if>
+				</div>
 			</div>
 			</div>
 		</c:forEach>
-		</div>
-		</div>
 	</div>
 	
 </body>
