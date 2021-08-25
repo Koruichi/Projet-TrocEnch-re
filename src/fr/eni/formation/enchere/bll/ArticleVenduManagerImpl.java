@@ -108,7 +108,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	}
 
 	@Override
-	public List<Categorie> selectByCategorie(Categorie categorie) throws BLLException {
+	public List<AfficheArticle> selectByCategorie(int categorie) throws BLLException {
 		
 		try {
 			return dao.selectByCategorie(categorie);

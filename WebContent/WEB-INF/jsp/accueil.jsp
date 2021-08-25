@@ -32,18 +32,20 @@
 	</div>
 	<h1>Liste des enchères</h1>
 	<div>
-		<form method="POST">
+		<form method="POST" action="AccueilServlet">
 			<label for="articleRecherche">Filtres :</label> 
 			<input type="search" id="site-search" name="motRecherche" aria-label="Recherche Article">
 
 			<p>
-				<label for="categorie">Catégorie : </label><br /> <select
-					name="categorie" id="categorie">
-					<option value="toutes">Toutes</option>
-					<option value="informatique">Informatique</option>
-					<option value="ameublement">Ameublement</option>
-					<option value="vetement">Vêtement</option>
-					<option value="sportLoisirs">Sport & Loisirs</option>
+				<label for="categorie">Catégorie : </label><br />
+				 <select name="categorie" id="categorie">
+					<option selected value=0>Choisi une categorie</option>
+					
+					<c:forEach items="${list}" var="cat">
+						<option value=${cat.no_categorie }>${cat.libelle}</option>
+					</c:forEach>
+					
+				
 				</select>
 			</p>
 
@@ -88,7 +90,7 @@
 				<p>Vendeur : ${art.pseudo}</p>
 				</c:if>
 				<c:if test="${user != null}">
-				<p>Vendeur :<a href="/WEB-INF/jsp/profil.jsp"> ${art.pseudo}</a></p>
+				<p>Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
 				</c:if>
 			</div>
 		</c:forEach>

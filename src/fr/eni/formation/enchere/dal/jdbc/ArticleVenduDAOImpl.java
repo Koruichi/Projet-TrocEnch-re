@@ -29,8 +29,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
 	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email, From articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie FROM articles_vendus WHERE no_article=?";
 	private final String SELECTALL_NC = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
-	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
-	//private final String SELECTBYCATEGORIE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u  INNER JOIN categorie as c ON a.no_categorie = c.no_categorie WHERE c.libelle = ?";
+	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
+	private final String SELECTBYCATEGORIE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON a.no_categorie = c.no_categorie WHERE c.no_categorie = ?";
 
 	
 	// private final String SELECTALL = "SELECT articles_vendus, no_article,
@@ -191,6 +191,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			while (rs.next()) {
 				
 				AfficheArticle article = new AfficheArticle();
+				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				article.setNom_article(rs.getString("nom_article"));
 				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
 				LocalDate ld =jsd2.toLocalDate();
@@ -208,37 +209,35 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	}
 
-	@Override
-	public List<Categorie> selectByCategorie(Categorie categorie) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-//	@Override
-//	public List<Categorie> selectByCategorie(Categorie categorie) throws DALException {
-//			List<Categorie> cat = new ArrayList<Categorie>();
-//			try (Connection con = ConnectionProvider.getConnection()) {
-//				PreparedStatement stmt = con.prepareStatement(SELECTBYCATEGORIE);
-//				stmt.setInt(1, categorie);
-//				ResultSet rs = stmt.executeQuery();
-//				while (rs.next()) {
-//					
-//					AfficheArticle article = new AfficheArticle();
-//					article.setNom_article(rs.getString("nom_article"));
-//					java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-//					LocalDate ld =jsd2.toLocalDate();
-//					article.setDate_fin_enchere(ld);
-//					article.setPrix_vente(rs.getInt("prix_vente"));
-//					article.setPseudo(rs.getString("pseudo"));
-//					cat.add(categorie);
-//					
-//				}
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			return cat;	
-//	}
+	@Override
+	public List<AfficheArticle> selectByCategorie(int categorie) throws DALException {
+			List<AfficheArticle> cat = new ArrayList<AfficheArticle>();
+			try (Connection con = ConnectionProvider.getConnection()) {
+				PreparedStatement stmt = con.prepareStatement(SELECTBYCATEGORIE);
+				stmt.setInt(1, categorie);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					
+					AfficheArticle article = new AfficheArticle();
+					article.setNo_categorie(rs.getInt("no_categorie"));
+					article.setNom_article(rs.getString("nom_article"));
+					java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
+					LocalDate ld =jsd2.toLocalDate();
+					article.setDate_fin_enchere(ld);
+					article.setPrix_vente(rs.getInt("prix_vente"));
+					article.setPseudo(rs.getString("pseudo"));
+					cat.add(article);
+
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return cat;	
+	}
 
 	
 

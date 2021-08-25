@@ -21,7 +21,7 @@ public interface ArticleVenduManager {
 
 	public List<AfficheArticle> selectByMotCle(String motCle)throws BLLException;
 	
-	public List<Categorie> selectByCategorie(Categorie categorie)throws BLLException;
+	public List<AfficheArticle> selectByCategorie(int categorie)throws BLLException;
 	
 
 	

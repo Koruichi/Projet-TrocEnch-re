@@ -23,5 +23,5 @@ public interface ArticleVenduDAO {
 
 	public List<AfficheArticle> selectByMotCle(String motCle)throws DALException;
 	
-	public List<Categorie> selectByCategorie(Categorie categorie)throws DALException;
+	public List<AfficheArticle> selectByCategorie(int categorie)throws DALException;
 }
