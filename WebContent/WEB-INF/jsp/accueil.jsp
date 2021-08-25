@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="style.css" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap" rel="stylesheet">
@@ -123,7 +122,7 @@ width : 70px;
 				<p class="form-control">Vendeur : ${art.pseudo}</p>
 				</c:if>
 				<c:if test="${user != null}">
-				<p class="form-control">Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
+				<p class="form-control">Vendeur :<a href="ProfilServlet?id=${art.no_utilisateur }"> ${art.pseudo}</a></p>
 				</c:if>
 				</div>
 			</div>

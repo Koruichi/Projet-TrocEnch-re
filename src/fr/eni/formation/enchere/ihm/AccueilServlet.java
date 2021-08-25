@@ -43,9 +43,7 @@ public class AccueilServlet extends HttpServlet {
 		try {
 			List<Categorie> list = cat.getAllCategorie();
 			request.setAttribute("list", list);
-			System.out.println(cat.getAllCategorie());
 		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -55,7 +53,6 @@ public class AccueilServlet extends HttpServlet {
 			List<AfficheArticle> lst = am.getAllArticle();
 			request.setAttribute("lst", lst);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -75,8 +72,6 @@ public class AccueilServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-	
-		
 		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

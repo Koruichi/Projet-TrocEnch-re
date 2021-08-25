@@ -31,14 +31,14 @@ width : 70px;
 	<div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">
 		<ul style ="list-style-type:none">
-			<li>Pseudo: </li>
-			<li>Nom: </li>
-			<li>Prénom: </li>
-			<li>Email: </li>
-			<li>Téléphone: </li>
-			<li>Rue: </li>
-			<li>Code Postal: </li>
-			<li>Ville: </li>
+			<li>Pseudo : ${u.pseudo}</li>
+			<li>Nom : ${u.nom}</li>
+			<li>Pr�nom : ${u.prenom}</li>
+			<li>Email : ${u.email}</li>
+			<li>T�l�phone : ${u.telephone}</li>
+			<li>Rue : ${u.rue}</li>
+			<li>Code Postal : ${u.code_postal}</li>
+			<li>Ville : ${u.ville}</li>
 		</ul>
 	</div>	
 	</div>
