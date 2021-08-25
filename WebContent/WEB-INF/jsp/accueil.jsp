@@ -8,8 +8,6 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="style.css" />
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap" rel="stylesheet">
@@ -112,26 +110,28 @@ width : 70px;
 		 
 	
 		<div class="row">
-		<div class="col-lg-6 col-sm-12">
-		<div class="card">
 		<c:forEach items="${lst}" var="art" begin="1" end="4">
-			<div>
+		<div class="card">
+			<div class="col-lg-12 offset-1 col-sm-12"> 
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
 				<h3 class="card-title"><a href = "/Projet-TrocEnchere/EnchereServlet" class="btn btn-primary"> ${art.nom_article}</a></h3>
-				<p>Prix : ${art.prix_vente}</p>
-				<p>Fin de l'enchère :${art.date_fin_enchere}</p>
+				<p class="form-control">Prix : ${art.prix_vente}</p>
+				<p class="form-control">Fin de l'enchère :${art.date_fin_enchere}</p>
 				<c:if test="${user == null}">
-				<p>Vendeur : ${art.pseudo}</p>
+				<p class="form-control">Vendeur : ${art.pseudo}</p>
 				</c:if>
 				<c:if test="${user != null}">
+<<<<<<< HEAD
 				<p>Vendeur :<a href="ProfilServlet?id=${art.no_utilisateur }"> ${art.pseudo}</a></p>
+=======
+				<p class="form-control">Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
+>>>>>>> branch 'main' of https://github.com/Koruichi/Projet-TrocEnchere.git
 				</c:if>
+				</div>
 			</div>
 			</div>
 		</c:forEach>
-		</div>
-		</div>
 	</div>
 	
 </body>
