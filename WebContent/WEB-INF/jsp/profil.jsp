@@ -22,9 +22,13 @@ width : 70px;
 </head>
 
 <body>	
-	<div>
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-3 offset-1 col-sm-4 offset-1">
 		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
 			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
+	</div>
+	</div>
 	</div>
 	
 	<div class="container">
@@ -33,9 +37,9 @@ width : 70px;
 		<ul style ="list-style-type:none">
 			<li>Pseudo : ${u.pseudo}</li>
 			<li>Nom : ${u.nom}</li>
-			<li>Pr�nom : ${u.prenom}</li>
+			<li>Prénom : ${u.prenom}</li>
 			<li>Email : ${u.email}</li>
-			<li>T�l�phone : ${u.telephone}</li>
+			<li>Téléphone : ${u.telephone}</li>
 			<li>Rue : ${u.rue}</li>
 			<li>Code Postal : ${u.code_postal}</li>
 			<li>Ville : ${u.ville}</li>

@@ -64,7 +64,7 @@ width : 70px;
 
 				<label class="text-nowrap" for="categorie">Catégorie : </label>
 				 <select name="categorie" id="categorie">
-					<option selected value=0>Choisi une categorie</option>
+					<option selected value=0>Choisir une categorie</option>
 					<c:forEach items="${list}" var="cat">
 						<option value=${cat.no_categorie }>${cat.libelle}</option>
 					</c:forEach>
