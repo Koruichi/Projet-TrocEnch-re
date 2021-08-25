@@ -16,6 +16,7 @@ import fr.eni.formation.enchere.bll.BLLException;
 import fr.eni.formation.enchere.bll.CategorieSingl;
 import fr.eni.formation.enchere.bll.ICategorie;
 import fr.eni.formation.enchere.bo.Categorie;
+import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dto.AfficheArticle;
 
 /**
@@ -41,6 +42,7 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		ICategorie cat = CategorieSingl.getInstance();
 		ArticleVenduManager am = ArticleVenduManagerSingl.getInstance();
+		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 
 		try {
 			List<Categorie> list = cat.getAllCategorie();
@@ -72,6 +74,18 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 
+		if(request.getParameter("btnRecherche")!= null) {
+			List<AfficheArticle> lst = new ArrayList<>();
+			try {
+				lst = am.getVente(u);
+				request.setAttribute("lst", lst);
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+		}
+		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
