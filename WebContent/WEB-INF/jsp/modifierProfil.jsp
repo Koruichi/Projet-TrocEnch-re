@@ -27,6 +27,7 @@ width : 70px;
 
 
 </head>
+
 <body>
 	<div>
 		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
