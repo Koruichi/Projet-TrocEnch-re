@@ -22,59 +22,58 @@ import fr.eni.formation.enchere.dto.AfficheArticle;
 /**
  * Servlet implementation class AccueilServlet
  */
-@WebServlet("/")
+@WebServlet("/AccueilServlet")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String nextPage = "/WEB-INF/jsp/accueil.jsp";
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccueilServlet() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AccueilServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		ICategorie cat = CategorieSingl.getInstance();
 		ArticleVenduManager am = ArticleVenduManagerSingl.getInstance();
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 
-		
 		try {
 			List<Categorie> list = cat.getAllCategorie();
 			request.setAttribute("list", list);
 		} catch (BLLException e1) {
 			e1.printStackTrace();
 		}
-		
-		
-		
+
 		try {
 			List<AfficheArticle> lst = am.getAllArticle();
 			request.setAttribute("lst", lst);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		
-		if(request.getParameter("btnRecherche") != null) {
+
+		if (request.getParameter("btnRecherche") != null) {
 			try {
 				List<AfficheArticle> lst = new ArrayList<>();
-				
-					lst = am.selectByMotCle(request.getParameter("motRecherche"));
-				
-				if(Integer.parseInt(request.getParameter("categorie"))!=0) {
-				  
-				  lst = am.selectByCategorie(Integer.parseInt(request.getParameter("categorie")));
+
+				lst = am.selectByMotCle(request.getParameter("motRecherche"));
+
+				if (Integer.parseInt(request.getParameter("categorie")) != 0) {
+					
+					lst = am.selectByCategorie(Integer.parseInt(request.getParameter("categorie")));
 				}
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace(); 
+				e.printStackTrace();
 			}
 		}
-		
+
 		if(request.getParameter("btnRecherche")!= null) {
 			List<AfficheArticle> lst = new ArrayList<>();
 			try {
@@ -91,9 +90,11 @@ public class AccueilServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
