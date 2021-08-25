@@ -21,7 +21,7 @@ import fr.eni.formation.enchere.dto.AfficheArticle;
 /**
  * Servlet implementation class AccueilServlet
  */
-@WebServlet("/AccueilServlet")
+@WebServlet("/")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String nextPage = "/WEB-INF/jsp/accueil.jsp";

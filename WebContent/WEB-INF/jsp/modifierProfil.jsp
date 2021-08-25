@@ -8,6 +8,7 @@
 <!-- <meta charset="ISO-8859-1"> -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <title>Modifier profil</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -26,8 +27,9 @@ width : 70px;
 
 
 </head>
+
 <body>
-	
+	<div>
 		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
 			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
 	</div>
@@ -116,7 +118,7 @@ width : 70px;
         </div>	
 		</form>
 		<c:if test="${not empty erreurs }">
-		<div class = "error">
+		<div class = "erreur">
 			Il existe des erreurs :
 			<ul>
 				<c:forEach items="${erreurs}" var="e">
@@ -125,7 +127,14 @@ width : 70px;
 			</ul>
 		</div>
 		</c:if>
-		${message}
+		<c:if test="${not empty message}">
+		<div class = "erreur">
+			Il existe une erreur sur le changement de mot de passe :
+			<ul>
+				<li>${message}</li>
+			</ul>
+		</div>
+		</c:if>
 	</div> 
 </body>
 </html>
