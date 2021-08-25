@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="style.css" />
-<<<<<<< HEAD
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,10 +111,10 @@ width : 70px;
 		 
 	
 		<div class="row">
-		<div class="col-lg-6 col-sm-12">
+		
 		<div class="card">
 		<c:forEach items="${lst}" var="art" begin="1" end="4">
-			<div>
+			<div class="col-lg-6 offset-1 col-sm-12"> 
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
 				<h3 class="card-title"><a href = "/Projet-TrocEnchere/EnchereServlet" class="btn btn-primary"> ${art.nom_article}</a></h3>
