@@ -54,7 +54,7 @@ width : 70px;
 	</div>
 	</div>
 	
-	<form method="POST">
+	<form method="POST" action="AccueilServlet">
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-6 col-sm-12">
@@ -62,13 +62,13 @@ width : 70px;
 			<input class="form-control" type="search" placeholder="Le nom de l'article contient" name="motRecherche" aria-label="Recherche Article"><br>
 	
 			<p>
+
 				<label class="text-nowrap" for="categorie">Catégorie : </label>
 				 <select name="categorie" id="categorie">
-					<option value="toutes">Toutes</option>
-					<option value="informatique">Informatique</option>
-					<option value="ameublement">Ameublement</option>
-					<option value="vetement">Vêtement</option>
-					<option value="sportLoisirs">Sport & Loisirs</option>
+					<option selected value=0>Choisi une categorie</option>
+					<c:forEach items="${list}" var="cat">
+						<option value=${cat.no_categorie }>${cat.libelle}</option>
+					</c:forEach>
 				</select>
 			</p>
 			
@@ -124,7 +124,7 @@ width : 70px;
 				<p>Vendeur : ${art.pseudo}</p>
 				</c:if>
 				<c:if test="${user != null}">
-				<p>Vendeur :<a href="/WEB-INF/jsp/profil.jsp"> ${art.pseudo}</a></p>
+				<p>Vendeur :<a href="ProfilServlet"> ${art.pseudo}</a></p>
 				</c:if>
 			</div>
 			</div>

@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 public class AfficheArticle {
 	private int id ;
+	private int no_utilisateur;
+	private int no_categorie;
 	private String nom_article;
 	private int prix_vente;
 	private LocalDate date_fin_enchere;
@@ -16,9 +18,11 @@ public class AfficheArticle {
 	public AfficheArticle() {
 		super();
 	}
-	public AfficheArticle(int id, String nom_article, int prix_vente, LocalDate date_fin_enchere, String pseudo) {
+	public AfficheArticle(int id,int no_utilisateur, int no_categorie, String nom_article, int prix_vente, LocalDate date_fin_enchere, String pseudo) {
 		super();
 		this.id = id;
+		this.no_utilisateur =  no_utilisateur;
+		this.no_categorie =   no_categorie;
 		this.nom_article = nom_article;
 		this.prix_vente = prix_vente;
 		this.date_fin_enchere = date_fin_enchere;
@@ -29,6 +33,18 @@ public class AfficheArticle {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getNo_utilisateur() {
+		return no_utilisateur;
+	}
+	public void setNo_utilisateur(int no_utilisateur) {
+		this.no_utilisateur = no_utilisateur;
+	}
+	public int getNo_categorie() {
+		return no_categorie;
+	}
+	public void setNo_categorie(int no_categorie) {
+		this.no_categorie = no_categorie;
 	}
 	public String getNom_article() {
 		return nom_article;
@@ -54,11 +70,16 @@ public class AfficheArticle {
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("AfficheArticle [id=");
 		builder.append(id);
+		builder.append(", no_utilisateur=");
+		builder.append(no_utilisateur);
+		builder.append(", no_categorie=");
+		builder.append(no_categorie);
 		builder.append(", nom_article=");
 		builder.append(nom_article);
 		builder.append(", prix_vente=");
@@ -70,6 +91,7 @@ public class AfficheArticle {
 		builder.append("]");
 		return builder.toString();
 	}
+	
 	
 	
 }

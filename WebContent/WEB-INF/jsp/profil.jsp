@@ -25,7 +25,7 @@
 			<li>Code Postal: </li>
 			<li>Ville: </li>
 		</ul>
-		<input type="submit" value="Modifier" name="btnModifier" />
+		
 	</div>
 </body>
 </html>
