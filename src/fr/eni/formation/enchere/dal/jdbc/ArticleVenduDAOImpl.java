@@ -31,6 +31,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String SELECTALL_NC = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
 	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
 	private final String SELECTBYCATEGORIE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON a.no_categorie = c.no_categorie WHERE c.no_categorie = ?";
+	private final String SELECTBYVENTE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur  WHERE a.no_utilisateur = ?";
+	//private final String SELECTBYACHAT = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur  WHERE c.no_categorie = ?";
 
 	
 	// private final String SELECTALL = "SELECT articles_vendus, no_article,
@@ -239,6 +241,40 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				e.printStackTrace();
 			}
 			return cat;	
+	}
+
+	@Override
+	public List<AfficheArticle> getVente(Utilisateur u) throws DALException {
+		List<AfficheArticle> result = new ArrayList<AfficheArticle>();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYVENTE);
+			stmt.setInt(1,u.getNo_utilisateur());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				AfficheArticle article = new AfficheArticle();
+				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				article.setNom_article(rs.getString("nom_article"));
+				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
+				LocalDate ld =jsd2.toLocalDate();
+				article.setDate_fin_enchere(ld);
+				article.setPrix_vente(rs.getInt("prix_vente"));
+				article.setPseudo(rs.getString("pseudo"));
+				result.add(article);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;	
+
+	}
+
+	@Override
+	public List<AfficheArticle> getAchat(Utilisateur u) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
