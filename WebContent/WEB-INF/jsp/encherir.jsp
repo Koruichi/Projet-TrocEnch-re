@@ -26,11 +26,12 @@
 	<label for="description">Description : ${a.description}</label> 
 	
 		<br>
-			
+
     <label for="categorie">Categorie: ${a.categorie.libelle}</label>
       	<br>
       	
     <label for="meilleur_offre">Meilleur offre: ${a.prix_vente}</label>
+    		
     	<br>  	
 
 	<label for="prix">Mise à prix: ${a.prix_initial}</label>
@@ -52,7 +53,8 @@
 		
 		<input type="submit" value="Encherir" name="btnEncherir"/>   
 	
-	<input type = "hidden" name= "idArticle"/>
+	<input type = "hidden" name= "idArticle" value="${param.id }"/>
+	<input type = "hidden" name= "meilleur_offre" value="${a.prix_vente }"/>
 	</form>
 </div>
 </body>
