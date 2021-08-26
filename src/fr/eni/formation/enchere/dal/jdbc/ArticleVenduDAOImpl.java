@@ -22,7 +22,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "prix_vente=?, no_categorie=?, WHERE no_article=?";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
-	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE no_article=?";
+	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie WHERE no_article=?";
 	private final String SELECTALL_NC = "SELECT  a.no_article,a.nom_article,  a.date_fin_encheres,  "
 			+ "a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a "
 			+ "INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
@@ -37,8 +37,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			
 			stmt.setString(1, articleVendu.getNom_article());
 			stmt.setString(2, articleVendu.getDescription());
-			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
+			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(5, articleVendu.getPrix_initial());
 			stmt.setInt(6, articleVendu.getPrix_vente());
 			stmt.setInt(7, u.getNo_utilisateur());

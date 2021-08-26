@@ -20,29 +20,31 @@
 	<div>
 	<form action="EnchereServlet" method="POST">
 
-	<label for="description">Description : </label> 
-	<textarea id="description" name="description" rows="" cols="">${a.description}</textarea>
+	<label for="nom_article">${a.nom_article}</label> 
+		<br>
+		
+	<label for="description">Description : ${a.description}</label> 
 	
 		<br>
-			
-    <label for="categorie">Categorie:${a.categorie.libelle  }</label>
+
+    <label for="categorie">Categorie: ${a.categorie.libelle}</label>
       	<br>
       	
     <label for="meilleur_offre">Meilleur offre: ${a.prix_vente}</label>
     		
     	<br>  	
 
-	<label for="prix">Mise à prix:${a.prix_initial}</label>
+	<label for="prix">Mise à prix: ${a.prix_initial}</label>
     	<br>
     	
       			 
-      	<label for="start">Fin de l'enchère:  ${a.date_fin_enchere}</label>
+      	<label for="start">Fin de l'enchère: ${a.date_fin_enchere}</label>
 		<br>
 		
-		<label for="retrait">Retrait : ${a.retrait.rue}<br> ${a.retrait.code_postal} <br>${a.retrait.ville}</label>
+		<label for="retrait">Retrait : ${a.retrait.rue} ${a.retrait.code_postal} ${a.retrait.ville}</label>
 		<br>
 		
-		<label for="vendeur">Vendeur : ${ven.pseudo }</label>
+		<label for="vendeur">Vendeur : ${vendeur.pseudo}</label>
 		<br>
 		<label for="proposition">Ma proposition : </label>
 			 <input type="number" name="proposition"  />		
