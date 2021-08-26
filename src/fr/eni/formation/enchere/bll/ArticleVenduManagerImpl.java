@@ -24,12 +24,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 			exception.ajoutMessage("Une description de l'article est obligatoire");
 		}
 		
-		Integer a = 0;
-			
-		if (a == 0 ) {
-			exception.ajoutMessage("Vous devez selectionner une categorie");
-		}
-		
 		if(articleVendu.getDate_debut_enchere() == null) {
 			exception.ajoutMessage("Vous devez selectionner une date de mise en enchere");
 		}

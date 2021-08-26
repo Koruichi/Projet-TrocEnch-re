@@ -1,17 +1,14 @@
 package fr.eni.formation.enchere.dal.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
-import fr.eni.formation.enchere.bo.Categorie;
 import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
@@ -20,7 +17,9 @@ import fr.eni.formation.enchere.dto.AfficheArticle;
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	private final String INSERT = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
-	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=?, WHERE no_article=?";
+	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, "
+			+ "description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, "
+			+ "prix_vente=?, no_categorie=?, WHERE no_article=?";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
 	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie WHERE no_article=?";
@@ -38,8 +37,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			
 			stmt.setString(1, articleVendu.getNom_article());
 			stmt.setString(2, articleVendu.getDescription());
-			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
+			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(5, articleVendu.getPrix_initial());
 			stmt.setInt(6, articleVendu.getPrix_vente());
 			stmt.setInt(7, u.getNo_utilisateur());

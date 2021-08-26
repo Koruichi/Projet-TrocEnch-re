@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -64,31 +65,46 @@ public class VendreUnArticleServlet extends HttpServlet {
 		ArticleVenduModel modelAV = new ArticleVenduModel();
 		RetraitModel modelR = new RetraitModel();
 		
-		System.out.println("coucou " +request.getParameter("date_fin_enchere"));
+		for (Enumeration<String> e= request.getParameterNames(); e.hasMoreElements();)
+		       System.out.println(" "+ e.nextElement());
+		
+		
+		System.out.println("coucou " +request.getParameter("btnRec"));
+		System.out.println("hello " +u);
 		if (request.getParameter("btnRec") != null) {
-			
+			System.out.println("coucou 2");
 			modelAV.setArticleVendu(new ArticleVendu());
 			modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
 			modelAV.getArticleVendu().setDescription(request.getParameter("description"));
-			if(request.getParameter("date_debut_encheres") ==null) {
+			try {
 				modelAV.getArticleVendu().setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_encheres")));
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			if(request.getParameter("date_fin_encheres") ==null) {
+			try {
 				modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_encheres")));
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			if(request.getParameter("prix_initial") ==null) {
+			try {
 				modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
 			
+			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
 			modelR.getRetrait().setRue(request.getParameter("rue"));
 			modelR.getRetrait().setCode_postal(request.getParameter("code_postal"));
 			modelR.getRetrait().setVille(request.getParameter("ville"));
+			System.out.println("test if");
 			
 			try {
 				manager.addArticle(modelAV.getArticleVendu(), u);
 				manager2.addRetrait(modelR.getRetrait(), modelAV.getArticleVendu());
-				nextPage = "/WEB-INF/jsp/enchereNonCommencee.jsp";
+				nextPage = "/WEB-INF/jsp/vendreUnArticle.jsp";
 				modelAV.setLstArticleVendu(manager.getAllArticle(u));
 			} catch (BLLException e) {
 				request.setAttribute("erreurs", e.getMessages());
