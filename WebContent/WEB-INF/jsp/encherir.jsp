@@ -21,7 +21,7 @@
 	<form action="EnchereServlet" method="POST">
 
 	<label for="description">Description : </label> 
-	<textarea id="description" name="description" rows="" cols=""></textarea>
+	<textarea id="description" name="description" rows="" cols="">${a.description}</textarea>
 	
 		<br>
 			
@@ -42,11 +42,12 @@
 		<label for="retrait">Retrait : </label>
 		<br>
 		
-		<label for="vendeur">Vendeur : </label>
+		<label for="vendeur">Vendeur : ${a.pseudo}</label>
 		<br>
 		<label for="proposition">Ma proposition : </label>
 			 <input type="number" name="proposition"  />		
 		<br>
+
 		
 		<input type="submit" value="Encherir" name="btnEncherir"/>   
 	

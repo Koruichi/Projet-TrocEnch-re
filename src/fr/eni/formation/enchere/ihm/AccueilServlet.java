@@ -74,13 +74,13 @@ public class AccueilServlet extends HttpServlet {
 			}
 		}
 
+		
 		if(request.getParameter("btnRecherche")!= null) {
 			List<AfficheArticle> lst = new ArrayList<>();
 			try {
 				lst = am.getVente(u);
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		
 			

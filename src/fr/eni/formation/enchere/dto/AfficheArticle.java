@@ -9,6 +9,7 @@ public class AfficheArticle {
 	private int id ;
 	private int no_utilisateur;
 	private int no_categorie;
+	private int no_article;
 	private String nom_article;
 	private int prix_vente;
 	private LocalDate date_fin_enchere;
@@ -18,11 +19,12 @@ public class AfficheArticle {
 	public AfficheArticle() {
 		super();
 	}
-	public AfficheArticle(int id,int no_utilisateur, int no_categorie, String nom_article, int prix_vente, LocalDate date_fin_enchere, String pseudo) {
+	public AfficheArticle(int id,int no_utilisateur, int no_categorie,int no_article, String nom_article, int prix_vente, LocalDate date_fin_enchere, String pseudo) {
 		super();
 		this.id = id;
 		this.no_utilisateur =  no_utilisateur;
 		this.no_categorie =   no_categorie;
+		this.setNo_article(no_article);
 		this.nom_article = nom_article;
 		this.prix_vente = prix_vente;
 		this.date_fin_enchere = date_fin_enchere;
@@ -71,6 +73,12 @@ public class AfficheArticle {
 		this.pseudo = pseudo;
 	}
 	
+	public int getNo_article() {
+		return no_article;
+	}
+	public void setNo_article(int no_article) {
+		this.no_article = no_article;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -80,6 +88,8 @@ public class AfficheArticle {
 		builder.append(no_utilisateur);
 		builder.append(", no_categorie=");
 		builder.append(no_categorie);
+		builder.append(", no_article=");
+		builder.append(no_article);
 		builder.append(", nom_article=");
 		builder.append(nom_article);
 		builder.append(", prix_vente=");

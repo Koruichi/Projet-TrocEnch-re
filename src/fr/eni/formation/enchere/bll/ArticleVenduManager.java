@@ -17,6 +17,8 @@ public interface ArticleVenduManager {
 	
 	public List<ArticleVendu> getAllArticle(Utilisateur u)throws BLLException;
 	
+	public ArticleVendu getById(int id,Utilisateur u)throws BLLException;
+	
 	public List<AfficheArticle> getAllArticle() throws BLLException;
 
 	public List<AfficheArticle> selectByMotCle(String motCle)throws BLLException;

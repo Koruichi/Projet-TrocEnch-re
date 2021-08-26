@@ -27,8 +27,14 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String UPDATE = "UPDATE articles_vendus SET no_article=?, nom_article=?, description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?, prix_vente=?, no_categorie=?, WHERE no_article=?";
 	private final String DELETE = "DELETE FROM articles_vendus where no_article = ?";
 	private final String SELECTALL = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, c.libelle FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie";
-	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.nom, u.prenom, u.email, From articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie FROM articles_vendus WHERE no_article=?";
-	private final String SELECTALL_NC = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
+	private final String SELECTBYID = "SELECT a.nom_article, a.description, a.date_debut_encheres, "
+			+ "a.date_fin_encheres, a.prix_initial, a.prix_vente, a.no_utilisateur, a.no_categorie, "
+			+ "u.pseudo, u.nom, u.prenom, u.email FROM articles_vendus as a INNER JOIN utilisateurs as u ON "
+			+ "u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON c.no_categorie = a.no_categorie "
+			+ "WHERE no_article =?";
+	private final String SELECTALL_NC = "SELECT  a.no_article,a.nom_article,  a.date_fin_encheres,  "
+			+ "a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a "
+			+ "INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur";
 	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
 	private final String SELECTBYCATEGORIE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON a.no_categorie = c.no_categorie WHERE c.no_categorie = ?";
 	private final String SELECTBYVENTE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur  WHERE a.no_utilisateur = ?";
@@ -168,6 +174,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				AfficheArticle article = new AfficheArticle();
+				article.setNo_article(rs.getInt("no_article"));
 				article.setNom_article(rs.getString("nom_article"));
 				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
 				LocalDate ld =jsd2.toLocalDate();
