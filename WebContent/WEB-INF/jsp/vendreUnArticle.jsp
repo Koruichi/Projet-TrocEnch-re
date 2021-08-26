@@ -54,7 +54,7 @@ width : 70px;
 	</c:if>
 </div>	
 
-<form method="POST" action="VendreUnArticleServlet" enctype="multipart/form-data">
+<form method="POST" action="VendreUnArticleServlet" >
 <div class="container">
 	<div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">
@@ -100,14 +100,14 @@ width : 70px;
     <div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">		
     	<label class="text-nowrap" for="start">Début de l'enchère:</label>
-		<input class="form-control" class="form-control" type="date"  name="date_debut_enchere">
+		<input class="form-control" class="form-control" type="date"  name="date_debut_encheres">
 	</div>
 	</div>
 			
     <div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">  			 
       	<label class="text-nowrap">Fin de l'enchère:</label>
-		<input class="form-control" type="date" name="date_fin_enchere">
+		<input class="form-control" type="date" name="date_fin_encheres">
 	</div>
 	</div>
 		
