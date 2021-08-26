@@ -59,7 +59,7 @@ public class VendreUnArticleServlet extends HttpServlet {
 		ArticleVenduModel modelAV = new ArticleVenduModel();
 		RetraitModel modelR = new RetraitModel();
 		
-		
+		System.out.println("coucou " +request.getParameter("date_fin_enchere"));
 		if (request.getParameter("btnRec") != null) {
 			
 			modelAV.setArticleVendu(new ArticleVendu());
@@ -69,17 +69,13 @@ public class VendreUnArticleServlet extends HttpServlet {
 			modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_enchere")));
 			modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
 			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
-
+			
 			modelR.getRetrait().setRue(request.getParameter("rue"));
 			modelR.getRetrait().setCode_postal(request.getParameter("code_postal"));
 			modelR.getRetrait().setVille(request.getParameter("ville"));
-			System.out.println(modelAV.getArticleVendu());
-			System.out.println(modelR.getRetrait());
 			
-		
 			try {
 				manager.addArticle(modelAV.getArticleVendu(), u);
-				
 				manager2.addRetrait(modelR.getRetrait(), modelAV.getArticleVendu());
 				nextPage = "/WEB-INF/jsp/enchereNonCommencee.jsp";
 				modelAV.setLstArticleVendu(manager.getAllArticle(u));
@@ -90,7 +86,7 @@ public class VendreUnArticleServlet extends HttpServlet {
 
 		}
 
-		doGet(request, response);
+		request.getRequestDispatcher(nextPage).forward(request, response);
 	}
 
 }
