@@ -25,24 +25,24 @@
 	
 		<br>
 			
-    <label for="categorie">Categorie:</label>
+    <label for="categorie">Categorie:${a.categorie.libelle  }</label>
       	<br>
       	
-    <label for="meilleur_offre">Meilleur offre:</label>
-    		<input type="number"  name="meilleur_offre">
+    <label for="meilleur_offre">Meilleur offre: ${a.prix_vente}</label>
+    		
     	<br>  	
 
-	<label for="prix">Mise à prix:</label>
+	<label for="prix">Mise à prix:${a.prix_initial}</label>
     	<br>
     	
       			 
-      	<label for="start">Fin de l'enchère:</label>
+      	<label for="start">Fin de l'enchère:  ${a.date_fin_enchere}</label>
 		<br>
 		
-		<label for="retrait">Retrait : </label>
+		<label for="retrait">Retrait : ${a.retrait.rue}<br> ${a.retrait.code_postal} <br>${a.retrait.ville}</label>
 		<br>
 		
-		<label for="vendeur">Vendeur : </label>
+		<label for="vendeur">Vendeur : ${ven.pseudo }</label>
 		<br>
 		<label for="proposition">Ma proposition : </label>
 			 <input type="number" name="proposition"  />		
@@ -51,7 +51,8 @@
 		
 		<input type="submit" value="Encherir" name="btnEncherir"/>   
 	
-	<input type = "hidden" name= "idArticle"/>
+	<input type = "hidden" name= "idArticle" value="${param.id }"/>
+	<input type = "hidden" name= "meilleur_offre" value="${a.prix_vente }"/>
 	</form>
 </div>
 </body>

@@ -17,6 +17,8 @@ public class EnchereDAOImpl implements IEnchere {
 	private final String INSERT = "INSERT INTO encheres (no_utilisateur, no_article, date_enchere, montant_enchere) VALUES(?,?,?,?)";
 	private final String UPDATE = "UPDATE encheres SET  date_enchere=?,montant_enchere = ?  WHERE no_utilisateur = ? AND no_article=?  ";
 	private final String DELETE = "DELETE FROM encheres where  no_utilisateur = ? AND no_article=?";
+//	private final String UPDATE = "UPDATE encheres SET  date_enchere=?,montant_enchere = ?  WHERE no_utilisateur = ? AND no_article=?  ";
+
 
 
 	@Override

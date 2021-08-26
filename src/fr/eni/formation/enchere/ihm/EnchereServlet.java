@@ -27,7 +27,7 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 @WebServlet("/EnchereServlet")
 public class EnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	private IEnchereManager manager = EnchereManagerSingl.getInstance();
+	private IEnchereManager manager = EnchereManagerSingl.getInstance();
 	private UtilisateurManager manager1 = UtilisateurManagerSingl.getInstance();
 	private ArticleVenduManager manager2 = ArticleVenduManagerSingl.getInstance();
 
@@ -50,11 +50,10 @@ public class EnchereServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int idu = Integer.parseInt(request.getParameter("idu"));
 		try {
-			System.out.println(manager1.getUtilisateurById(idu));
-			System.out.println(id);
-			System.out.println(manager2.getById(id, manager1.getUtilisateurById(idu)));
+			Utilisateur ven = manager1.getUtilisateurById(idu);
 			a = manager2.getById(id, manager1.getUtilisateurById(idu));
 			request.setAttribute("a", a);
+			request.setAttribute("ven", ven);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
@@ -65,16 +64,23 @@ public class EnchereServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		Enchere enchere = new Enchere();
+		ArticleVendu a = new ArticleVendu();
 		
+
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		
 		if(request.getParameter("btnEncherir") != null) {
 			if(Integer.parseInt(request.getParameter("proposition")) > Integer.parseInt(request.getParameter("meilleur_offre"))) {
 				enchere.setMontant_enchere(Integer.parseInt(request.getParameter("proposition")));
 				enchere.setDate_enchere(LocalDateTime.now());
-			//	manager.updateEnchere(enchere, articleVendu, u);
+				try {
+					manager.updateEnchere(enchere, a, u);
+					
+				} catch (BLLException e) {
+					e.printStackTrace();
+				}
 			
 			}
 		}else {
