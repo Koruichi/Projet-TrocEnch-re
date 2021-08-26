@@ -64,9 +64,9 @@ width : 70px;
 		<form method="post" action="ConnexionServlet">
 			<input class="form-control" type="submit" value="Créer un compte" name="btnCreerCompte" />
 		</form>
-		<br> ${message}
+		<br> 
+		<p class="erreur">${message}</p>
 		</div>
 		</div>
-	</div>
 </body>
 </html>

@@ -53,8 +53,8 @@ width : 70px;
 		</div>
 	</c:if>
 </div>	
-	
-<form method="POST" action="VendreUnArticleServlet">
+
+<form method="POST" action="VendreUnArticleServlet" enctype="multipart/form-data">
 <div class="container">
 	<div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">
@@ -65,12 +65,13 @@ width : 70px;
 	<div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">
 		<label class="text-nowrap" for="description">Description : </label> 
-		<input class="form-control" type="text" id="description" name="description" value=""  maxlength="200" />
+		<input class="form-control" type="textare" id="description" name="description" value=""  maxlength="200" />
 		<br>
 	</div>
 	</div>	
 	<div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">
+
 		<label class="text-nowrap" for="categorie">Catégorie : </label> 
 				<select name="no_categorie" id="categorie">
 					<option value=0>Choisissez une categorie</option>
@@ -79,8 +80,10 @@ width : 70px;
 					<option value=3>Vêtement</option>
 					<option value=4>Sport & Loisirs</option>
 				</select>
+				
 	</div>
 	</div>
+	
 
 <!-- 		<form action="/action_page.php">
  			 <label for="img">Photo de l'article:</label>

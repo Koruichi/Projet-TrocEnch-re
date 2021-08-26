@@ -65,26 +65,31 @@ public class AccueilServlet extends HttpServlet {
 				lst = am.selectByMotCle(request.getParameter("motRecherche"));
 
 				if (Integer.parseInt(request.getParameter("categorie")) != 0) {
-					
 					lst = am.selectByCategorie(Integer.parseInt(request.getParameter("categorie")));
 				}
+				if ( u != null) {
+					lst = am.getVente(u);
+				}
+				
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 		}
 
+
+		
 		if(request.getParameter("btnRecherche")!= null) {
 			List<AfficheArticle> lst = new ArrayList<>();
 			try {
 				lst = am.getVente(u);
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		
 			
 		}
+
 		
 		request.getRequestDispatcher(nextPage).forward(request, response);
 	}

@@ -142,6 +142,17 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		return null;
 	}
 
+	@Override
+	public ArticleVendu getById(int id, Utilisateur u) throws BLLException {
+		try {
+		return dao.getById(id, u);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	
 	
 

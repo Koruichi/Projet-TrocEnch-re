@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +17,12 @@ import fr.eni.formation.enchere.bll.ArticleVenduManager;
 import fr.eni.formation.enchere.bll.ArticleVenduManagerImpl;
 import fr.eni.formation.enchere.bll.ArticleVenduManagerSingl;
 import fr.eni.formation.enchere.bll.BLLException;
+import fr.eni.formation.enchere.bll.CategorieSingl;
+import fr.eni.formation.enchere.bll.ICategorie;
 import fr.eni.formation.enchere.bll.RetraitManager;
 import fr.eni.formation.enchere.bll.RetraitManagerSingl;
 import fr.eni.formation.enchere.bo.ArticleVendu;
+import fr.eni.formation.enchere.bo.Categorie;
 import fr.eni.formation.enchere.bo.Utilisateur;
 
 /**

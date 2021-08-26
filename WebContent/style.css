@@ -2,13 +2,13 @@
 
 /* Général ------------------------------------------------------------------------------------- */
 
-body, p, legend, label, input {
+body {
 	background-color: #fcefe2;
     font-family: 'Dosis', sans-serif;
 }
 
 /* Forms --------------------------------------------------------------------------------------- */
-fieldset {
+/* fieldset {
     padding: 10px;
     border: 1px #0568CD solid;
     margin: 10px;
@@ -35,14 +35,15 @@ form input.sansLabel {
 }
 
 
-
+ */
 /* Styles et couleurs -------------------------------------------------------------------------- */
 .requis {
     color: #c00;
 }
 
 .erreur {
-	font-style: bold  italic;
+	font-style:italic;
+	font-weight:bold;
     color: #900;
 }
 

@@ -117,7 +117,12 @@ width : 70px;
 			<div class="col-lg-12 offset-1 col-sm-12"> 
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
-				<h3 class="card-title"><a href = "/Projet-TrocEnchere/EnchereServlet" class="btn btn-primary"> ${art.nom_article}</a></h3>
+				<c:if test="${user == null}">
+					<h3 class="card-title">${art.nom_article}</a></h3>
+				</c:if>
+				<c:if test="${user != null}">
+					<h3 class="card-title"><a href ="EnchereServlet?id=${art.no_article}&idu=${art.no_utilisateur }" class="btn btn-primary"> ${art.nom_article}</a></h3>
+				</c:if>
 				<p class="form-control">Prix : ${art.prix_vente}</p>
 				<p class="form-control">Fin de l'enchère :${art.date_fin_enchere}</p>
 				<c:if test="${user == null}">
