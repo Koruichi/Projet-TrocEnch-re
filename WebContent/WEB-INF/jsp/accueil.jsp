@@ -27,22 +27,21 @@ width : 70px;
 <div class="container">
 <div class="row">
 	<div class="col-lg-4 col-sm-6">
-		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
-			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
+		<a href="<%=request.getContextPath()%>/AccueilServlet"><img class="transparent" width="100px" src="img/marteaulogo.png" alt="logo marteau du site"></a>
 	</div>
 	
-	<div class="col-lg-4 offset-4 col-sm-6">
+	<div class="col-lg-5 offset-3 col-sm-6">
 		<c:if test="${user == null}">
 		<a href="/Projet-TrocEnchere/ConnexionServlet">S'inscrire - Se connecter</a>
 		</c:if>
 		
 	<div class="menuaccueil">
 		<c:if test="${user != null}">
-		<a href="/Projet-TrocEnchere/EnchereNonCommenceeServlet"><b>Enchères</b></a> 
+		<a><b>Enchères</b></a> 
 		<a href="/Projet-TrocEnchere/VendreUnArticleServlet"><b>Vendre un article</b></a> 
 		<a href="/Projet-TrocEnchere/MonProfilServlet"><b>Mon profil</b></a> 
 		<a name="btnDeco" href="/Projet-TrocEnchere/DeconnexionServlet"><b>Déconnexion</b></a>
-		<p><b>Bienvenue  ${user.prenom} ${user.nom}</b></p>
+		<p class="nomuser"><b>Bienvenue  ${user.prenom} ${user.nom}</b></p>
 		</c:if>
 	</div>
 	</div>

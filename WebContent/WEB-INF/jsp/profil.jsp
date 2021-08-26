@@ -24,17 +24,16 @@ width : 70px;
 <body>	
 	<div class="container">
 	<div class="row">
-	<div class="col-lg-3 offset-1 col-sm-4 offset-1">
-		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
-			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
+	<div class="col-lg-3 col-sm-4 offset-1">
+		<a href="<%=request.getContextPath()%>/AccueilServlet"><img class="transparent" width="100px" src="img/marteaulogo.png" alt="logo marteau du site"></a>
 	</div>
 	</div>
 	</div>
 	
 	<div class="container affichlst">
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
-		<ul style ="list-style-type:none">
+	<div class="col-lg-8 offset-2 col-sm-12">
+		<ul class="list-group" style ="list-style-type:none">
 			<li><b>Pseudo : ${u.pseudo}</b></li>
 			<li>Nom : ${u.nom}</li>
 			<li>Prénom : ${u.prenom}</li>

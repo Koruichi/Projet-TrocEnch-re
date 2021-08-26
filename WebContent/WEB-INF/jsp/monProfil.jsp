@@ -24,8 +24,7 @@ width : 70px;
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-3 offset-1 col-sm-4 offset-1">
-		<a href="<%=request.getContextPath()%>/AccueilServlet"><img width="100px"
-			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxfwbzRR2jK66N7Dn3do6cTGmGGwZjfrJAT9Epoz9unIPxGNGu5aVyeQ-KCJn54C068r4&usqp=CAU"></a>
+		<a href="<%=request.getContextPath()%>/AccueilServlet"><img class="transparent" width="100px" src="img/marteaulogo.png" alt="logo marteau du site"></a>
 	</div>
 	</div>
 	</div>
