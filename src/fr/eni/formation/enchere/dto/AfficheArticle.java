@@ -12,14 +12,14 @@ public class AfficheArticle {
 	private int no_categorie;
 	private String nom_article;
 	private int prix_vente;
-	private LocalDateTime date_fin_enchere;
+	private LocalDate date_fin_enchere;
 	private String pseudo;
 	
 	
 	public AfficheArticle() {
 		super();
 	}
-	public AfficheArticle(int id,int no_utilisateur, int no_categorie, String nom_article, int prix_vente, LocalDateTime date_fin_enchere, String pseudo) {
+	public AfficheArticle(int id,int no_utilisateur, int no_categorie, String nom_article, int prix_vente, LocalDate date_fin_enchere, String pseudo) {
 		super();
 		this.id = id;
 		this.no_utilisateur =  no_utilisateur;
@@ -59,11 +59,11 @@ public class AfficheArticle {
 	public void setPrix_vente(int prix_vente) {
 		this.prix_vente = prix_vente;
 	}
-	public LocalDateTime getDate_fin_enchere() {
+	public LocalDate getDate_fin_enchere() {
 		return date_fin_enchere;
 	}
-	public void setDate_fin_enchere(LocalDateTime localDateTime) {
-		this.date_fin_enchere = localDateTime;
+	public void setDate_fin_enchere(LocalDate localDate) {
+		this.date_fin_enchere = localDate;
 	}
 	public String getPseudo() {
 		return pseudo;

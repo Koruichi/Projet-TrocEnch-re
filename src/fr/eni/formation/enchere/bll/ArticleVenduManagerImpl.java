@@ -27,7 +27,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		Integer a = 0;
 			
 		if (a == 0 ) {
-			exception.ajoutMessage("Vous devez s�lectionner une cat�gorie");
+			exception.ajoutMessage("Vous devez selectionner une categorie");
 		}
 		
 		if(articleVendu.getDate_debut_enchere() == null) {

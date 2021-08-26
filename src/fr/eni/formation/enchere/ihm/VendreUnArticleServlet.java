@@ -66,18 +66,14 @@ public class VendreUnArticleServlet extends HttpServlet {
 			modelAV.setArticleVendu(new ArticleVendu());
 			modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
 			modelAV.getArticleVendu().setDescription(request.getParameter("description"));
-			modelAV.getArticleVendu().setDate_debut_enchere(LocalDateTime.now());
-			try {
-				modelAV.getArticleVendu().setDate_fin_enchere(LocalDateTime.parse(request.getParameter("date_fin_encheres")));
-			} catch (Exception el) {
-				// TODO Auto-generated catch block
-				el.printStackTrace();
+			if(request.getParameter("date_debut_encheres" ==null)) {
+				modelAV.getArticleVendu().setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_encheres")));
 			}
-			try {
+			if(request.getParameter("date_fin_encheres") ==null) {
+				modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_encheres")));
+			}
+			if(request.getParameter("prix_initial") ==null) {
 				modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
-			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
 			
