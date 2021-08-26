@@ -50,11 +50,13 @@ public class EnchereServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int idu = Integer.parseInt(request.getParameter("idu"));
 		try {
-			a = manager2.getById(id, manager1.getUtilisateurById(idu));
-			request.setAttribute("a", a);
 			System.out.println(manager1.getUtilisateurById(idu));
 			System.out.println(id);
-			System.out.println(a);
+			System.out.println(manager2.getById(id, manager1.getUtilisateurById(idu)));
+			Utilisateur vendeur = manager1.getUtilisateurById(idu);
+			a = manager2.getById(id, vendeur);
+			request.setAttribute("a", a);
+			request.setAttribute("vendeur", vendeur);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
