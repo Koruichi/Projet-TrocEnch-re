@@ -63,13 +63,8 @@ public class VendreUnArticleServlet extends HttpServlet {
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		ArticleVenduModel modelAV = new ArticleVenduModel();
 		RetraitModel modelR = new RetraitModel();
-<<<<<<< HEAD
-
-		
-=======
 		
 		System.out.println("coucou " +request.getParameter("date_fin_enchere"));
->>>>>>> branch 'main' of https://github.com/Koruichi/Projet-TrocEnchere.git
 		if (request.getParameter("btnRec") != null) {
 			
 			modelAV.setArticleVendu(new ArticleVendu());
