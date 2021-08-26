@@ -1,6 +1,7 @@
 package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -65,9 +66,19 @@ public class VendreUnArticleServlet extends HttpServlet {
 			modelAV.setArticleVendu(new ArticleVendu());
 			modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
 			modelAV.getArticleVendu().setDescription(request.getParameter("description"));
-			modelAV.getArticleVendu().setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_enchere")));
-			modelAV.getArticleVendu().setDate_fin_enchere(LocalDate.parse(request.getParameter("date_fin_enchere")));
-			modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
+			modelAV.getArticleVendu().setDate_debut_enchere(LocalDateTime.now());
+			try {
+				modelAV.getArticleVendu().setDate_fin_enchere(LocalDateTime.parse(request.getParameter("date_fin_encheres")));
+			} catch (Exception el) {
+				// TODO Auto-generated catch block
+				el.printStackTrace();
+			}
+			try {
+				modelAV.getArticleVendu().setPrix_initial(Integer.parseInt(request.getParameter("prix_initial")));
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			modelAV.getArticleVendu().getCategorie().setNo_categorie(Integer.parseInt(request.getParameter("no_categorie")));
 			
 			modelR.getRetrait().setRue(request.getParameter("rue"));
