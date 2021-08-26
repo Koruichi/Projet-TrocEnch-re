@@ -34,12 +34,15 @@ form input.sansLabel {
     margin-left: 200px;
 }
 
+
+
 /* Styles et couleurs -------------------------------------------------------------------------- */
 .requis {
     color: #c00;
 }
 
 .erreur {
+	font-style: bold  italic;
     color: #900;
 }
 
@@ -50,4 +53,16 @@ form input.sansLabel {
 .info {
     font-style: italic;
     color: #E8A22B;
+}
+
+.c {
+	padding: 5;
+}
+
+.a {
+	padding: 5;
+}
+
+.menuaccueil, a {
+	padding-right: 50;
 }
