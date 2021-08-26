@@ -22,13 +22,13 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			ex.ajoutMessage("Le nom est obligatoire");
 		}
 		if (u.getPrenom() == null || u.getPrenom().trim().isEmpty()) {
-			ex.ajoutMessage("Le prénom est obligatoire");
+			ex.ajoutMessage("Le prï¿½nom est obligatoire");
 		}
 		if (u.getEmail() == null || u.getEmail().trim().isEmpty()) {
 			ex.ajoutMessage("L'email est obligatoire");
 		}
 		if (u.getTelephone() == null || u.getTelephone().trim().isEmpty()) {
-			ex.ajoutMessage("Le numéro de téléphone est obligatoire");
+			ex.ajoutMessage("Le numero de telephone est obligatoire");
 		}
 		if (u.getRue() == null || u.getRue().trim().isEmpty()) {
 			ex.ajoutMessage("La rue est obligatoire");
@@ -43,23 +43,23 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			ex.ajoutMessage("Le mot de passe est obligatoire");
 		}
 		if (!isAlphaNum(u.getPseudo())) {
-			ex.ajoutMessage("Le pseudo contient des caractères spéciaux interdits");
+			ex.ajoutMessage("Le pseudo contient des caracteres speciaux interdits");
 		}
 		if (!isUnique(u.getPseudo())) {
-			ex.ajoutMessage("Le pseudo existe déjà");
+			ex.ajoutMessage("Le pseudo existe deja");
 		}
 		if (!isUnique(u.getEmail())) {
-			ex.ajoutMessage("L'email existe déjà");
+			ex.ajoutMessage("L'email existe deja");
 		}
 		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
-			ex.ajoutMessage("Mot de passe et confirmation doivent être identique");
+			ex.ajoutMessage("Mot de passe et confirmation doivent etre identique");
 		}
 
 		if (ex.estVide()) {
 			try {
 				dao.insert(u);
 			} catch (DALException e) {
-				ex.ajoutMessage("Un problème d'accès à la base de données : " + e.getMessage());
+				ex.ajoutMessage("Un problï¿½me d'accï¿½s ï¿½ la base de donnï¿½es : " + e.getMessage());
 			}
 		} else {
 			throw ex;
@@ -86,13 +86,13 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			ex.ajoutMessage("Le nom est obligatoire");
 		}
 		if (u.getPrenom() == null || u.getPrenom().trim().isEmpty()) {
-			ex.ajoutMessage("Le prénom est obligatoire");
+			ex.ajoutMessage("Le prenom est obligatoire");
 		}
 		if (u.getEmail() == null || u.getEmail().trim().isEmpty()) {
 			ex.ajoutMessage("L'email est obligatoire");
 		}
 		if (u.getTelephone() == null || u.getTelephone().trim().isEmpty()) {
-			ex.ajoutMessage("Le numéro de téléphone est obligatoire");
+			ex.ajoutMessage("Le numï¿½ro de telephone est obligatoire");
 		}
 		if (u.getRue() == null || u.getRue().trim().isEmpty()) {
 			ex.ajoutMessage("La rue est obligatoire");
@@ -104,13 +104,18 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			ex.ajoutMessage("La ville est obligatoire");
 		}
 		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
-			ex.ajoutMessage("Mot de passe et confirmation doivent être identique");
+			ex.ajoutMessage("Mot de passe et confirmation doivent etre identique");
 		}
+		if (!isAlphaNum(u.getPseudo())) {
+			ex.ajoutMessage("Le pseudo contient des caracteres speciaux interdits");
+		}
+		
+		
 		if (ex.estVide()) {
 			try {
 				dao.update(u);
 			} catch (DALException e) {
-				ex.ajoutMessage("Un problème d'accès à la base de données : " + e.getMessage());
+				ex.ajoutMessage("Un probleme d'acces a la base de donnees : " + e.getMessage());
 			}
 		} else {
 			throw ex;
