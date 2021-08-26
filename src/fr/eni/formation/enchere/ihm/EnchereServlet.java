@@ -2,6 +2,7 @@ package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -72,7 +73,7 @@ public class EnchereServlet extends HttpServlet {
 		if(request.getParameter("btnEncherir") != null) {
 			if(Integer.parseInt(request.getParameter("proposition")) > Integer.parseInt(request.getParameter("meilleur_offre"))) {
 				enchere.setMontant_enchere(Integer.parseInt(request.getParameter("proposition")));
-				enchere.setDate_enchere(LocalDate.now());
+				enchere.setDate_enchere(LocalDateTime.now());
 			//	manager.updateEnchere(enchere, articleVendu, u);
 			
 			}

@@ -46,6 +46,7 @@ public class CreerCompteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String nextPage = "";
 		UtilisateurModel modelU = new UtilisateurModel();
+		BLLException ex = new BLLException();
 
 		if (request.getParameter("btnCreer") != null) {
 
@@ -61,11 +62,21 @@ public class CreerCompteServlet extends HttpServlet {
 			modelU.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
 			modelU.getUtilisateur().setCredit(100);
 
-				try {
-					manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"));
+				
+					if ("".equals(request.getParameter("confirmation"))) {
+						ex.ajoutMessage("La confirmation est obligatoire");
+					} else {
+						try {
+							manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"));
+						} catch (BLLException e) {
+							e.printStackTrace();
+						}
+					}
+				try {	
 					modelU.setLstUtilisateur(manager.getAllUtilisateur());
 					manager.addUtilisateur(modelU.getUtilisateur());
 					nextPage = "/AccueilServlet";
+					
 				} catch (BLLException e) {
 					request.setAttribute("erreurs", e.getMessages());
 					nextPage = "/WEB-INF/jsp/creerCompte.jsp";

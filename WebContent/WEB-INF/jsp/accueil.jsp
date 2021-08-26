@@ -36,13 +36,15 @@ width : 70px;
 		<a href="/Projet-TrocEnchere/ConnexionServlet">S'inscrire - Se connecter</a>
 		</c:if>
 		
+	<div class="menuaccueil">
 		<c:if test="${user != null}">
-		<a href="/Projet-TrocEnchere/EnchereNonCommenceeServlet">Enchères</a> 
-		<a href="/Projet-TrocEnchere/VendreUnArticleServlet">Vendre un article</a> 
-		<a href="/Projet-TrocEnchere/MonProfilServlet">Mon profil</a> 
-		<a name="btnDeco" href="/Projet-TrocEnchere/DeconnexionServlet">Déconnexion</a>
-		<p>Bienvenue  ${user.prenom} ${user.nom}</p>
+		<a href="/Projet-TrocEnchere/EnchereNonCommenceeServlet"><b>Enchères</b></a> 
+		<a href="/Projet-TrocEnchere/VendreUnArticleServlet"><b>Vendre un article</b></a> 
+		<a href="/Projet-TrocEnchere/MonProfilServlet"><b>Mon profil</b></a> 
+		<a name="btnDeco" href="/Projet-TrocEnchere/DeconnexionServlet"><b>Déconnexion</b></a>
+		<p><b>Bienvenue  ${user.prenom} ${user.nom}</b></p>
 		</c:if>
+	</div>
 	</div>
 </div>		
 </div>
@@ -104,7 +106,7 @@ width : 70px;
 		
 		<div class="row"></div>
 		<div class="col-lg-4 offset-8  col-sm-12"></div>
-		<button type="submit" name="btnRecherche">Rechercher</button>
+		<button type="submit" name="btnRecherche">Rechercher</button><br>
 	</div>
 </form>
 		 

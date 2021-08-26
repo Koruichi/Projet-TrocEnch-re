@@ -31,11 +31,11 @@ width : 70px;
 	</div>
 	</div>
 	
-	<div class="container">
+	<div class="container affichlst">
 	<div class="row">
 	<div class="col-lg-6 offset-3 col-sm-12">
 		<ul style ="list-style-type:none">
-			<li>Pseudo : ${u.pseudo}</li>
+			<li><b>Pseudo : ${u.pseudo}</b></li>
 			<li>Nom : ${u.nom}</li>
 			<li>Prénom : ${u.prenom}</li>
 			<li>Email : ${u.email}</li>
