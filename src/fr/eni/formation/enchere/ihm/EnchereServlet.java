@@ -53,8 +53,10 @@ public class EnchereServlet extends HttpServlet {
 			System.out.println(manager1.getUtilisateurById(idu));
 			System.out.println(id);
 			System.out.println(manager2.getById(id, manager1.getUtilisateurById(idu)));
-			a = manager2.getById(id, manager1.getUtilisateurById(idu));
+			Utilisateur vendeur = manager1.getUtilisateurById(idu);
+			a = manager2.getById(id, vendeur);
 			request.setAttribute("a", a);
+			request.setAttribute("vendeur", vendeur);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
