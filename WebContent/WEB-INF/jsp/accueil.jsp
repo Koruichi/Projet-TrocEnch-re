@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+ <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -112,13 +112,13 @@ width : 70px;
 		 
 	
 		<div class="row">
-		<c:forEach items="${lst}" var="art" begin="1" end="4">
+		<c:forEach items="${lst}" var="art" begin="1" end="6">
 		<div class="card">
 			<div class="col-lg-12 offset-1 col-sm-12"> 
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
 				<c:if test="${user == null}">
-					<h3 class="card-title">${art.nom_article}</a></h3>
+					<h3 class="card-title">${art.nom_article}</h3>
 				</c:if>
 				<c:if test="${user != null}">
 					<h3 class="card-title"><a href ="EnchereServlet?id=${art.no_article}&idu=${art.no_utilisateur }" class="btn btn-primary"> ${art.nom_article}</a></h3>
