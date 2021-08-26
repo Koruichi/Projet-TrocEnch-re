@@ -66,3 +66,7 @@ form input.sansLabel {
 .menuaccueil, a {
 	padding-right: 50;
 }
+
+.affichlst {
+	font-weight: bold;
+}

@@ -27,15 +27,15 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		Integer a = 0;
 			
 		if (a == 0 ) {
-			exception.ajoutMessage("Vous devez sélectionner une catégorie");
+			exception.ajoutMessage("Vous devez sï¿½lectionner une catï¿½gorie");
 		}
 		
 		if(articleVendu.getDate_debut_enchere() == null) {
-			exception.ajoutMessage("Vous devez sélectionner une date de mise en enchère");
+			exception.ajoutMessage("Vous devez selectionner une date de mise en enchere");
 		}
 		
 		if(articleVendu.getDate_fin_enchere() == null) {
-			exception.ajoutMessage("Vous devez sélectionner une date de fin d'enchère");
+			exception.ajoutMessage("Vous devez selectionner une date de fin d'enchere");
 		}
 		
 		

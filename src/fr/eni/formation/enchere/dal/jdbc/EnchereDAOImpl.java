@@ -25,13 +25,13 @@ public class EnchereDAOImpl implements IEnchere {
 			PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, u.getNo_utilisateur());
 			stmt.setInt(2, a.getNo_article());
-			stmt.setDate(3, java.sql.Date.valueOf(enchere.getDate_enchere()));
+			stmt.setTimestamp(3, java.sql.Timestamp.valueOf(enchere.getDate_enchere()));
 			stmt.setInt(4, enchere.getMontant_enchere());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 
 	}
@@ -45,7 +45,7 @@ public class EnchereDAOImpl implements IEnchere {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 
 	}
@@ -56,13 +56,13 @@ public class EnchereDAOImpl implements IEnchere {
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setInt(1, u.getNo_utilisateur());
 			stmt.setInt(2, a.getNo_article());
-			stmt.setDate(3, java.sql.Date.valueOf(enchere.getDate_enchere()));
+			stmt.setTimestamp(3, java.sql.Timestamp.valueOf(enchere.getDate_enchere()));
 			stmt.setInt(4, enchere.getMontant_enchere());
 
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 
 	}

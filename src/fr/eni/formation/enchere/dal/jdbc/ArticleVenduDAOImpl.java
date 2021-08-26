@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,18 +33,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
 	private final String SELECTBYCATEGORIE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON a.no_categorie = c.no_categorie WHERE c.no_categorie = ?";
 	private final String SELECTBYVENTE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur  WHERE a.no_utilisateur = ?";
-	//private final String SELECTBYACHAT = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur  WHERE c.no_categorie = ?";
-
 	
-	// private final String SELECTALL = "SELECT articles_vendus, no_article,
-	// nom_article, description, date_debut_encheres, date_fin_encheres,
-	// prix_initial, prix_vente, no_utilisateur, no_categorie, FROM
-	// articles_vendus";
-	// private final String SELECTBYID = "SELECT no_article, nom_article,
-	// description, date_debut_encheres, date_fin_encheres, prix_initial,
-	// prix_vente, no_utilisateur, no_categorie, FROM articles_vendus WHERE
-	// no_article=?";
-	// private final String SELECTBYUTILISATEUR
 
 	public void insert(ArticleVendu articleVendu, Utilisateur u) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -51,8 +41,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			
 			stmt.setString(1, articleVendu.getNom_article());
 			stmt.setString(2, articleVendu.getDescription());
-			stmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setTimestamp(4, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+			stmt.setTimestamp(5, java.sql.Timestamp.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(5, articleVendu.getPrix_initial());
 			stmt.setInt(6, articleVendu.getPrix_vente());
 			stmt.setInt(7, u.getNo_utilisateur());
@@ -67,7 +57,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 	}
 
@@ -78,7 +68,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 	}
 
@@ -88,8 +78,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.setInt(1, articleVendu.getNo_article());
 			stmt.setString(2, articleVendu.getNom_article());
 			stmt.setString(3, articleVendu.getDescription());
-			stmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
-			stmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDate_fin_enchere()));
+			stmt.setTimestamp(4, java.sql.Timestamp.valueOf(LocalDateTime.now()));
+			stmt.setTimestamp(5, java.sql.Timestamp.valueOf(articleVendu.getDate_fin_enchere()));
 			stmt.setInt(6, articleVendu.getPrix_initial());
 			stmt.setInt(7, articleVendu.getPrix_vente());
 			stmt.setInt(8, articleVendu.getCategorie().getNo_categorie());
@@ -97,7 +87,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 	}
 
@@ -111,10 +101,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setNo_article(rs.getInt("no_article"));
 				articleVendu.setNom_article(rs.getString("nom_article"));
 				articleVendu.setDescription(rs.getString("description"));
-				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_debut_encheres"));
-				LocalDate ld = jsd.toLocalDate();
-				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-				LocalDate ld2 = jsd.toLocalDate();
+				articleVendu.setDate_debut_enchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
+				articleVendu.setDate_fin_enchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
 				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
@@ -123,7 +111,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 		return result;
 	}
@@ -138,10 +126,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articleVendu.setNo_article(rs.getInt("no_article"));
 				articleVendu.setNom_article(rs.getString("nom_article"));
 				articleVendu.setDescription(rs.getString("description"));
-				java.sql.Date jsd = java.sql.Date.valueOf(rs.getString("date_debut_enchere"));
-				LocalDate ld = jsd.toLocalDate();
-				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_enchere"));
-				LocalDate ld2 = jsd.toLocalDate();
+				articleVendu.setDate_debut_enchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
+				articleVendu.setDate_fin_enchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
 				articleVendu.setPrix_initial(rs.getInt("prix_initial"));
 				articleVendu.setPrix_vente(rs.getInt("prix_vente"));
 				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
@@ -149,7 +135,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 		return articleVendu;
 	}
@@ -169,9 +155,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			while (rs.next()) {
 				AfficheArticle article = new AfficheArticle();
 				article.setNom_article(rs.getString("nom_article"));
-				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-				LocalDate ld =jsd2.toLocalDate();
-				article.setDate_fin_enchere(ld);
+				article.setDate_fin_enchere(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 				article.setPrix_vente(rs.getInt("prix_vente"));
 				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				article.setPseudo(rs.getString("pseudo"));
@@ -179,7 +163,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Problème SQL");
+			throw new DALException("Problï¿½me SQL");
 		}
 		return result;
 	}
@@ -196,9 +180,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				AfficheArticle article = new AfficheArticle();
 				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				article.setNom_article(rs.getString("nom_article"));
-				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-				LocalDate ld =jsd2.toLocalDate();
-				article.setDate_fin_enchere(ld);
+				article.setDate_fin_enchere(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 				article.setPrix_vente(rs.getInt("prix_vente"));
 				article.setPseudo(rs.getString("pseudo"));
 				result.add(article);
@@ -226,9 +208,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 					AfficheArticle article = new AfficheArticle();
 					article.setNo_categorie(rs.getInt("no_categorie"));
 					article.setNom_article(rs.getString("nom_article"));
-					java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-					LocalDate ld =jsd2.toLocalDate();
-					article.setDate_fin_enchere(ld);
+					article.setDate_fin_enchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
 					article.setPrix_vente(rs.getInt("prix_vente"));
 					article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 					article.setPseudo(rs.getString("pseudo"));
@@ -255,9 +235,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				AfficheArticle article = new AfficheArticle();
 				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				article.setNom_article(rs.getString("nom_article"));
-				java.sql.Date jsd2 = java.sql.Date.valueOf(rs.getString("date_fin_encheres"));
-				LocalDate ld =jsd2.toLocalDate();
-				article.setDate_fin_enchere(ld);
+				article.setDate_fin_enchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
 				article.setPrix_vente(rs.getInt("prix_vente"));
 				article.setPseudo(rs.getString("pseudo"));
 				result.add(article);
