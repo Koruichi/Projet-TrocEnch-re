@@ -67,9 +67,9 @@ public class AccueilServlet extends HttpServlet {
 				if (Integer.parseInt(request.getParameter("categorie")) != 0) {
 					lst = am.selectByCategorie(Integer.parseInt(request.getParameter("categorie")));
 				}
-				if (u != null) {
-					lst = am.getVente(u);
-				}
+//				if (u != null) {
+//					lst = am.getVente(u);
+//				}
 
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {
