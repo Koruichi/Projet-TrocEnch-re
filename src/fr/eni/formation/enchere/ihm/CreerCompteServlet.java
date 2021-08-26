@@ -44,9 +44,8 @@ public class CreerCompteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nextPage = "";
+		String nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 		UtilisateurModel modelU = new UtilisateurModel();
-		BLLException ex = new BLLException();
 
 		if (request.getParameter("btnCreer") != null) {
 
@@ -61,29 +60,26 @@ public class CreerCompteServlet extends HttpServlet {
 			modelU.getUtilisateur().setVille(request.getParameter("ville"));
 			modelU.getUtilisateur().setMot_de_passe(request.getParameter("mot_de_passe"));
 			modelU.getUtilisateur().setCredit(100);
-
-				
-					if ("".equals(request.getParameter("confirmation"))) {
-						ex.ajoutMessage("La confirmation est obligatoire");
-					} else {
-						try {
-							manager.confirmMDP(modelU.getUtilisateur().getMot_de_passe(), request.getParameter("confirmation"));
-						} catch (BLLException e) {
-							e.printStackTrace();
-						}
+			try {
+				if (!"".equals(request.getParameter("confirmation"))) {
+					if (!manager.confirmMDP(request.getParameter("mot_de_passe"),request.getParameter("confirmation"))) {
+						request.setAttribute("message", "Le mot de passe et la confirmation doivent etre identique");
 					}
-				try {	
+				} else {
+					request.setAttribute("message", "La confirmation est obligatoire");
+				}
+				try {
 					modelU.setLstUtilisateur(manager.getAllUtilisateur());
 					manager.addUtilisateur(modelU.getUtilisateur());
 					nextPage = "/AccueilServlet";
-					
 				} catch (BLLException e) {
 					request.setAttribute("erreurs", e.getMessages());
-					nextPage = "/WEB-INF/jsp/creerCompte.jsp";
 				}
+			} catch (BLLException e) {
 
+				e.printStackTrace();
+			}
 			request.setAttribute("modelU", modelU);
-
 			request.getRequestDispatcher(nextPage).forward(request, response);
 
 		}
