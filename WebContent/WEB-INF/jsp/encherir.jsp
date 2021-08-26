@@ -42,7 +42,7 @@
 		<label for="retrait">Retrait : </label>
 		<br>
 		
-		<label for="vendeur">Vendeur : ${a.pseudo}</label>
+		<label for="vendeur">Vendeur : </label>
 		<br>
 		<label for="proposition">Ma proposition : </label>
 			 <input type="number" name="proposition"  />		
