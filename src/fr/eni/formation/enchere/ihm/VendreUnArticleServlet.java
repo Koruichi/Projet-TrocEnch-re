@@ -70,7 +70,7 @@ public class VendreUnArticleServlet extends HttpServlet {
 			modelAV.setArticleVendu(new ArticleVendu());
 			modelAV.getArticleVendu().setNom_article(request.getParameter("nom_article"));
 			modelAV.getArticleVendu().setDescription(request.getParameter("description"));
-			if(request.getParameter("date_debut_encheres" ==null)) {
+			if(request.getParameter("date_debut_encheres") ==null) {
 				modelAV.getArticleVendu().setDate_debut_enchere(LocalDate.parse(request.getParameter("date_debut_encheres")));
 			}
 			if(request.getParameter("date_fin_encheres") ==null) {
