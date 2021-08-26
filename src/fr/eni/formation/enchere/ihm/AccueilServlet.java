@@ -80,7 +80,6 @@ public class AccueilServlet extends HttpServlet {
 				lst = am.getVente(u);
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		
 			
