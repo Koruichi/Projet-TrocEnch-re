@@ -5,6 +5,10 @@ import java.util.List;
 
 public class BLLException extends Exception{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	List<String> messages;
 	
 	public BLLException() {

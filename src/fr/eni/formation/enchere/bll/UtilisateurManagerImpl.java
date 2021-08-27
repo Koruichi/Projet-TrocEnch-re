@@ -22,7 +22,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			ex.ajoutMessage("Le nom est obligatoire");
 		}
 		if (u.getPrenom() == null || u.getPrenom().trim().isEmpty()) {
-			ex.ajoutMessage("Le pr�nom est obligatoire");
+			ex.ajoutMessage("Le prenom est obligatoire");
 		}
 		if (u.getEmail() == null || u.getEmail().trim().isEmpty()) {
 			ex.ajoutMessage("L'email est obligatoire");
@@ -56,7 +56,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			try {
 				dao.insert(u);
 			} catch (DALException e) {
-				ex.ajoutMessage("Un probl�me d'acc�s � la base de donn�es : " + e.getMessage());
+				ex.ajoutMessage("Un probleme d'acces la base de donn�es : " + e.getMessage());
 			}
 		} else {
 			throw ex;
@@ -124,7 +124,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -135,7 +134,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			return dao.getById(id);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

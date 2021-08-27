@@ -17,7 +17,6 @@ public class RetraitManagerImpl implements RetraitManager {
 		try {
 			dao.insert(retrait, articleVendu);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -27,7 +26,6 @@ public class RetraitManagerImpl implements RetraitManager {
 		try {
 			dao.delete(retrait, articleVendu);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -37,7 +35,6 @@ public class RetraitManagerImpl implements RetraitManager {
 		try {
 			dao.update(retrait, articleVendu);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -47,7 +44,6 @@ public class RetraitManagerImpl implements RetraitManager {
 		try {
 			return dao.getAll(articleVendu);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

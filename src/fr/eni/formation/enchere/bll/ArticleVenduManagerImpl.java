@@ -50,7 +50,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		try {
 			dao.delete(articleVendu, u);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -60,7 +59,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		try {
 			dao.update(articleVendu, u);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -70,7 +68,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		try {
 			return dao.getAll(u);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -78,11 +75,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 	@Override
 	public List<AfficheArticle> getAllArticle() throws BLLException {
-		// TODO Auto-generated method stub
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -141,7 +136,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		try {
 		return dao.getById(id, u);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
