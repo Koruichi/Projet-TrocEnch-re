@@ -51,12 +51,12 @@ width : 70px;
 		<div class="row">
 		<div class="col-lg-6 offset-3 col-sm-10 offset-1 ">	
 			<input class="form-control" type="submit" value="Connexion" name="btnConnexion" />
-			<label>Se souvenir de moi</label>			
-			<input type="checkbox" name="souvenir" id="souvenir" /> 
-			<a href="#">Mot de passe oublié</a> <br>
-			<br>
+			<input type="checkbox" name="souvenir" id="souvenir" /><label class="text-nowrap"> Se souvenir de moi</label><br> 
+			<a href="#">Mot de passe oublié</a>
 		 </div>
 		 </div>
+		 
+
 		</form>
 		
 		<div class="col-lg-6 offset-3 col-sm-10 offset-1 ">

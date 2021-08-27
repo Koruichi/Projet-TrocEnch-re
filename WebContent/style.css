@@ -15,6 +15,7 @@ body {
 a{
 	color: #000814;
 	padding-right: 10px;
+	font-weight: bold;
 }
 
 .nomuser {
@@ -26,6 +27,13 @@ ul {
 	font-size : xx-large;
 }
 
+.card{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.titre{
+	text-align: center;
+}
 /* Forms --------------------------------------------------------------------------------------- */
 /* fieldset {
     padding: 10px;
