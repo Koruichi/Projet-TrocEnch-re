@@ -10,7 +10,7 @@ public class JdbcTools {
 	private static String userdb;
 	private static String passworddb;
 
-	//bloc d'initialisation statique
+	// bloc d'initialisation statique
 	static {
 		try {
 			Class.forName(Settings.getProperty("driverdb"));
@@ -24,15 +24,13 @@ public class JdbcTools {
 		passworddb = Settings.getProperty("passworddb");
 		System.out.println("urldb: " + urldb);
 		System.out.println("userdb: " + userdb);
-		System.out.println("passworddb: " +passworddb);
+		System.out.println("passworddb: " + passworddb);
 	}
-	
-	public static Connection getConnection() throws SQLException{
+
+	public static Connection getConnection() throws SQLException {
 		Connection connection = DriverManager.getConnection(urldb, userdb, passworddb);
-		
+
 		return connection;
 	}
-	
+
 }
-
-

@@ -62,7 +62,6 @@ public class RetraitDAOImpl implements RetraitDAO {
 		}
 	}
 
-	
 	public List<Retrait> getall(ArticleVendu articleVendu) throws DALException {
 		List<Retrait> result = new ArrayList<Retrait>();
 		try (Connection con = ConnectionProvider.getConnection()) {

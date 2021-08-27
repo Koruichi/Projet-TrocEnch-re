@@ -62,7 +62,8 @@ public class CreerCompteServlet extends HttpServlet {
 			modelU.getUtilisateur().setCredit(100);
 			try {
 				if (!"".equals(request.getParameter("confirmation"))) {
-					if (!manager.confirmMDP(request.getParameter("mot_de_passe"),request.getParameter("confirmation"))) {
+					if (!manager.confirmMDP(request.getParameter("mot_de_passe"),
+							request.getParameter("confirmation"))) {
 						request.setAttribute("message", "Le mot de passe et la confirmation doivent etre identique");
 					}
 				} else {
