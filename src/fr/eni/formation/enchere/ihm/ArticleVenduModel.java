@@ -9,28 +9,35 @@ public class ArticleVenduModel {
 
 	private ArticleVendu articleVendu;
 	private List<ArticleVendu> lstArticleVendu;
+
 	public ArticleVenduModel() {
 		super();
 		articleVendu = new ArticleVendu();
-		lstArticleVendu= new ArrayList<ArticleVendu>();
+		lstArticleVendu = new ArrayList<ArticleVendu>();
 	}
+
 	public ArticleVenduModel(ArticleVendu articleVendu, List<ArticleVendu> lstArticleVendu) {
 		super();
 		this.articleVendu = articleVendu;
 		this.lstArticleVendu = lstArticleVendu;
 	}
+
 	public ArticleVendu getArticleVendu() {
 		return articleVendu;
 	}
+
 	public void setArticleVendu(ArticleVendu articleVendu) {
 		this.articleVendu = articleVendu;
 	}
+
 	public List<ArticleVendu> getLstArticleVendu() {
 		return lstArticleVendu;
 	}
+
 	public void setLstArticleVendu(List<ArticleVendu> lstArticleVendu) {
 		this.lstArticleVendu = lstArticleVendu;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -41,6 +48,5 @@ public class ArticleVenduModel {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+
 }

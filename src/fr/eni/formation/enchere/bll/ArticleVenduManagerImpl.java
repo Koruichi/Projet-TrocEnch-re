@@ -8,7 +8,6 @@ import fr.eni.formation.enchere.dal.ArticleVenduDAO;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.DAOFact;
 import fr.eni.formation.enchere.dto.AfficheArticle;
-//import fr.formation.bll.BllException;
 
 public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	ArticleVenduDAO dao = DAOFact.getArticleVenduDAO();
@@ -23,16 +22,15 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		if (articleVendu.getDescription() == null || articleVendu.getDescription().trim().isEmpty()) {
 			exception.ajoutMessage("Une description de l'article est obligatoire");
 		}
-		
-		if(articleVendu.getDate_debut_enchere() == null) {
+
+		if (articleVendu.getDate_debut_enchere() == null) {
 			exception.ajoutMessage("Vous devez selectionner une date de mise en enchere");
 		}
-		
-		if(articleVendu.getDate_fin_enchere() == null) {
+
+		if (articleVendu.getDate_fin_enchere() == null) {
 			exception.ajoutMessage("Vous devez selectionner une date de fin d'enchere");
 		}
-		
-		
+
 		if (exception.estVide()) {
 			try {
 				dao.insert(articleVendu, u);
@@ -85,7 +83,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 	@Override
 	public List<AfficheArticle> selectByMotCle(String motCle) throws BLLException {
-		
+
 		try {
 			return dao.selectByMotCle(motCle);
 		} catch (DALException e) {
@@ -97,7 +95,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 	@Override
 	public List<AfficheArticle> selectByCategorie(int categorie) throws BLLException {
-		
+
 		try {
 			return dao.selectByCategorie(categorie);
 		} catch (DALException e) {
@@ -109,7 +107,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 	@Override
 	public List<AfficheArticle> getVente(Utilisateur u) throws BLLException {
-		
+
 		try {
 			return dao.getVente(u);
 		} catch (DALException e) {
@@ -121,7 +119,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 
 	@Override
 	public List<AfficheArticle> getAchat(Utilisateur u) throws BLLException {
-		
+
 		try {
 			return dao.getAchat(u);
 		} catch (DALException e) {
@@ -134,18 +132,11 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 	@Override
 	public ArticleVendu getById(int id, Utilisateur u) throws BLLException {
 		try {
-		return dao.getById(id, u);
+			return dao.getById(id, u);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
-	
-	
-
-	
-
-	
 
 }

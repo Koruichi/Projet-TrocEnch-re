@@ -18,22 +18,25 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 @WebServlet("/ProfilServlet")
 public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      private UtilisateurManager manager =UtilisateurManagerSingl.getInstance();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProfilServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private UtilisateurManager manager = UtilisateurManagerSingl.getInstance();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ProfilServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextpage = "/WEB-INF/jsp/profil.jsp";
 		Utilisateur u = new Utilisateur();
-		
+
 		int id = Integer.parseInt(request.getParameter("id"));
 		try {
 			u = manager.getUtilisateurById(id);
@@ -45,9 +48,11 @@ public class ProfilServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

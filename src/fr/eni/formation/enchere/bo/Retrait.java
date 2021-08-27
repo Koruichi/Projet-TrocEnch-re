@@ -1,12 +1,10 @@
 package fr.eni.formation.enchere.bo;
 
 public class Retrait {
-	
+
 	private String rue;
 	private String code_postal;
 	private String ville;
-	
-	
 
 	public Retrait() {
 		super();
@@ -18,7 +16,6 @@ public class Retrait {
 		this.code_postal = code_postal;
 		this.ville = ville;
 	}
-	
 
 	public String getRue() {
 		return rue;
@@ -43,7 +40,6 @@ public class Retrait {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-
 
 	@Override
 	public String toString() {

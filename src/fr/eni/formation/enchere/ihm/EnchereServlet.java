@@ -1,7 +1,6 @@
 package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
@@ -31,28 +30,26 @@ public class EnchereServlet extends HttpServlet {
 	private UtilisateurManager manager1 = UtilisateurManagerSingl.getInstance();
 	private ArticleVenduManager manager2 = ArticleVenduManagerSingl.getInstance();
 
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EnchereServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public EnchereServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		ArticleVendu a = new ArticleVendu();
-		
+
 		int id = Integer.parseInt(request.getParameter("id"));
 		int idu = Integer.parseInt(request.getParameter("idu"));
 		try {
-			System.out.println(manager1.getUtilisateurById(idu));
-			System.out.println(id);
-			System.out.println(manager2.getById(id, manager1.getUtilisateurById(idu)));
 			Utilisateur vendeur = manager1.getUtilisateurById(idu);
 			a = manager2.getById(id, vendeur);
 			request.setAttribute("a", a);
@@ -65,37 +62,34 @@ public class EnchereServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		Enchere enchere = new Enchere();
 		ArticleVendu a = new ArticleVendu();
-		
 
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
-		
-		if(request.getParameter("btnEncherir") != null) {
-			if(Integer.parseInt(request.getParameter("proposition")) > Integer.parseInt(request.getParameter("meilleur_offre"))) {
+
+		if (request.getParameter("btnEncherir") != null) {
+			if (Integer.parseInt(request.getParameter("proposition")) > Integer
+					.parseInt(request.getParameter("meilleur_offre"))) {
 				enchere.setMontant_enchere(Integer.parseInt(request.getParameter("proposition")));
 				enchere.setDate_enchere(LocalDateTime.now());
 				try {
 					manager.updateEnchere(enchere, a, u);
-					
+
 				} catch (BLLException e) {
 					e.printStackTrace();
 				}
-			
+
 			}
-		}else {
+		} else {
 			request.setAttribute("message", "Cette proposition est inferieur au meilleur offre");
-	
-	}
+
+		}
 		request.getRequestDispatcher("/WEB-INF/jsp/encherir.jsp").forward(request, response);
 	}
-}	
-	
-
-	
-
-
+}

@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class ArticleVendu {
-	
+
 	private int no_article;
 	private String nom_article;
 	private String description;
@@ -17,14 +17,15 @@ public class ArticleVendu {
 	private String etat_vente;
 	private Categorie categorie;
 	private Retrait retrait;
-	
-	//Constructeurs
-	
+
+	// Constructeurs
+
 	public ArticleVendu() {
 		super();
 		categorie = new Categorie();
 		retrait = new Retrait();
 	}
+
 	public ArticleVendu(int no_article, String nom_article, String description, LocalDate date_debut_enchere,
 			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,
 			Retrait retrait) {
@@ -40,6 +41,7 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.retrait = retrait;
 	}
+
 	public ArticleVendu(String nom_article, String description, LocalDate date_debut_enchere,
 			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente, Categorie categorie,
 			Retrait retrait) {
@@ -54,6 +56,7 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.retrait = retrait;
 	}
+
 	public ArticleVendu(String nom_article, String description, LocalDate date_debut_enchere,
 			LocalDate date_fin_enchere, int prix_initial, int prix_vente, String etat_vente) {
 		super();
@@ -65,72 +68,90 @@ public class ArticleVendu {
 		this.prix_vente = prix_vente;
 		this.etat_vente = etat_vente;
 	}
-	
-	
-	//GET & SET
+
+	// GET & SET
 	public int getNo_article() {
 		return no_article;
 	}
+
 	public void setNo_article(int no_article) {
 		this.no_article = no_article;
 	}
+
 	public String getNom_article() {
 		return nom_article;
 	}
+
 	public void setNom_article(String nom_article) {
 		this.nom_article = nom_article;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public LocalDate getDate_debut_enchere() {
 		return date_debut_enchere;
 	}
+
 	public void setDate_debut_enchere(LocalDate date_debut_enchere) {
 		this.date_debut_enchere = date_debut_enchere;
 	}
+
 	public LocalDate getDate_fin_enchere() {
 		return date_fin_enchere;
 	}
+
 	public void setDate_fin_enchere(LocalDate date_fin_enchere) {
 		this.date_fin_enchere = date_fin_enchere;
 	}
+
 	public int getPrix_initial() {
 		return prix_initial;
 	}
+
 	public void setPrix_initial(int prix_initial) {
 		this.prix_initial = prix_initial;
 	}
+
 	public int getPrix_vente() {
 		return prix_vente;
 	}
+
 	public void setPrix_vente(int prix_vente) {
 		this.prix_vente = prix_vente;
 	}
+
 	public String getEtat_vente() {
 		return etat_vente;
 	}
+
 	public void setEtat_vente(String etat_vente) {
 		this.etat_vente = etat_vente;
 	}
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
+
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
 	public Retrait getRetrait() {
 		return retrait;
 	}
+
 	public void setRetrait(Retrait retrait) {
 		this.retrait = retrait;
 	}
-	
-	//TO STRing
-	
+
+	// TO STRing
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -157,10 +178,5 @@ public class ArticleVendu {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
 }
-	
-	
-	
