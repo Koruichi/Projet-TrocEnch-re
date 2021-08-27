@@ -113,8 +113,9 @@ width : 70px;
 		<div class="row">
 		<c:forEach items="${lst}" var="art" begin="1" end="6">
 		<div class="card col-lg-3 offset-lg-2">
-				<img class="card-img-left" alt="" src="">
+				
 				<div class="card-body">
+				<img class="card-img-left" width="200px" alt="" src="img/avendre.png">
 				<c:if test="${user == null}">
 					<h3 class="card-title">${art.nom_article}</h3>
 				</c:if>

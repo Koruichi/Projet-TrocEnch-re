@@ -42,20 +42,20 @@ width : 70px;
 <form method="POST" action="VendreUnArticleServlet" >
 <div class="container">
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
 		<label class="text-nowrap" for="nom_article">Article : </label> 
 		<input class="form-control" type="text"id="nom_article" name="nom_article" value=""  maxlength="100" />
 	</div>
 	</div>	
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
 		<label class="text-nowrap" for="description">Description : </label> 
 		<input class="form-control" type="textare" id="description" name="description" value=""  maxlength="200" />
 		<br>
 	</div>
 	</div>	
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
 
 		<label class="text-nowrap" for="categorie">Catégorie : </label> 
 				<select name="no_categorie" id="categorie">
@@ -65,53 +65,54 @@ width : 70px;
 					<option value=3>Vêtement</option>
 					<option value=4>Sport & Loisirs</option>
 				</select>
-				
+	</div>			
+	</div>
+	<br>
+	<div class="row">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
+ 			<label class="text-nowrap" for="img">Photo</label>
+  			<input type="file" id="img" name="img" accept="image/avendre*">
+  			<input class="form-control" type="submit"><br>
 	</div>
 	</div>
 	
-
-<!-- 		<form action="/action_page.php">
- 			 <label for="img">Photo de l'article:</label>
-  			<input type="file" id="img" name="img" accept="image/*">
-  			<input type="submit">
-		</form>	 -->	
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">	
+	<div class="col-lg-6 offset-lg-3 col-sm-12">	
 		<label class="text-nowrap" for="prix">Mise à prix:</label>
     	<input class="form-control" type="number"  name="prix_initial">
     </div>
 	</div>
 			
     <div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">		
+	<div class="col-lg-6 offset-lg-3 col-sm-12">		
     	<label class="text-nowrap" for="start">Début de l'enchère:</label>
 		<input class="form-control" class="form-control" type="date"  name="date_debut_encheres">
 	</div>
 	</div>
 			
     <div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">  			 
+	<div class="col-lg-6 offset-lg-3 col-sm-12">  			 
       	<label class="text-nowrap">Fin de l'enchère:</label>
 		<input class="form-control" type="date" name="date_fin_encheres">
 	</div>
 	</div>
 		
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
 		<label class="text-nowrap" for="Rue">Rue : </label> 
 		<input class="form-control" type="text" id="rue" name="rue" value="${user.rue}"  maxlength="100" />
 	</div>
 	</div>
 			
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
 		<label class="text-nowrap" for="code_postal">Code postal : </label> 
 		<input class="form-control" type="text" id="code_postal" name="code_postal" value="${user.code_postal}" maxlength="100" />
 	</div>
 	</div>
 		
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">
+	<div class="col-lg-6 offset-lg-3 col-sm-12">
 		<label class="text-nowrap" for="ville">Ville : </label> 
 		<input class="form-control" type="text" id="ville" name="ville" value="${user.ville}"  maxlength="100" />
 	</div>
@@ -119,7 +120,7 @@ width : 70px;
 	<br>
 		
 	<div class="row">
-	<div class="col-lg-6 offset-3 col-sm-12">	
+	<div class="col-lg-6 offset-lg-3 col-sm-12">	
 		<input type="submit" value="Enregistrer" name="btnRec" /> 
 		<input type="reset" value="Annuler" /> 
 	</div>
