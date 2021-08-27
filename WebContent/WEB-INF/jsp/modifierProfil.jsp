@@ -110,7 +110,7 @@ width : 70px;
         </div>
 		<div class="form-group row">
        <div class="col-lg-6 col-sm-12">
-			<p>Crédit: ${user.credit}</p>
+			<p>Crédit: ${user.credit} points</p>
 		</div>
         </div>
 			
