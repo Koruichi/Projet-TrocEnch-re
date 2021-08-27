@@ -102,16 +102,22 @@ width : 70px;
 		</form>
 		</div>
 		
-		<c:if test="${not empty erreurs }">
-		<div class = "error">
-			Il existe des erreurs :
+		
+		<div class = "erreur">
 			<ul>
+			<c:if test="${not empty erreurs}">
+	
 				<c:forEach items="${erreurs}" var="e">
-					<li>${e }</li>
+					<li>${e}</li>
 				</c:forEach>
-			</ul>
+
+			</c:if>
+			<c:if test="${not empty message}">
+				
+					<li>${message}</li>
+				
+			</c:if>
+			</ul> 
 		</div>
-		</c:if>
-		${message}
 </body>
 </html>

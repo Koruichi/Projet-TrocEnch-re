@@ -51,9 +51,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		if (!isUnique(u.getEmail())) {
 			ex.ajoutMessage("L'email existe deja");
 		}
-		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
-			ex.ajoutMessage("Mot de passe et confirmation doivent etre identique");
-		}
 
 		if (ex.estVide()) {
 			try {
@@ -103,14 +100,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		if (u.getVille() == null || u.getVille().trim().isEmpty()) {
 			ex.ajoutMessage("La ville est obligatoire");
 		}
+
 		if (!confirmMDP(u.getMot_de_passe(), u.getMot_de_passe())) {
 			ex.ajoutMessage("Mot de passe et confirmation doivent etre identique");
 		}
 		if (!isAlphaNum(u.getPseudo())) {
 			ex.ajoutMessage("Le pseudo contient des caracteres speciaux interdits");
 		}
-		
-		
+
 		if (ex.estVide()) {
 			try {
 				dao.update(u);

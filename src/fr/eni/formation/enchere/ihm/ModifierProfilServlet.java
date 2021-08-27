@@ -71,8 +71,6 @@ public class ModifierProfilServlet extends HttpServlet {
 
 							if (manager.confirmMDP(request.getParameter("new_mot_de_passe"),
 									request.getParameter("confirmation"))) {
-
-								request.setAttribute("message", "Le mot de passe à bien été modifié.");
 								u.setMot_de_passe(request.getParameter("new_mot_de_passe"));
 								manager.updateUtilisateur(u);
 
