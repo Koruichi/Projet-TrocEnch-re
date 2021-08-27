@@ -41,6 +41,7 @@ width : 70px;
 			<li>Rue: ${user.rue}</li>
 			<li>Code Postal: ${user.code_postal}</li>
 			<li>Ville: ${user.ville}</li>
+			<li>Crédit: ${user.credit}</li>
 		</ul>
 		<div class="row">
 		<div class="col-lg-6 offset-2 col-sm-12">

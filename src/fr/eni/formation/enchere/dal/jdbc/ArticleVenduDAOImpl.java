@@ -29,12 +29,11 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final String SELECTBYMOTCLE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur WHERE a.nom_article like ?";
 	private final String SELECTBYCATEGORIE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo, c.no_categorie FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur INNER JOIN categories as c ON a.no_categorie = c.no_categorie WHERE c.no_categorie = ?";
 	private final String SELECTBYVENTE = "SELECT  a.nom_article,  a.date_fin_encheres,  a.prix_vente,u.no_utilisateur,  u.pseudo as pseudo FROM articles_vendus as a INNER JOIN utilisateurs as u ON u.no_utilisateur = a.no_utilisateur  WHERE a.no_utilisateur = ?";
-	
 
 	public void insert(ArticleVendu articleVendu, Utilisateur u) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-			
+
 			stmt.setString(1, articleVendu.getNom_article());
 			stmt.setString(2, articleVendu.getDescription());
 			stmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDate_debut_enchere()));
@@ -137,8 +136,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	@Override
 	public void delete(ArticleVendu articleVendu, Utilisateur u) throws DALException {
-		
-		
+
 	}
 
 	@Override
@@ -169,10 +167,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		List<AfficheArticle> result = new ArrayList<AfficheArticle>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYMOTCLE);
-			stmt.setString(1, "%"+motCle.trim()+"%");
+			stmt.setString(1, "%" + motCle.trim() + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				
+
 				AfficheArticle article = new AfficheArticle();
 				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				article.setNom_article(rs.getString("nom_article"));
@@ -180,42 +178,39 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				article.setPrix_vente(rs.getInt("prix_vente"));
 				article.setPseudo(rs.getString("pseudo"));
 				result.add(article);
-				
+
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		return result;	
+		return result;
 
 	}
 
-	
-
 	@Override
 	public List<AfficheArticle> selectByCategorie(int categorie) throws DALException {
-			List<AfficheArticle> cat = new ArrayList<AfficheArticle>();
-			try (Connection con = ConnectionProvider.getConnection()) {
-				PreparedStatement stmt = con.prepareStatement(SELECTBYCATEGORIE);
-				stmt.setInt(1, categorie);
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					
-					AfficheArticle article = new AfficheArticle();
-					article.setNo_categorie(rs.getInt("no_categorie"));
-					article.setNom_article(rs.getString("nom_article"));
-					article.setDate_fin_enchere(rs.getDate("date_fin_encheres").toLocalDate());
-					article.setPrix_vente(rs.getInt("prix_vente"));
-					article.setNo_utilisateur(rs.getInt("no_utilisateur"));
-					article.setPseudo(rs.getString("pseudo"));
-					cat.add(article);
+		List<AfficheArticle> cat = new ArrayList<AfficheArticle>();
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYCATEGORIE);
+			stmt.setInt(1, categorie);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
 
-					
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+				AfficheArticle article = new AfficheArticle();
+				article.setNo_categorie(rs.getInt("no_categorie"));
+				article.setNom_article(rs.getString("nom_article"));
+				article.setDate_fin_enchere(rs.getDate("date_fin_encheres").toLocalDate());
+				article.setPrix_vente(rs.getInt("prix_vente"));
+				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				article.setPseudo(rs.getString("pseudo"));
+				cat.add(article);
+
 			}
-			return cat;	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cat;
 	}
 
 	@Override
@@ -223,10 +218,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		List<AfficheArticle> result = new ArrayList<AfficheArticle>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTBYVENTE);
-			stmt.setInt(1,u.getNo_utilisateur());
+			stmt.setInt(1, u.getNo_utilisateur());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				
+
 				AfficheArticle article = new AfficheArticle();
 				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				article.setNom_article(rs.getString("nom_article"));
@@ -234,12 +229,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				article.setPrix_vente(rs.getInt("prix_vente"));
 				article.setPseudo(rs.getString("pseudo"));
 				result.add(article);
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;	
+		return result;
 
 	}
 
@@ -248,7 +243,4 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return null;
 	}
 
-	
-
 }
-	

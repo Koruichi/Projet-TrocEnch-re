@@ -9,7 +9,7 @@ import fr.eni.formation.enchere.dal.DAOFact;
 import fr.eni.formation.enchere.dal.RetraitDAO;
 
 public class RetraitManagerImpl implements RetraitManager {
-	
+
 	RetraitDAO dao = DAOFact.getRetraitDAO();
 
 	@Override
@@ -48,7 +48,5 @@ public class RetraitManagerImpl implements RetraitManager {
 		}
 		return null;
 	}
-
-	
 
 }

@@ -9,23 +9,23 @@ import fr.eni.formation.enchere.dto.AfficheArticle;
 
 public interface ArticleVenduDAO {
 
-	public void insert (ArticleVendu articleVendu, Utilisateur u) throws DALException;
-	
-	public void delete (ArticleVendu articleVendu, Utilisateur u)throws DALException;
-	
-	public void update (ArticleVendu articleVendu, Utilisateur u)throws DALException;
-	
-	public List<ArticleVendu> getAll(Utilisateur u)throws DALException;
-	
-	public ArticleVendu getById (int id, Utilisateur u)throws DALException;
+	public void insert(ArticleVendu articleVendu, Utilisateur u) throws DALException;
+
+	public void delete(ArticleVendu articleVendu, Utilisateur u) throws DALException;
+
+	public void update(ArticleVendu articleVendu, Utilisateur u) throws DALException;
+
+	public List<ArticleVendu> getAll(Utilisateur u) throws DALException;
+
+	public ArticleVendu getById(int id, Utilisateur u) throws DALException;
 
 	public List<AfficheArticle> getAll() throws DALException;
 
-	public List<AfficheArticle> selectByMotCle(String motCle)throws DALException;
-	
-	public List<AfficheArticle> selectByCategorie(int categorie)throws DALException;
-	
-	public List<AfficheArticle> getVente(Utilisateur u)throws DALException;
-	
-	public List<AfficheArticle> getAchat(Utilisateur u)throws DALException;
+	public List<AfficheArticle> selectByMotCle(String motCle) throws DALException;
+
+	public List<AfficheArticle> selectByCategorie(int categorie) throws DALException;
+
+	public List<AfficheArticle> getVente(Utilisateur u) throws DALException;
+
+	public List<AfficheArticle> getAchat(Utilisateur u) throws DALException;
 }

@@ -6,15 +6,16 @@ import java.util.List;
 import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.UtilisateurDAO;
 
-public class UtilisateurDAOMock implements UtilisateurDAO{
+public class UtilisateurDAOMock implements UtilisateurDAO {
 
 	public List<Utilisateur> lstUtilisateur = new ArrayList<>();
 	private static int cpt = 0;
+
 	@Override
 	public void insert(Utilisateur utilisateur) {
 		lstUtilisateur.add(utilisateur);
 		utilisateur.setNo_utilisateur(cpt++);
-		
+
 	}
 
 	@Override
@@ -24,8 +25,8 @@ public class UtilisateurDAOMock implements UtilisateurDAO{
 
 	@Override
 	public void update(Utilisateur utilisateur) {
-		for ( Utilisateur u : lstUtilisateur) {
-			if(utilisateur.getNo_utilisateur() == u.getNo_utilisateur()) {
+		for (Utilisateur u : lstUtilisateur) {
+			if (utilisateur.getNo_utilisateur() == u.getNo_utilisateur()) {
 				utilisateur.setNom(utilisateur.getNom());
 				utilisateur.setPrenom(utilisateur.getPrenom());
 				utilisateur.setPseudo(utilisateur.getPseudo());
@@ -50,5 +51,4 @@ public class UtilisateurDAOMock implements UtilisateurDAO{
 		return lstUtilisateur.get(id);
 	}
 
-	
 }

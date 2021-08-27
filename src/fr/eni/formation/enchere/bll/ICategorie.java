@@ -4,10 +4,8 @@ import java.util.List;
 
 import fr.eni.formation.enchere.bo.Categorie;
 
-
-
 public interface ICategorie {
-	
+
 	public List<Categorie> getAllCategorie() throws BLLException;
 
 }

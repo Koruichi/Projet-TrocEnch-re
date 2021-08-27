@@ -25,18 +25,16 @@ width : 70px;
 
 <body>
 
-	<div>
+	<div class="justify-content-lg-start justify-content-sm-center">
 		<a href="<%=request.getContextPath()%>/AccueilServlet"><img class="transparent" width="100px" src="img/marteaulogo.png" alt="logo marteau du site"></a>
 	</div>
 	
 	<div class="container">
 	
 		<form method="post" action="CreerCompteServlet">
-		<div class="row">
-		<div class="text-center">
-			<h1>Créez votre compte</h1>
-		</div>
-		</div>
+		
+			<h1 class="titre">Créez votre compte</h1>
+		
 		
 		<div class="form-group row">
         <div class="col-lg-6 col-sm-12"> 	

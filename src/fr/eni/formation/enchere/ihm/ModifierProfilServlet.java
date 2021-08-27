@@ -2,7 +2,6 @@ package fr.eni.formation.enchere.ihm;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +47,6 @@ public class ModifierProfilServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextPage = "/WEB-INF/jsp/modifierProfil.jsp";
-		BLLException ex = new BLLException();
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 		if (request.getParameter("btnEnregistrer") != null) {
 
@@ -71,15 +69,17 @@ public class ModifierProfilServlet extends HttpServlet {
 
 							if (manager.confirmMDP(request.getParameter("new_mot_de_passe"),
 									request.getParameter("confirmation"))) {
+								
 								u.setMot_de_passe(request.getParameter("new_mot_de_passe"));
 								manager.updateUtilisateur(u);
 
 							} else {
-								
+
 								request.setAttribute("message", "Nouveau mot de passe et confirmation non conforme.");
 							}
 						} else {
-							request.setAttribute("message", "Veuillez entrer le nouveau mot de passe et la confirmation.");
+							request.setAttribute("message",
+									"Veuillez entrer le nouveau mot de passe et la confirmation.");
 						}
 					} else {
 						request.setAttribute("message", "Votre mot de passe actuel n'est pas bon !");
