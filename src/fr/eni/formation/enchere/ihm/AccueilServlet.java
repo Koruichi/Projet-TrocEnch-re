@@ -42,7 +42,6 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		ICategorie cat = CategorieSingl.getInstance();
 		ArticleVenduManager am = ArticleVenduManagerSingl.getInstance();
-		Utilisateur u = (Utilisateur) request.getSession().getAttribute("user");
 
 		try {
 			List<Categorie> list = cat.getAllCategorie();
@@ -67,7 +66,6 @@ public class AccueilServlet extends HttpServlet {
 				if (Integer.parseInt(request.getParameter("categorie")) != 0) {
 					lst = am.selectByCategorie(Integer.parseInt(request.getParameter("categorie")));
 				}
-				
 
 				request.setAttribute("lst", lst);
 			} catch (BLLException e) {

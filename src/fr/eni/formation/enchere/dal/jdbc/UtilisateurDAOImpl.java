@@ -12,15 +12,14 @@ import fr.eni.formation.enchere.bo.Utilisateur;
 import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dal.UtilisateurDAO;
 
-
 public class UtilisateurDAOImpl implements UtilisateurDAO {
-	
-	private final String INSERT= "INSERT INTO utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private final String SELECTALL= "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM utilisateurs";
-	private final String DELETE= "DELETE FROM utilisateurs where no_utilisateur = ?";
-	private final String UPDATE="UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? WHERE no_utilisateur=?";
-	private final String SELECTBYID= "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM utilisateurs WHERE no_utilisateur=?";
-	
+
+	private final String INSERT = "INSERT INTO utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	private final String SELECTALL = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM utilisateurs";
+	private final String DELETE = "DELETE FROM utilisateurs where no_utilisateur = ?";
+	private final String UPDATE = "UPDATE utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? WHERE no_utilisateur=?";
+	private final String SELECTBYID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM utilisateurs WHERE no_utilisateur=?";
+
 	@Override
 	public void insert(Utilisateur utilisateur) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -47,10 +46,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("Problème SQL");
-		}		
+		}
 	}
-		
-	
 
 	@Override
 	public void delete(Utilisateur utilisateur) throws DALException {
@@ -65,7 +62,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void update(Utilisateur utilisateur) throws DALException{
+	public void update(Utilisateur utilisateur) throws DALException {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(UPDATE);
 			stmt.setString(1, utilisateur.getPseudo());
@@ -84,16 +81,16 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("Problème SQL");
-		}		
+		}
 	}
 
 	@Override
-	public List<Utilisateur> getAll() throws DALException{
+	public List<Utilisateur> getAll() throws DALException {
 		List<Utilisateur> result = new ArrayList<Utilisateur>();
 		try (Connection con = ConnectionProvider.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECTALL);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Utilisateur utilisateur = new Utilisateur();
 				utilisateur.setNo_utilisateur(rs.getInt("no_utilisateur"));
 				utilisateur.setPseudo(rs.getString("pseudo"));
@@ -115,34 +112,33 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		return result;
 	}
-	
 
 	@Override
-	public Utilisateur getById(int id) throws DALException{
+	public Utilisateur getById(int id) throws DALException {
 		Utilisateur utilisateur = new Utilisateur();
-	try (Connection con = ConnectionProvider.getConnection()) {
-		PreparedStatement stmt = con.prepareStatement(SELECTBYID);
-		stmt.setInt(1, id);
-		ResultSet rs = stmt.executeQuery();
-		if(rs.next()) {
-			utilisateur.setNo_utilisateur(rs.getInt("no_utilisateur"));
-			utilisateur.setPseudo(rs.getString("pseudo"));
-			utilisateur.setNom(rs.getString("nom"));
-			utilisateur.setPrenom(rs.getString("prenom"));
-			utilisateur.setEmail(rs.getString("email"));
-			utilisateur.setTelephone(rs.getString("telephone"));
-			utilisateur.setRue(rs.getString("rue"));
-			utilisateur.setCode_postal(rs.getString("code_postal"));
-			utilisateur.setVille(rs.getString("ville"));
-			utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
-			utilisateur.setCredit(rs.getInt("credit"));
-			utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECTBYID);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				utilisateur.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCode_postal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
+				utilisateur.setCredit(rs.getInt("credit"));
+				utilisateur.setAdministrateur(rs.getBoolean("administrateur"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Problème SQL");
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-		throw new DALException("Problème SQL");
-	}
-	return utilisateur;
+		return utilisateur;
 
-}
+	}
 }

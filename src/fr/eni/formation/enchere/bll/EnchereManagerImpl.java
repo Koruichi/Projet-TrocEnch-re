@@ -10,9 +10,6 @@ import fr.eni.formation.enchere.dal.IEnchere;
 public class EnchereManagerImpl implements IEnchereManager {
 	IEnchere dao = DAOFact.getenchereDAO();
 
-
-	
-
 	@Override
 	public void addEnchere(Enchere enchere, ArticleVendu a, Utilisateur u) throws BLLException {
 
@@ -20,7 +17,7 @@ public class EnchereManagerImpl implements IEnchereManager {
 			dao.addEnchere(enchere, a, u);
 		} catch (DALException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	@Override

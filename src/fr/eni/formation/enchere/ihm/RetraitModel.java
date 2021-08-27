@@ -9,14 +9,12 @@ public class RetraitModel {
 
 	private Retrait retrait;
 	private List<Retrait> lstRetrait;
-	
-	
+
 	public RetraitModel() {
 		super();
 		retrait = new Retrait();
 		lstRetrait = new ArrayList<Retrait>();
 	}
-
 
 	public RetraitModel(Retrait retrait, List<Retrait> lstRetrait) {
 		super();
@@ -24,26 +22,21 @@ public class RetraitModel {
 		this.lstRetrait = lstRetrait;
 	}
 
-
 	public Retrait getRetrait() {
 		return retrait;
 	}
-
 
 	public void setRetrait(Retrait retrait) {
 		this.retrait = retrait;
 	}
 
-
 	public List<Retrait> getLstRetrait() {
 		return lstRetrait;
 	}
 
-
 	public void setLstRetrait(List<Retrait> lstRetrait) {
 		this.lstRetrait = lstRetrait;
 	}
-
 
 	@Override
 	public String toString() {
@@ -55,6 +48,5 @@ public class RetraitModel {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+
 }

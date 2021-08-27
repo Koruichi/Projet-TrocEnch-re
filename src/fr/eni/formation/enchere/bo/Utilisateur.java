@@ -17,15 +17,13 @@ public class Utilisateur {
 	private boolean administrateur;
 	private List<ArticleVendu> lstArticleAchete;
 	private List<ArticleVendu> lstArticlevendu;
-	
-	
-	
-	
+
 	// Constructeurs
-	
+
 	public Utilisateur() {
 		super();
 	}
+
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
 		super();
@@ -42,6 +40,7 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
+
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur,
 			List<ArticleVendu> lstArticleAchete, List<ArticleVendu> lstArticlevendu) {
@@ -61,8 +60,7 @@ public class Utilisateur {
 		this.lstArticleAchete = lstArticleAchete;
 		this.lstArticlevendu = lstArticlevendu;
 	}
-	
-	
+
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
 		super();
@@ -78,99 +76,121 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-	
+
 	// Get
-	
+
 	public int getNo_utilisateur() {
 		return no_utilisateur;
 	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public String getPrenom() {
 		return prenom;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getTelephone() {
 		return telephone;
 	}
+
 	public String getRue() {
 		return rue;
 	}
+
 	public String getCode_postal() {
 		return code_postal;
 	}
+
 	public String getVille() {
 		return ville;
 	}
+
 	public String getMot_de_passe() {
 		return mot_de_passe;
 	}
+
 	public int getCredit() {
 		return credit;
 	}
+
 	public boolean isAdministrateur() {
 		return administrateur;
 	}
+
 	public List<ArticleVendu> getLstArticleAchete() {
 		return lstArticleAchete;
 	}
-	
-	
-	
+
 	// SET
-	
+
 	public void setNo_utilisateur(int no_utilisateur) {
 		this.no_utilisateur = no_utilisateur;
 	}
+
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+
 	public void setRue(String rue) {
 		this.rue = rue;
 	}
+
 	public void setCode_postal(String code_postal) {
 		this.code_postal = code_postal;
 	}
+
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+
 	public void setMot_de_passe(String mot_de_passe) {
 		this.mot_de_passe = mot_de_passe;
 	}
+
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
+
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
+
 	public void setLstArticleAchete(List<ArticleVendu> lstArticleAchete) {
 		this.lstArticleAchete = lstArticleAchete;
 	}
+
 	public void setLstArticlevendu(List<ArticleVendu> lstArticlevendu) {
 		this.lstArticlevendu = lstArticlevendu;
 	}
-	
-	
+
 	// TO STring
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -206,7 +226,5 @@ public class Utilisateur {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-
 
 }

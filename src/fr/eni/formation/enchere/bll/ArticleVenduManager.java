@@ -4,31 +4,28 @@ import java.util.List;
 
 import fr.eni.formation.enchere.bo.ArticleVendu;
 import fr.eni.formation.enchere.bo.Utilisateur;
-import fr.eni.formation.enchere.dal.DALException;
 import fr.eni.formation.enchere.dto.AfficheArticle;
 
 public interface ArticleVenduManager {
-	
-	public void addArticle (ArticleVendu articleVendu, Utilisateur u) throws BLLException;
-	
-	public void deleteArticle (ArticleVendu articleVendu, Utilisateur u) throws BLLException;
-	
-	public void updateArticle (ArticleVendu articleVendu, Utilisateur u) throws BLLException;
-	
-	public List<ArticleVendu> getAllArticle(Utilisateur u)throws BLLException;
-	
-	public ArticleVendu getById(int id,Utilisateur u)throws BLLException;
-	
+
+	public void addArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException;
+
+	public void deleteArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException;
+
+	public void updateArticle(ArticleVendu articleVendu, Utilisateur u) throws BLLException;
+
+	public List<ArticleVendu> getAllArticle(Utilisateur u) throws BLLException;
+
+	public ArticleVendu getById(int id, Utilisateur u) throws BLLException;
+
 	public List<AfficheArticle> getAllArticle() throws BLLException;
 
-	public List<AfficheArticle> selectByMotCle(String motCle)throws BLLException;
-	
-	public List<AfficheArticle> selectByCategorie(int categorie)throws BLLException;
-	
-    public List<AfficheArticle> getVente(Utilisateur u)throws BLLException;
-	
-	public List<AfficheArticle> getAchat(Utilisateur u)throws BLLException;
-	
+	public List<AfficheArticle> selectByMotCle(String motCle) throws BLLException;
 
-	
+	public List<AfficheArticle> selectByCategorie(int categorie) throws BLLException;
+
+	public List<AfficheArticle> getVente(Utilisateur u) throws BLLException;
+
+	public List<AfficheArticle> getAchat(Utilisateur u) throws BLLException;
+
 }
