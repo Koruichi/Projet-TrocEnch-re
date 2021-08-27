@@ -16,7 +16,6 @@ public class CategorieManagerImpl implements ICategorie {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

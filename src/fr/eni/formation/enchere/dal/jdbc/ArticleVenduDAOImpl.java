@@ -137,7 +137,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	@Override
 	public void delete(ArticleVendu articleVendu, Utilisateur u) throws DALException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -183,7 +183,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return result;	
@@ -213,7 +213,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 					
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return cat;	
@@ -238,7 +237,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;	
@@ -247,7 +245,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	@Override
 	public List<AfficheArticle> getAchat(Utilisateur u) throws DALException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

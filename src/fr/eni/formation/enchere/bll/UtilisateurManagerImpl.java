@@ -124,7 +124,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			return dao.getAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -135,7 +134,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			return dao.getById(id);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
