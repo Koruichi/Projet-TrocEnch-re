@@ -112,7 +112,7 @@ width : 70px;
 	
 		<div class="row">
 		<c:forEach items="${lst}" var="art" begin="1" end="6">
-		<div class="card col-lg-3 offset-2">
+		<div class="card col-lg-3 offset-lg-2">
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
 				<c:if test="${user == null}">

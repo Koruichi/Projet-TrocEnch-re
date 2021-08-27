@@ -89,7 +89,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			ex.ajoutMessage("L'email est obligatoire");
 		}
 		if (u.getTelephone() == null || u.getTelephone().trim().isEmpty()) {
-			ex.ajoutMessage("Le num�ro de telephone est obligatoire");
+			ex.ajoutMessage("Le numero de telephone est obligatoire");
 		}
 		if (u.getRue() == null || u.getRue().trim().isEmpty()) {
 			ex.ajoutMessage("La rue est obligatoire");

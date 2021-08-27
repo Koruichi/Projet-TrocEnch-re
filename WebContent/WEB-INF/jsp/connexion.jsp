@@ -35,13 +35,13 @@ width : 70px;
 	<div class="container">
 		<form action="ConnexionServlet" method="POST">
 		<div class="row">
-		<div class="col-lg-6 offset-3 col-sm-10 offset-1 ">	
+		<div class="col-lg-6 offset-lg-3 col-sm-12">	
 			<label class="text-nowrap">Identifiant:</label>
 			<input class="form-control" type="text" name="identifiant" value="${param.identifiant}" size="20" maxlength="20" /> 
 			</div>
 			</div>	
 		<div class="row">
-		<div class="col-lg-6 offset-3 col-sm-10 offset-1 ">	
+		<div class="col-lg-6 offset-lg-3 col-sm-12">	
 			<label class="text-nowrap">Mot de passe: </label> 
 			<input class="form-control" type="password" name="mot_de_passe" value="" size="20" maxlength="20" /> 
 			<br>
@@ -49,7 +49,7 @@ width : 70px;
 		</div>
 				
 		<div class="row">
-		<div class="col-lg-6 offset-3 col-sm-10 offset-1 ">	
+		<div class="col-lg-6 offset-lg-3 col-sm-12">	
 			<input class="form-control" type="submit" value="Connexion" name="btnConnexion" />
 			<input type="checkbox" name="souvenir" id="souvenir" /><label class="text-nowrap"> Se souvenir de moi</label><br> 
 			<a href="#">Mot de passe oublié</a>
@@ -59,7 +59,7 @@ width : 70px;
 
 		</form>
 		
-		<div class="col-lg-6 offset-3 col-sm-10 offset-1 ">
+		<div class="col-lg-6 offset-lg-3 col-sm-12">
 		<form method="post" action="ConnexionServlet">
 			<input class="form-control" type="submit" value="Créer un compte" name="btnCreerCompte" />
 		</form>
