@@ -29,17 +29,23 @@ width : 70px;
 </head>
 
 <body>
+<div class="container">
+	<div class="row">
+	<div class="justify-content-lg-start justify-content-sm-center">
 	<div>
 		<a href="<%=request.getContextPath()%>/AccueilServlet"><img class="transparent" width="100px" src="img/marteaulogo.png" alt="logo marteau du site"></a>
 	</div>
+	</div>
+	</div>
+
+</div>
 	
 	<div class="container">
 		<form method="POST" action="ModifierProfilServlet">
-		<div class="row">
-		<div class="text-center">
-			<h1>Mon profil</h1>
-        </div>
-        </div>
+		
+			<h1 class="titre">Mon profil</h1>
+       
+        
         
         <div class="form-group row">
         <div class="col-lg-6 col-sm-12">

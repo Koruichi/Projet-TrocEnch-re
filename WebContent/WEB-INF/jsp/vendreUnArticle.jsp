@@ -34,23 +34,9 @@ width : 70px;
 	</div>
 	</div>
 	</div>
-	<div class="row">
-	<div class="text-center">
-	<h1>Nouvelle vente</h1>
-	</div>
-	</div>
-</div>	
-<div class="container">
-<c:if test="${not empty erreurs }">
-		<div class = "error">
-			Il existe des erreurs :
-			<ul>
-				<c:forEach items="${erreurs}" var="e">
-					<li>${e }</li>
-				</c:forEach>
-			</ul>
-		</div>
-	</c:if>
+
+	<h1 class = "titre">Nouvelle vente</h1>
+
 </div>	
 
 <form method="POST" action="VendreUnArticleServlet" >
@@ -140,7 +126,18 @@ width : 70px;
 	</div>
 	</div>
 	</form>
-		
+<div class="container">
+	<c:if test="${not empty erreurs }">
+		<div class = "erreur">
+			Il existe des erreurs :
+			<ul>
+				<c:forEach items="${erreurs}" var="e">
+					<li>${e }</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
+</div>	
 
 </body>
 </html>

@@ -112,8 +112,7 @@ width : 70px;
 	
 		<div class="row">
 		<c:forEach items="${lst}" var="art" begin="1" end="6">
-		<div class="card">
-			<div class="col-lg-12 offset-1 col-sm-12"> 
+		<div class="card col-lg-3 offset-2">
 				<img class="card-img-left" alt="" src="">
 				<div class="card-body">
 				<c:if test="${user == null}">
@@ -131,7 +130,6 @@ width : 70px;
 				<p class="form-control">Vendeur :<a href="ProfilServlet?id=${art.no_utilisateur }"> ${art.pseudo}</a></p>
 				</c:if>
 				</div>
-			</div>
 			</div>
 		</c:forEach>
 	</div>
